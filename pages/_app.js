@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import '../styles/globals.css'
+import '../styles/mediaqueries.css'
+// import '../styles/calculateur.css'
 
 function MyApp({Component, pageProps}) {
   return (
@@ -32,15 +34,6 @@ function MyApp({Component, pageProps}) {
         <meta name="twitter:url" content={process.env.NEXT_PUBLIC_WEBSITE_URL}/>
         <meta name="twitter:description" content={process.env.NEXT_PUBLIC_WEBSITE_LONG_DESCRIPTION}/>
         <meta name="twitter:card" content="summary"/>
-
-        {/*Preloaded fonts*/}
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/Calluna-Regular.woff2"
-              crossOrigin="anonymous"/>
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/open-sans-v18-latin-700.woff2"
-              crossOrigin="anonymous"/>
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/open-sans-v18-latin-300.woff2"
-              crossOrigin="anonymous"/>
-        <link rel="stylesheet" href="/fonts/async-font-loader.css"/>
       </Head>
       <Component {...pageProps} />
     </>

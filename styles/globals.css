@@ -1,19 +1,19 @@
 :root {
   --background: #fff;
-  --main-text-color: #081b33;
+  --main-text-color: #000;
   --blue: #006ebb;
   --light-gray: rgba(8, 27, 51, 0.3);
   --header-bg: var(--background);
-  --vertical-spacing: 100px;
-  --horizontal-spacing: 8vw;
+  --vertical-spacing: 2vh;
+  --horizontal-spacing: 2vh;
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Open Sans', "Arial", sans-serif;
-  font-size: calc(100% + 0.4vw);
+  font-family: "Arial", sans-serif;
+  font-size: calc(100% + .25vw);
   color: var(--main-text-color);;
 }
 
@@ -32,15 +32,19 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: Calluna-Regular, "Georgia", sans-serif;
+  font-family: "Georgia", "Arial", sans-serif;
 }
 
 h2, h3 {
   font-weight: 400;
 }
 
+h1 {
+  font-size: 2.55rem;
+}
+
 h2 {
-  font-size: 2.1rem;
+  font-size: 2rem;
 }
 
 h3 {
@@ -49,7 +53,8 @@ h3 {
 }
 
 p,
-ul {
+ul,
+select {
   color: var(--main-text-color);
   font-size: 0.85rem;
 }
@@ -101,12 +106,17 @@ input[type="submit"]:hover {
 
 .page-container {
   overflow-x: hidden;
-  animation: fadeIn ease 1.5s;
-  -webkit-animation: fadeIn ease 1.5s;
+  animation: fadeIn ease 1.4s;
+  -webkit-animation: fadeIn ease 1.4s;
 }
 
 .container {
   padding: var(--vertical-spacing) var(--horizontal-spacing);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .full-screen-width {
@@ -132,33 +142,6 @@ input[type="submit"]:hover {
   white-space: nowrap;
 }
 
-.light-gray {
-  color: var(--light-gray);
-}
-
-img.zoom-hover-fx,
-.zoom-hover-fx img {
-  transition: transform 1s ease-in-out;
-}
-
-img.zoom-hover-fx:hover,
-.zoom-hover-fx:hover img {
-  transform: scale(1.04);
-  transform-origin: 50% 50%;
-}
-
-.start-hidden {
-  opacity: 0;
-}
-
-.initial-grow-fx {
-  transition: opacity 1.5s, transform 1.8s;
-  opacity: 1;
-  transform: scale(1.06);
-  transform-origin: 50% 50%;
-}
-
-
 ::selection {
   color: var(--background);
   background-color: var(--main-text-color);
@@ -168,18 +151,6 @@ img.zoom-hover-fx:hover,
   user-select: none;
 }
 
-.card {
-  padding: 30px 35px 15px 35px;
-  min-height: 260px;
-  box-shadow: 1px 2px 7px rgba(0, 8, 27, 0.17);
-  transition: all .2s;
-  width: 100%;
-  height: 100%;
-}
-
-.card:hover {
-  box-shadow: 1px 1px 5px rgba(0, 8, 27, 0.5);
-}
 
 @keyframes fadeIn {
   0% {
