@@ -51,7 +51,12 @@ export default function TaxCalculator() {
     setTVQ(tvq);
     setTotal(round(montant + tps + tvq));
     console.log("calcul=", {montant, taxeIn, tps, tvq, total});
-  }, [montant, province, taxeIn, taux])
+  }, [montant, total, province, taxeIn, taux])
+
+  useEffect(function autoFocusInput() {
+    const input = document.getElementById(`${taxeIn ? "total" : "montant"}`);
+    input && input.focus() && selectAllText(input);
+  }, [taxeIn])
 
   return (
     <div className={styles.calculator}>
@@ -76,8 +81,7 @@ export default function TaxCalculator() {
               setMontant(Number(values.value)) //unformatted number
             }}
             readOnly={taxeIn}
-            onFocus={selectAllText}
-            onClick={selectAllText}
+            onFocus={e => selectAllText(e.target)}
           />
         </div>
 
@@ -100,8 +104,7 @@ export default function TaxCalculator() {
               setTPS(Number(values.value)) //unformatted number
             }}
             readOnly
-            onFocus={selectAllText}
-            onClick={selectAllText}
+            onFocus={e => selectAllText(e.target)}
           />
         </div>
         <div className={`${styles.field} tvq`}>
@@ -121,8 +124,7 @@ export default function TaxCalculator() {
               setTVQ(Number(values.value)) //unformatted number
             }}
             readOnly
-            onFocus={selectAllText}
-            onClick={selectAllText}
+            onFocus={e => selectAllText(e.target)}
           />
         </div>
         <div className={`${styles.field} total`}>
@@ -142,8 +144,7 @@ export default function TaxCalculator() {
               setTotal(Number(values.value)) //unformatted number
             }}
             readOnly={!taxeIn}
-            onFocus={selectAllText}
-            onClick={selectAllText}
+            onFocus={e => selectAllText(e.target)}
           />
         </div>
 
@@ -204,6 +205,6 @@ function round(num, digits = 2) {
   return (Math.round((num + Number.EPSILON) * 100) / 100).toFixed(digits)
 }
 
-function selectAllText(e) {
-  e && e.target && e.target.setSelectionRange(0, e.target.value.length)
+function selectAllText(input) {
+  input && input.value && input.setSelectionRange(0, input.value.length)
 }
