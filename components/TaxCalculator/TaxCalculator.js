@@ -45,17 +45,37 @@ export default function TaxCalculator() {
   }, [province])
 
   useEffect(function calcul() {
-    const tps = montant * taux.tps;
-    const tvq = montant * taux.tvq;
-    setTPS(tps);
-    setTVQ(tvq);
-    setTotal(round(montant + tps + tvq));
-    console.log("calcul=", {montant, taxeIn, tps, tvq, total});
+    let sansTaxe, tps, tvq;
+    if (taxeIn) {
+      sansTaxe = isNaN(total) ? 0 : (total / (taux.tps + taux.tvq + 1));
+      tps = sansTaxe * taux.tps;
+      tvq = sansTaxe * taux.tvq;
+      setTPS(tps);
+      setTVQ(tvq);
+      setMontant(round(total - (tps + tvq)));
+    } else {
+      sansTaxe = isNaN(montant) ? 0 : montant;
+      tps = sansTaxe * taux.tps;
+      tvq = sansTaxe * taux.tvq;
+      setTPS(tps);
+      setTVQ(tvq);
+      setTotal(round(montant + tps + tvq));
+    }
   }, [montant, total, province, taxeIn, taux])
 
-  useEffect(function autoFocusInput() {
+  useEffect(function changeTaxeInMode() {
+    //prevent NaN values from breaking the calculation
+    setMontant(isNaN(total) ? 0 : total);
+    setTotal(isNaN(montant) ? 0 : montant);
+
+    //auto focus the only available input
     const input = document.getElementById(`${taxeIn ? "total" : "montant"}`);
-    input && input.focus() && selectAllText(input);
+    if (input) {
+      input.focus();
+      setTimeout(() => {
+        selectAllText(input);
+      }, 30)
+    }
   }, [taxeIn])
 
   return (
@@ -65,7 +85,7 @@ export default function TaxCalculator() {
         <h1>Calcul de {province === "Québec" ? "TPS" : "TVH"} et TVQ</h1>
 
         <div className={`${styles.field} montant`}>
-          <label htmlFor="montant"><h2>Montant:</h2></label>
+          <label htmlFor="montant"><h2>Montant sans taxes:</h2></label>
           <NumberFormat
             id="montant"
             defaultValue={0}
@@ -128,7 +148,7 @@ export default function TaxCalculator() {
           />
         </div>
         <div className={`${styles.field} total`}>
-          <label htmlFor="total"><h2>Total:</h2></label>
+          <label htmlFor="total"><h2>Total avec taxes:</h2></label>
           <NumberFormat
             id="total"
             defaultValue={0}
@@ -150,6 +170,12 @@ export default function TaxCalculator() {
 
         <div className={styles.spacer}/>
 
+        <div className={`${styles.field} taxeIn`}>
+          <label htmlFor="taxeIn"><h2>Taxes incluses:</h2></label>
+          <input type="checkbox" value="taxeIn" id="taxeIn"
+                 onChange={e => setTaxeIn(e.target.checked)}/>
+        </div>
+
         <div className={`${styles.field} province`}>
           <label htmlFor="province"><h2>Province:</h2></label>
           <select name="province" id="province" defaultValue="Québec"
@@ -167,12 +193,6 @@ export default function TaxCalculator() {
             <option value="Territoires du Nord-Ouest">Territoires du Nord-Ouest</option>
             <option value="Yukon">Yukon</option>
           </select>
-        </div>
-
-        <div className={`${styles.field} taxeIn`}>
-          <label htmlFor="taxeIn"><h2>Taxes incluses:</h2></label>
-          <input type="checkbox" value="taxeIn" id="taxeIn"
-                 onChange={e => setTaxeIn(e.target.checked)}/>
         </div>
       </div>
 

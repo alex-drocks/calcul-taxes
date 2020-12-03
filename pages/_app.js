@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import '../styles/globals.css'
-import '../styles/mediaqueries.css'
-// import '../styles/calculateur.css'
 
 function MyApp({Component, pageProps}) {
   return (
