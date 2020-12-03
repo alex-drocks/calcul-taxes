@@ -51,7 +51,7 @@ export default function TaxCalculator() {
     setTVQ(tvq);
     setTotal(round(montant + tps + tvq));
     console.log("calcul=", {montant, taxeIn, tps, tvq, total});
-  }, [montant, province, taxeIn, taux.tps, taux.tvq])
+  }, [montant, province, taxeIn, taux])
 
   return (
     <div className={styles.calculator}>
@@ -60,7 +60,7 @@ export default function TaxCalculator() {
         <h1>Calcul de {province === "Québec" ? "TPS" : "TVH"} et TVQ</h1>
 
         <div className={`${styles.field} montant`}>
-          <label htmlFor="montant"><h2>{taxeIn ? "Total" : "Montant net"}:</h2></label>
+          <label htmlFor="montant"><h2>Montant:</h2></label>
           <NumberFormat
             id="montant"
             defaultValue={0}
@@ -75,6 +75,9 @@ export default function TaxCalculator() {
             onValueChange={(values) => {
               setMontant(Number(values.value)) //unformatted number
             }}
+            readOnly={taxeIn}
+            onFocus={selectAllText}
+            onClick={selectAllText}
           />
         </div>
 
@@ -83,7 +86,6 @@ export default function TaxCalculator() {
             <h2>{province === "Québec" ? "TPS" : "TVH"} ({(taux.tps * 100).toFixed(3)}%):</h2>
           </label>
           <NumberFormat
-            disabled
             id="tps"
             defaultValue={0}
             thousandSeparator=" "
@@ -97,12 +99,14 @@ export default function TaxCalculator() {
             onValueChange={(values) => {
               setTPS(Number(values.value)) //unformatted number
             }}
+            readOnly
+            onFocus={selectAllText}
+            onClick={selectAllText}
           />
         </div>
         <div className={`${styles.field} tvq`}>
           <label htmlFor="tvq"><h2>TVQ ({(taux.tvq * 100).toFixed(3)}%):</h2></label>
           <NumberFormat
-            disabled
             id="tvq"
             defaultValue={0}
             thousandSeparator=" "
@@ -116,12 +120,14 @@ export default function TaxCalculator() {
             onValueChange={(values) => {
               setTVQ(Number(values.value)) //unformatted number
             }}
+            readOnly
+            onFocus={selectAllText}
+            onClick={selectAllText}
           />
         </div>
         <div className={`${styles.field} total`}>
-          <label htmlFor="total"><h2>{taxeIn ? "Montant net" : "Total"}:</h2></label>
+          <label htmlFor="total"><h2>Total:</h2></label>
           <NumberFormat
-            disabled
             id="total"
             defaultValue={0}
             thousandSeparator=" "
@@ -135,6 +141,9 @@ export default function TaxCalculator() {
             onValueChange={(values) => {
               setTotal(Number(values.value)) //unformatted number
             }}
+            readOnly={!taxeIn}
+            onFocus={selectAllText}
+            onClick={selectAllText}
           />
         </div>
 
@@ -144,7 +153,6 @@ export default function TaxCalculator() {
           <label htmlFor="province"><h2>Province:</h2></label>
           <select name="province" id="province" defaultValue="Québec"
                   onChange={e => setProvince(e.target.value)}>
-            <option value="Québec">Québec</option>
             <option value="Alberta">Alberta</option>
             <option value="Île-du-Prince-Édouard">Île-du-Prince-Édouard</option>
             <option value="Manitoba">Manitoba</option>
@@ -152,6 +160,7 @@ export default function TaxCalculator() {
             <option value="Nouvelle-Écosse">Nouvelle-Écosse</option>
             <option value="Nunavut">Nunavut</option>
             <option value="Ontario">Ontario</option>
+            <option value="Québec">Québec</option>
             <option value="Saskatchewan">Saskatchewan</option>
             <option value="Terre-Neuve-et-Labrador">Terre-Neuve-et-Labrador</option>
             <option value="Territoires du Nord-Ouest">Territoires du Nord-Ouest</option>
@@ -191,6 +200,10 @@ export default function TaxCalculator() {
   )
 }
 
-function round(num, digits) {
-  return (Math.round((num + Number.EPSILON) * 100) / 100).toFixed(digits || 2)
+function round(num, digits = 2) {
+  return (Math.round((num + Number.EPSILON) * 100) / 100).toFixed(digits)
+}
+
+function selectAllText(e) {
+  e && e.target && e.target.setSelectionRange(0, e.target.value.length)
 }

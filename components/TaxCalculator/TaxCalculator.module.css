@@ -56,10 +56,24 @@
   height: calc(1em + 0.75em);
 }
 
-.field input[disabled] {
+.field input[readonly] {
   color: var(--main-text-color);
   opacity: 0.75;
+  background: none;
+  border: none;
 }
+.field input[readonly]:focus {
+  color: var(--main-text-color);
+  background: none;
+  border: none;
+  outline: none;
+}
+.field input[readonly]:focus,
+.field input[readonly]:hover {
+  opacity: 1;
+}
+
+
 
 @media screen and (max-width: 1000px) {
 
