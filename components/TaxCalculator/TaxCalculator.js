@@ -60,7 +60,7 @@ export default function TaxCalculator() {
         <h1>Calcul de {province === "Québec" ? "TPS" : "TVH"} et TVQ</h1>
 
         <div className={`${styles.field} montant`}>
-          <label htmlFor="montant"><h2>{taxeIn ? "Total" : "Montant"}:</h2></label>
+          <label htmlFor="montant"><h2>{taxeIn ? "Total" : "Montant net"}:</h2></label>
           <NumberFormat
             id="montant"
             defaultValue={0}
@@ -119,7 +119,7 @@ export default function TaxCalculator() {
           />
         </div>
         <div className={`${styles.field} total`}>
-          <label htmlFor="total"><h2>{taxeIn ? "Montant" : "Total"}:</h2></label>
+          <label htmlFor="total"><h2>{taxeIn ? "Montant net" : "Total"}:</h2></label>
           <NumberFormat
             disabled
             id="total"
