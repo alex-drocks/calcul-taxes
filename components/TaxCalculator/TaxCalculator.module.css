@@ -41,14 +41,18 @@
   font-weight: 700;
   font-size: 1.4em;
   padding: 0.5em 0.75em;
-  max-width: 45%;
-  width: 45%;
+  max-width: 50%;
+  width: 50%;
   margin: .25em 0;
 }
 
 .field input[type="checkbox"] {
   width: calc(1em + 0.75em);
   height: calc(1em + 0.75em);
+}
+
+.field input[disabled] {
+  color: var(--main-text-color);
 }
 
 @media screen and (max-width: 1000px) {
