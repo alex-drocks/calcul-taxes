@@ -1,8 +1,32 @@
 import styles from "./TaxCalculator.module.css";
-import {useState} from "react";
+import NumberFormat from 'react-number-format';
+import DecimalInput from "../DecimalInput/DecimalInput";
 
 export default function TaxCalculator() {
-  const [montant, setMontant] = useState(0);
+  let caretPos = 0;
+
+  function calcul(e) {
+    caretPos = e.target.selectionStart;
+    const rawInput = e.target.value;
+    let val = rawInput;
+    val = val.replace(/([^0-9.]+)/, "");
+    val = val.replace(/^(0|\.)/, "");
+    const match = /(\d{0,11})[^.]*((?:\.\d{0,2})?)/g.exec(val);
+    const value = match[1] + match[2];
+    e.target.value = value;
+    console.log(rawInput)
+
+    if (val.length > 0) {
+      const rounded = Number(value).toFixed(2);
+      e.target.value = rounded
+      if (val === "00") {
+        // console.log(val)
+        e.target.setSelectionRange(0, value.length);
+      } else {
+        e.target.setSelectionRange(caretPos, caretPos);
+      }
+    }
+  }
 
   return (
     <div className={styles.calculator}>
@@ -12,7 +36,7 @@ export default function TaxCalculator() {
 
         <div className={`${styles.field} montant`}>
           <label htmlFor="montant"><h2>Montant:</h2></label>
-          <input type="text" id="montant"/>
+          <DecimalInput id="montant" />
         </div>
 
         <div className={`${styles.field} tps`}>
