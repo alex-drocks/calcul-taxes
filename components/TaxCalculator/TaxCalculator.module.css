@@ -1,4 +1,5 @@
 .calculator {
+  width: 100%;
   max-width: 1000px;
 }
 
@@ -21,6 +22,10 @@
   box-shadow: 1px 1px 5px rgba(0, 8, 27, 0.55);
 }
 
+.spacer {
+  margin-top: 2em;
+}
+
 .field {
   display: flex;
   align-items: center;
@@ -33,16 +38,16 @@
   margin: 0;
 }
 
-.spacer {
-  margin-top: 2em;
+.field label {
+  min-width: 45%;
 }
 
 .field select, .field input {
   font-weight: 700;
   font-size: 1.4em;
   padding: 0.5em 0.75em;
-  max-width: 50%;
-  width: 50%;
+  max-width: 55%;
+  width: 55%;
   margin: .25em 0;
 }
 
@@ -53,6 +58,7 @@
 
 .field input[disabled] {
   color: var(--main-text-color);
+  opacity: 0.75;
 }
 
 @media screen and (max-width: 1000px) {
