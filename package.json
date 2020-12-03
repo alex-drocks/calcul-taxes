@@ -1,27 +1,28 @@
 {
-	"name": "calcul-taxes",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"update": "npx npm-check-updates -u",
-		"start": "next dev",
-		"build": "next build",
-		"preview-prod": "next build && next start",
-		"optimizeImages": "gulp optimizeImages",
-		"optimizeIcons": "gulp optimizeIcons",
-		"export-prod": "gulp preBuildCleanDirs && next build && next export && firebase deploy"
-	},
-	"dependencies": {
-		"lazysizes": "^5.2.2",
-		"next": "10.0.3",
-		"react": "17.0.1",
-		"react-dom": "17.0.1",
-		"react-number-format": "^4.4.1"
-	},
-	"devDependencies": {
-		"gulp": "^4.0.2",
-		"gulp-clean": "^0.4.0",
-		"gulp-imagemin": "^7.1.0",
-		"gulp-webp": "^4.0.1"
-	}
+  "name": "calcul-taxes",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+	"update": "npx npm-check-updates -u",
+	"start": "next dev",
+	"build": "next build",
+	"preview-prod": "next build && next start",
+	"optimizeImages": "gulp optimizeImages",
+	"optimizeIcons": "gulp optimizeIcons",
+	"export-prod": "gulp preBuildCleanDirs && next build && next export",
+	"deploy-test-firebase": "firebase deploy"
+  },
+  "dependencies": {
+	"lazysizes": "^5.2.2",
+	"next": "10.0.3",
+	"react": "17.0.1",
+	"react-dom": "17.0.1",
+	"react-number-format": "^4.4.1"
+  },
+  "devDependencies": {
+	"gulp": "^4.0.2",
+	"gulp-clean": "^0.4.0",
+	"gulp-imagemin": "^7.1.0",
+	"gulp-webp": "^4.0.1"
+  }
 }

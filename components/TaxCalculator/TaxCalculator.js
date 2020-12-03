@@ -204,18 +204,24 @@ export default function TaxCalculator() {
           <p>Entrez le montant sans taxe afin d'obtenir les résultats du calcul des taxes ainsi que le total.</p>
         )
       }
-      {province === "Québec" ?
-        (
-          <a className="text-link"
-             href="https://www.revenuquebec.ca/fr/entreprises/taxes/tpstvh-et-tvq/perception-de-la-tps-et-de-la-tvq/calcul-des-taxes/">
-            Calcul des taxes selon Revenu Québec
+      <div className={styles.footer}>
+        {province === "Québec" ?
+          (
+            <a className="text-link"
+               href="https://www.revenuquebec.ca/fr/entreprises/taxes/tpstvh-et-tvq/perception-de-la-tps-et-de-la-tvq/calcul-des-taxes/">
+              Calcul des taxes selon Revenu Québec
+            </a>)
+          :
+          (<a className="text-link"
+              href="https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/tps-tvh-entreprises/facturer-percevoir-quel-taux/calculatrice.html">
+            Calcul des taxes selon Canada.ca
           </a>)
-        :
-        (<a className="text-link"
-            href="https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/tps-tvh-entreprises/facturer-percevoir-quel-taux/calculatrice.html">
-          Calcul des taxes selon Canada.ca
-        </a>)
-      }
+        }
+        <a href={"https://finance-d.com"} className={styles.brand}>
+          <img className={styles.logo} src="/icons/icon-48x48.png" alt="Logo"/>
+          <span className="no-wrap">Finance D</span>
+        </a>
+      </div>
 
     </div>
   )

@@ -32,6 +32,11 @@ function MyApp({Component, pageProps}) {
         <meta name="twitter:url" content={process.env.NEXT_PUBLIC_WEBSITE_URL}/>
         <meta name="twitter:description" content={process.env.NEXT_PUBLIC_WEBSITE_LONG_DESCRIPTION}/>
         <meta name="twitter:card" content="summary"/>
+
+        <link rel="apple-touch-icon" sizes="180x180"
+              href={process.env.NEXT_PUBLIC_WEBSITE_URL + "/icons/apple-touch-icon.png"}/>
+        <link rel="mask-icon" href={process.env.NEXT_PUBLIC_WEBSITE_URL + "/icons/safari-pinned-tab.svg"}
+              color="#21beeb"/>
       </Head>
       <Component {...pageProps} />
     </>

@@ -83,6 +83,24 @@
   opacity: 1;
 }
 
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer .brand {
+  display: flex;
+  align-items: center;
+  margin-left: 4em;
+}
+
+.footer .brand .logo {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 2px;
+}
+
 @media screen and (max-width: 1024px) {
   .container {
     min-height: auto;
