@@ -66,11 +66,8 @@
   outline: none;
 }
 
-.spacerTop {
-  margin-top: calc(var(--vertical-spacing) * 4);
-}
-
 .field.taxeIn {
+  margin-top: calc(var(--vertical-spacing) * 5);
   margin-bottom: var(--vertical-spacing);
 }
 
@@ -90,6 +87,10 @@
   width: 1.1em;
   height: 1.1em;
   margin-right: 2px;
+}
+
+.instructions p {
+  color: var(--light-gray);
 }
 
 @media screen and (max-width: 1024px) {
@@ -114,6 +115,14 @@
 }
 
 @media screen and (max-width: 463px) {
+  .field {
+    margin-bottom: var(--vertical-spacing);
+  }
+
+  .field input {
+    margin: 1px;
+  }
+
   .field input[type="text"]:not(:read-only),
   .field select {
     width: 100%;
@@ -122,22 +131,11 @@
 
   .field input:read-only {
     min-width: 250px;
-  }
-  .field label {
-    min-width: 195px;
-  }
-}
-
-@media screen and (max-width: 416px) {
-  .field {
-    margin-bottom: var(--vertical-spacing);
-  }
-
-  .field input:read-only {
     padding: 0;
   }
 
-  .field input {
-    margin: 1px;
+  .field label {
+    min-width: 195px;
   }
+
 }

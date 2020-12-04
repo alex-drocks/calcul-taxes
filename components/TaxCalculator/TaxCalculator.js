@@ -79,22 +79,24 @@ export default function TaxCalculator() {
   }, [taxeIn])
 
   return (
-    <div className={styles.calculator}>
+    <div id="calculator-component-container" className={styles.calculator}>
+      <form className={styles.card} onSubmit={handleSubmit}>
+        <input style={{display: "none"}} type="submit" value="Recalculer"/>
 
-      <div className={styles.card}>
         <h1 className="no-select">Calcul de {province === "Québec" ? "TPS" : "TVH"} et TVQ</h1>
 
+        {/*montant*/}
         <div className={`${styles.field} montant`}>
           <label htmlFor="montant"><h2>Montant sans taxes:</h2></label>
           <NumberFormat
             id="montant"
+            autoComplete={"off"}
             defaultValue={0}
             thousandSeparator=" "
             decimalSeparator="."
             decimalScale={2}
             fixedDecimalScale={true}
             allowLeadingZeros={false}
-            suffix=" $"
             allowedDecimalSeparators={[",", ".", " "]}
             value={montant}
             onValueChange={(values) => {
@@ -105,19 +107,20 @@ export default function TaxCalculator() {
           />
         </div>
 
+        {/*tps*/}
         <div className={`${styles.field} tps`}>
           <label htmlFor="tps">
             <h2>{province === "Québec" ? "TPS" : "TVH"} ({(taux.tps * 100).toFixed(3)}%):</h2>
           </label>
           <NumberFormat
             id="tps"
+            autoComplete={"off"}
             defaultValue={0}
             thousandSeparator=" "
             decimalSeparator="."
             decimalScale={2}
             fixedDecimalScale={true}
             allowLeadingZeros={false}
-            suffix=" $"
             allowedDecimalSeparators={[",", ".", " "]}
             value={TPS}
             onValueChange={(values) => {
@@ -127,17 +130,19 @@ export default function TaxCalculator() {
             onFocus={e => selectAllText(e.target)}
           />
         </div>
+
+        {/*tvq*/}
         <div className={`${styles.field} tvq`}>
           <label htmlFor="tvq"><h2>TVQ ({(taux.tvq * 100).toFixed(3)}%):</h2></label>
           <NumberFormat
             id="tvq"
+            autoComplete={"off"}
             defaultValue={0}
             thousandSeparator=" "
             decimalSeparator="."
             decimalScale={2}
             fixedDecimalScale={true}
             allowLeadingZeros={false}
-            suffix=" $"
             allowedDecimalSeparators={[",", ".", " "]}
             value={TVQ}
             onValueChange={(values) => {
@@ -147,17 +152,19 @@ export default function TaxCalculator() {
             onFocus={e => selectAllText(e.target)}
           />
         </div>
+
+        {/*total*/}
         <div className={`${styles.field} total`}>
           <label htmlFor="total"><h2>Total avec taxes:</h2></label>
           <NumberFormat
             id="total"
+            autoComplete={"off"}
             defaultValue={0}
             thousandSeparator=" "
             decimalSeparator="."
             decimalScale={2}
             fixedDecimalScale={true}
             allowLeadingZeros={false}
-            suffix=" $"
             allowedDecimalSeparators={[",", ".", " "]}
             value={total}
             onValueChange={(values) => {
@@ -168,13 +175,15 @@ export default function TaxCalculator() {
           />
         </div>
 
-        <div className={`${styles.field} ${styles.spacerTop} ${styles.taxeIn}`}>
+        {/*taxe incluses*/}
+        <div className={`${styles.field} ${styles.taxeIn}`}>
           <label htmlFor="taxeIn"><h2>Calcul de taxes inversé:</h2></label>
           <input type="checkbox" value="taxeIn" id="taxeIn"
                  onChange={e => setTaxeIn(e.target.checked)}/>
         </div>
 
-        <div className={`${styles.field} ${styles.province}`}>
+        {/*province*/}
+        <div className={styles.field}>
           <label htmlFor="province"><h2>Province/territoire du Canada:</h2></label>
           <select name="province" id="province" defaultValue="Québec"
                   onChange={e => setProvince(e.target.value)}>
@@ -192,18 +201,19 @@ export default function TaxCalculator() {
             <option value="Yukon">Yukon</option>
           </select>
         </div>
-      </div>
+      </form>
 
-      <div>
+      {/*instructions*/}
+      <div className={styles.instructions}>
         {
           taxeIn ? (
-            <p className={"light-gray"}>
+            <p>
               Puisque le mode de calcul inversé est actif,
               entrez le total incluant les taxes pour calculer les taxes incluses
               dans ce montant et pour obtenir le montant net avant taxes.
             </p>
           ) : (
-            <p className={"light-gray"}>
+            <p>
               Entrez le montant sans taxes pour obtenir le calcul des taxes selon le taux en vigueur
               et pour obtenir le total incluant les taxes.
             </p>
@@ -211,7 +221,7 @@ export default function TaxCalculator() {
         }
       </div>
 
-
+      {/*footer*/}
       <div className={styles.footer}>
         {province === "Québec" ?
           (
@@ -233,6 +243,17 @@ export default function TaxCalculator() {
 
     </div>
   )
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+
+  if (window && window.innerHeight < 600) {
+    const focused = document.activeElement;
+    focused && focused.blur();
+  }
+
+  window.scrollTo(0, 0);
 }
 
 function round(num, digits = 2) {
