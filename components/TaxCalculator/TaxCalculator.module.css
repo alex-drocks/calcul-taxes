@@ -5,25 +5,12 @@
 
 .calculator h1 {
   color: var(--blue);
-  text-shadow: 1px 2px 2px rgba(0, 8, 27, .05);
-  margin: 0 0 1em 0;
+  margin: 0 0 calc(var(--vertical-spacing) * 2) 0;
 }
 
 .card {
-  padding: 30px 35px 15px 35px;
-  min-height: 260px;
-  box-shadow: 1px 2px 8px rgba(0, 8, 27, 0.42);
-  transition: all .2s;
-  width: 100%;
-  height: 100%;
-}
-
-.card:hover {
-  box-shadow: 1px 1px 5px rgba(0, 8, 27, 0.55);
-}
-
-.spacer {
-  margin-top: 3.5em;
+  padding: 30px 50px;
+  box-shadow: 1px 2px 8px rgba(0, 8, 27, 0.3);
 }
 
 .field {
@@ -34,13 +21,14 @@
   user-select: none;
 }
 
-.field h2 {
-  margin: 0;
-}
 
 .field label {
-  min-width: 45%;
+  min-width: 40%;
   opacity: 0.7;
+}
+
+.field label h2 {
+  margin: 0;
 }
 
 .field select,
@@ -48,13 +36,18 @@
   font-weight: 700;
   font-size: 1.4em;
   padding: 0.5em 0.75em;
+  margin: 0;
   max-width: 55%;
   width: 55%;
-  margin: .25em 0;
 }
 
 .field input {
-  border: 3px solid var(--main-text-color);
+  border: 4px solid var(--blue);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: 4px solid var(--blue);
 }
 
 
@@ -63,24 +56,22 @@
   height: calc(1em + 0.75em);
 }
 
-
 .field input[readonly] {
   color: var(--main-text-color);
-  /*opacity: 0.76;*/
   background: none;
   border: none;
 }
 
 .field input[readonly]:focus {
-  color: var(--main-text-color);
-  background: none;
-  border: none;
   outline: none;
 }
 
-.field input[readonly]:focus,
-.field input[readonly]:hover {
-  opacity: 1;
+.spacerTop {
+  margin-top: calc(var(--vertical-spacing) * 4);
+}
+
+.field.taxeIn {
+  margin-bottom: var(--vertical-spacing);
 }
 
 .footer {
@@ -102,56 +93,51 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .container {
-    min-height: auto;
-  }
-
-  .calculator {
-    width: 96%;
-    max-width: 800px;
-  }
-
   .card {
     padding: 0;
     box-shadow: none;
   }
 
-  .card:hover {
-    box-shadow: none;
-  }
-
-  .field {
-    margin-bottom: 1em;
-  }
-
   .field input[type="text"],
   .field select {
-    max-width: 100%;
     min-width: 250px;
   }
 }
 
-@media screen and (max-width: 700px) {
-  .calculator {
+@media screen and (max-width: 746px) {
+  .field select {
     width: 100%;
-  }
-
-  .field {
-    margin-bottom: 1.4em;
+    min-width: 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
   }
 }
 
-@media screen and (max-width: 486px) {
-  .calculator {
+@media screen and (max-width: 463px) {
+  .field input[type="text"]:not(:read-only),
+  .field select {
     width: 100%;
+    max-width: 100%;
   }
 
+  .field input:read-only {
+    min-width: 250px;
+  }
+  .field label {
+    min-width: 195px;
+  }
+}
+
+@media screen and (max-width: 416px) {
   .field {
-    margin-bottom: 2.5em;
+    margin-bottom: var(--vertical-spacing);
   }
 
-  .field input, .field select {
-    margin: 0;
-    padding: 3px;
+  .field input:read-only {
+    padding: 0;
+  }
+
+  .field input {
+    margin: 1px;
   }
 }

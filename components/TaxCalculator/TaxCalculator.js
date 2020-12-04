@@ -82,7 +82,7 @@ export default function TaxCalculator() {
     <div className={styles.calculator}>
 
       <div className={styles.card}>
-        <h1>Calcul de {province === "Québec" ? "TPS" : "TVH"} et TVQ</h1>
+        <h1 className="no-select">Calcul de {province === "Québec" ? "TPS" : "TVH"} et TVQ</h1>
 
         <div className={`${styles.field} montant`}>
           <label htmlFor="montant"><h2>Montant sans taxes:</h2></label>
@@ -168,16 +168,14 @@ export default function TaxCalculator() {
           />
         </div>
 
-        <div className={styles.spacer}/>
-
-        <div className={`${styles.field} taxeIn`}>
-          <label htmlFor="taxeIn"><h2>Taxes incluses:</h2></label>
+        <div className={`${styles.field} ${styles.spacerTop} ${styles.taxeIn}`}>
+          <label htmlFor="taxeIn"><h2>Calcul de taxes inversé:</h2></label>
           <input type="checkbox" value="taxeIn" id="taxeIn"
                  onChange={e => setTaxeIn(e.target.checked)}/>
         </div>
 
-        <div className={`${styles.field} province`}>
-          <label htmlFor="province"><h2>Province:</h2></label>
+        <div className={`${styles.field} ${styles.province}`}>
+          <label htmlFor="province"><h2>Province/territoire du Canada:</h2></label>
           <select name="province" id="province" defaultValue="Québec"
                   onChange={e => setProvince(e.target.value)}>
             <option value="Alberta">Alberta</option>
@@ -196,14 +194,24 @@ export default function TaxCalculator() {
         </div>
       </div>
 
-      {
-        taxeIn ? (
-          <p> Entrez le total (incluant les taxes) afin d'obtenir les résultats du calcul des taxes ainsi que le montant
-            net.</p>
-        ) : (
-          <p>Entrez le montant sans taxe afin d'obtenir les résultats du calcul des taxes ainsi que le total.</p>
-        )
-      }
+      <div>
+        {
+          taxeIn ? (
+            <p className={"light-gray"}>
+              Puisque le mode de calcul inversé est actif,
+              entrez le total incluant les taxes pour calculer les taxes incluses
+              dans ce montant et pour obtenir le montant net avant taxes.
+            </p>
+          ) : (
+            <p className={"light-gray"}>
+              Entrez le montant sans taxes pour obtenir le calcul des taxes selon le taux en vigueur
+              et pour obtenir le total incluant les taxes.
+            </p>
+          )
+        }
+      </div>
+
+
       <div className={styles.footer}>
         {province === "Québec" ?
           (
