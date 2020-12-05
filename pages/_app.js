@@ -1,7 +1,8 @@
-import Head from 'next/head'
-import '../styles/globals.css'
+import Head from 'next/head';
+import '../styles/globals.css';
+import '../styles/TaxCalculator.css';
 
-function MyApp({Component, pageProps}) {
+export default function MyApp({Component, pageProps}) {
   return (
     <>
       <Head>
@@ -34,7 +35,8 @@ function MyApp({Component, pageProps}) {
         <meta name="twitter:card" content="summary"/>
 
         <link rel="apple-touch-icon" sizes="180x180"
-              href={process.env.NEXT_PUBLIC_WEBSITE_URL + "/icons/apple-touch-icon.png"}/>
+              href={process.env.NEXT_PUBLIC_WEBSITE_URL + "/icons/apple-" +
+              "touch-icon.png"}/>
         <link rel="mask-icon" href={process.env.NEXT_PUBLIC_WEBSITE_URL + "/icons/safari-pinned-tab.svg"}
               color="#21beeb"/>
       </Head>
@@ -42,5 +44,3 @@ function MyApp({Component, pageProps}) {
     </>
   )
 }
-
-export default MyApp
