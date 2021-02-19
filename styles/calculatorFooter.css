@@ -1,0 +1,16 @@
+.calculator-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.invisible-keywords {
+  display: none;
+}

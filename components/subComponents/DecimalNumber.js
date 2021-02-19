@@ -20,5 +20,5 @@ export default function Decimalnumber({id, label, readOnly, stateValue, onChange
         onFocus={onFocusHandler}
       />
     </div>
-  )
+  );
 }

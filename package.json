@@ -12,10 +12,10 @@
 		"deploy-test-firebase": "firebase deploy"
 	},
 	"dependencies": {
-		"next": "10.0.3",
+		"next": "10.0.7",
 		"react": "17.0.1",
 		"react-dom": "17.0.1",
-		"react-number-format": "^4.4.1"
+		"react-number-format": "^4.4.4"
 	},
 	"devDependencies": {
 		"gulp": "^4.0.2",
