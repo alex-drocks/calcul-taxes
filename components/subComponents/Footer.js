@@ -3,6 +3,13 @@ export default function Footer({province}) {
     <div className="calculator-footer"
          style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
       <div className={"footer-row"}>
+        <a href="https://finance-d.com"
+           style={{display: "flex", alignItems: "center", marginRight: "4em"}}>
+          <img style={{width: "1.1em", height: "1.1em", marginRight: "2px"}}
+               src="/icons/icon-48x48.png" alt="Logo"
+               width={48} height={48}/>
+          <span className="no-wrap">Finance D</span>
+        </a>
         {province === "Québec" ?
           (
             <a className="text-link"
@@ -16,26 +23,16 @@ export default function Footer({province}) {
             </a>
           )
         }
-        <a href="https://finance-d.com"
-           style={{display: "flex", alignItems: "center", marginLeft: "4em"}}>
-          <img style={{width: "1.1em", height: "1.1em", marginRight: "2px"}}
-               src="/icons/icon-48x48.png" alt="Logo"
-               width={48} height={48}/>
-          <span className="no-wrap">Finance D</span>
-        </a>
       </div>
 
-      <div className={"footer-row invisible-keywords"}>
+      <div className={"footer-row"}>
         <p>
-          Une calculatrice de taxes {new Date().getFullYear()} offerte gratuitement et sans publicité.
-          Calcul de TPS et TVQ inversé (taxes incluses).
-          Calcul des taxes du Québec.
-          Calculatrice de taxes Québec.
-          Calculatrice de TPS TVQ.
-          Calcul des taxes canadiennes.
-          Calcul de taxe renversé.
-          Calculatrice de taxes incluses.
-          Calcul des taxes {new Date().getFullYear()}.
+          Une calculatrice de taxes aux taux de {new Date().getFullYear()} sans publicité.
+          Elle inclut le calcul de TPS et TVQ inversé (taxes incluses);
+          Calcul des taxes du Québec et calcul des taxes pour l'ensemble des provinces et territoires du Canada.
+          Sélectionnez la province désirée et un des deux modes calcul de taxes. Soit le calcul avant taxes ou calcul après taxes.
+          Accessible à partir de n'importe quel appareil connecté à internet:
+          ordinateur, portable, cellulaire / mobile / téléphone intelligent.
         </p>
       </div>
     </div>

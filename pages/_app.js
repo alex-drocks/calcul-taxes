@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import '../styles/globals.css';
 import '../styles/taxCalculator.css';
-import "../styles/calculatorFooter.css";
+import "../styles/footer.css";
 
 export default function MyApp({Component, pageProps}) {
   return (

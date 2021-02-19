@@ -171,5 +171,9 @@ function round(num, digits = 2) {
 }
 
 function selectAllText(input) {
-  input && input.value && input.setSelectionRange(0, input.value.length);
+  try {
+    input && input.value && input.setSelectionRange(0, input.value.length);
+  } catch (e) {
+
+  }
 }
