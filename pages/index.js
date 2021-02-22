@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="page-container">
       <Head>
-        <title>{process.env.NEXT_PUBLIC_WEBSITE_NAME} | {process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION}</title>
+        <title>{process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION} | Finance D</title>
       </Head>
 
       <TaxCalculator/>

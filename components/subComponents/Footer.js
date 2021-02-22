@@ -28,11 +28,16 @@ export default function Footer({province}) {
       <div className={"footer-row"}>
         <p>
           Une calculatrice de taxes aux taux de {new Date().getFullYear()} sans publicité.
-          Elle inclut le calcul de TPS et TVQ inversé (taxes incluses);
+          Elle inclut le calcul de TPS et TVQ renversé (taxes incluses);
           Calcul des taxes du Québec et calcul des taxes pour l'ensemble des provinces et territoires du Canada.
-          Sélectionnez la province désirée et un des deux modes calcul de taxes. Soit le calcul avant taxes ou calcul après taxes.
+          Sélectionnez la province désirée et un des deux modes de calcul de taxes.
+          Soit le calcul avant taxes ou, le calcul après taxes.
           Accessible à partir de n'importe quel appareil connecté à internet:
           ordinateur, portable, cellulaire / mobile / téléphone intelligent.
+          <br/>
+          <br/>
+          Note: les taux de taxes pour les autres provinces canadiennes prennent pour
+          acquis que vous habitez au Québec et que vous facturez un client dans une de ces autres provinces du Canada.
         </p>
       </div>
     </div>
