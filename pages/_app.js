@@ -1,4 +1,5 @@
 import Head from 'next/head';
+
 import '../styles/globals.css';
 import '../styles/taxCalculator.css';
 import "../styles/footer.css";
@@ -40,8 +41,18 @@ export default function MyApp({Component, pageProps}) {
               "touch-icon.png"}/>
         <link rel="mask-icon" href={process.env.NEXT_PUBLIC_WEBSITE_URL + "/icons/safari-pinned-tab.svg"}
               color="#21beeb"/>
+
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+        />
+
+        {/*google analytics*/}
+        <script
+          dangerouslySetInnerHTML={{__html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');`,}}
+        />
       </Head>
       <Component {...pageProps} />
     </>
-  )
+  );
 }
