@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import Decimalnumber from "./subComponents/DecimalNumber";
 import TaxeInCheckbox from "./subComponents/TaxeInCheckbox";
 import SelectProvince from "./subComponents/SelectProvince";
+import ResultsGrid from "./ResultsGrid";
 import Instructions from "./subComponents/Instructions";
 import Footer from "./subComponents/Footer";
 
@@ -19,6 +20,8 @@ export default function TaxCalculator() {
   const [taux, setTaux] = useState({tps: 0, tvq: 0});
 
   const [taxeIn, setTaxeIn] = useState(false);
+
+  console.log(montant);
 
   useEffect(function setTauxDeTaxes() {
     if (province === "Québec") {
@@ -146,6 +149,17 @@ export default function TaxCalculator() {
       </form>
 
       <Instructions taxeIn={taxeIn}/>
+
+      <ResultsGrid
+        montant={round(Number(montant))}
+        tps={round(Number(TPS))}
+        tvq={round(Number(TVQ))}
+        total={round(Number(total))}
+        province={province}
+        tauxFed={taux.tps}
+        tauxQc={taux.tvq}
+      />
+
       <Footer province={province}/>
     </div>
   );

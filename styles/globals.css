@@ -95,6 +95,27 @@ a {
   user-select: none;
 }
 
+.results-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.results-grid--header,
+.results-grid--rows {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.results-grid--header span,
+.results-grid--rows span {
+  padding: 4px 8px;
+}
+
+.results-grid--header span {
+  background-color: #f5f5f5;
+  color: var(--blue);
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
