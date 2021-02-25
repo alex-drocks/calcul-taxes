@@ -2,6 +2,8 @@
   font-size: 16px;
   margin-top: 1em;
   box-shadow: var(--main-box-shadow);
+  width: 100%;
+  max-width: var(--max-content-width);
 }
 
 .results-grid.hidden {
@@ -25,8 +27,8 @@
 }
 
 .results-grid--header span {
-  background-color: #f5f5f5;
-  color: var(--blue);
+  color: #fff;
+  background-color: var(--blue);
   font-weight: bold;
 }
 

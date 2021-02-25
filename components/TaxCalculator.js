@@ -166,7 +166,6 @@ export default function TaxCalculator() {
       </form>
 
 
-      <ResultsGrid/>
 
     </div>
   );
