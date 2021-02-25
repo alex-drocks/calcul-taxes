@@ -8,7 +8,7 @@
 		"preview-prod": "next build && next start",
 		"optimizeImages": "gulp optimizeImages",
 		"optimizeIcons": "gulp optimizeIcons",
-	  	"clean": "npx rimraf .next out",
+		"clean": "npx rimraf .next out",
 		"build": "npm run clean && next build && next export"
 	},
 	"dependencies": {
