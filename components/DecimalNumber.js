@@ -10,8 +10,9 @@ export default function Decimalnumber({
                                         onFocusHandler,
                                         focusedInstructions
                                       }) {
+
   return (
-    <div className={`field ${id}`}>
+    <div className={`field ${id} ${id === "montant" ? "isActiveCalculationMode" : ""}`}>
       <label htmlFor={id}><h2>{label}</h2></label>
       <NumberFormat
         id={id}
