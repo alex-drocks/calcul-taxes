@@ -22,10 +22,13 @@
   user-select: none;
 }
 
-
 .field label {
   min-width: 40%;
   opacity: 0.7;
+  cursor: pointer;
+}
+
+.field label:hover {
 }
 
 .field label h2 {
@@ -51,10 +54,14 @@
   outline: 4px solid var(--blue);
 }
 
-
 .field input[type="checkbox"] {
   width: calc(1em + 0.75em);
   height: calc(1em + 0.75em);
+  cursor: pointer;
+}
+
+.field select {
+  cursor: pointer;
 }
 
 .field input[readonly] {

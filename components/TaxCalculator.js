@@ -6,10 +6,9 @@ import TaxeInCheckbox from "./TaxeInCheckbox";
 import SelectProvince from "./SelectProvince";
 import Instructions from "./Instructions";
 import ResultsGrid from "./ResultsGrid";
-import Footer from "./Footer";
 
 export default function TaxCalculator() {
-  const [title, setTitle] = useState("");
+  const [title, setCalculatorH1Title] = useState("");
   const [federalTaxName, setFederalTaxName] = useState("TPS");
 
   const [montant, setMontant] = useState(0);
@@ -95,8 +94,13 @@ export default function TaxCalculator() {
       "Ontario",
       "Terre-Neuve-et-Labrador"
     ].includes(province);
+
+    setCalculatorH1Title(`Calcul de taxes ${mode} pour la ${isTVH ? "TVH" : "TPS"}${province === "Québec" ? " et la TVQ" : ""}`);
+
     setFederalTaxName(isTVH ? "TVH" : "TPS");
-    setTitle(`Calcul de taxes ${mode} pour la ${isTVH ? "TVH" : "TPS"}${province === "Québec" ? " et la TVQ" : ""}`);
+
+    setFooterGovernmentLink(province);
+
   }, [taxeIn, province]);
 
   return (
@@ -164,7 +168,6 @@ export default function TaxCalculator() {
 
       <ResultsGrid/>
 
-      <Footer province={province}/>
     </div>
   );
 }
@@ -232,5 +235,17 @@ function selectAllText(input) {
     input && input.value && input.setSelectionRange(0, input.value.length);
   } catch (e) {
 
+  }
+}
+
+function setFooterGovernmentLink(province) {
+  const govLink = document.getElementById("gouvernment-link");
+  const govNameElm = govLink.querySelector("span");
+  if (province === "Québec") {
+    govLink.href = "https://www.revenuquebec.ca/fr/entreprises/taxes/tpstvh-et-tvq/perception-de-la-tps-et-de-la-tvq/calcul-des-taxes/";
+    govNameElm.textContent = "Revenu Québec";
+  } else {
+    govLink.href = "https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/tps-tvh-entreprises/facturer-percevoir-quel-taux/calculatrice.html";
+    govNameElm.textContent = "Canada.ca";
   }
 }

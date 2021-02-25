@@ -1,0 +1,75 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5em;
+  width: 100%;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 1em;
+}
+
+.footer-row p {
+  margin: 0;
+  color: rgba(0, 8, 27, .6);
+}
+
+.logo-fd-and-link-to-gov {
+  align-items: flex-start;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  max-width: 1100px;
+}
+
+.link-to-finance-d {
+  margin-right: 4em;
+  display: flex;
+  align-items: center;
+}
+
+.link-to-finance-d:hover {
+  text-decoration: underline;
+}
+
+.link-to-finance-d img {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 4px;
+  margin-bottom: 2px;
+}
+
+.footer-text-container {
+  flex-direction: column;
+  max-width: 1100px;
+  margin: 4em;
+}
+
+.footer-text-container h2 {
+  width: 100%;
+  text-align: left;
+  font-variant: small-caps;
+  margin: 0;
+}
+
+.copyright-and-social-links {
+  border-top: 1px solid #f1f1f1;
+  padding-top: 1em;
+}
+
+.footer-copyright {
+  font-size: 0.8em;
+}
+
+.footer-copyright a:hover {
+  text-decoration: underline;
+}
+
+.footer .social-links a {
+  margin: 0 10px;
+}

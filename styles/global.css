@@ -1,7 +1,7 @@
 :root {
   --background: #fff;
   --main-text-color: #000;
-  --blue: #006ab3;
+  --blue: #0064ac;
   --vertical-spacing: 2.5vh;
   --horizontal-spacing: 2vw;
   --main-box-shadow: 1px 2px 8px rgba(0, 8, 27, 0.45);
@@ -87,15 +87,14 @@ a {
   white-space: nowrap;
 }
 
-::selection {
-  color: var(--background);
-  background-color: var(--main-text-color);
-}
-
 .no-select {
   user-select: none;
 }
 
+::selection {
+  color: var(--background);
+  background-color: var(--main-text-color);
+}
 
 
 

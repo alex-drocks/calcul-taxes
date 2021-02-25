@@ -1,10 +1,10 @@
 import Head from 'next/head';
 
-import '../styles/globals.css';
-import '../styles/cornerRibbon.css';
-import '../styles/taxCalculator.css';
-import '../styles/resultsGrid.css';
-import "../styles/footer.css";
+import '../styles/global.css';
+import '../styles/CornerRibbonComponent.css';
+import '../styles/TaxCalculatorComponent.css';
+import '../styles/ResultsGridComponent.css';
+import "../styles/FooterComponent.css";
 
 export default function MyApp({Component, pageProps}) {
   return (
