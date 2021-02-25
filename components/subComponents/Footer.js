@@ -3,7 +3,7 @@ export default function Footer({province}) {
     <div className="calculator-footer"
          style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
       <div className={"footer-row"}>
-        <a href="https://finance-d.com"
+        <a href="https://finance-d.com" className="no-select"
            style={{display: "flex", alignItems: "center", marginRight: "4em"}}>
           <img style={{width: "1.1em", height: "1.1em", marginRight: "2px"}}
                src="/icons/icon-48x48.png" alt="Logo"

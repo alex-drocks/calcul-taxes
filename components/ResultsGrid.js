@@ -1,24 +1,33 @@
-export default function ResultsGrid({montant, tps, tvq, total, province, tauxFed, tauxQc}) {
+export default function ResultsGrid() {
+
+  function handleDeleteBtnClicks(e) {
+    const clickedElm = e.target;
+
+    if (clickedElm?.className === "deleteBtn" && e.target.parentElement.className === "results-grid--row") {
+      const rowToDelete = e.target.parentElement;
+      rowToDelete.remove();
+    }
+  }
 
   return (
-    <div className="results-grid">
+    <div className="results-grid"
+         onClick={handleDeleteBtnClicks}
+         title="Pour supprimer une ligne cliquer sur son icône de poubelle,
+          ou utilisez le raccourci clavier [Ctrl + Enter]."
+    >
       <div className="results-grid--header">
-        <span>MONTANT</span>
-        <span>TAXE FÉD</span>
-        <span>TAXE QC</span>
-        <span>TOTAL</span>
-        <span>PROVINCE</span>
-        <span>TAUX FÉD</span>
-        <span>TAUX QC</span>
+        <span className="montant">MONTANT</span>
+        <span className="tps">TPS/TVH</span>
+        <span className="tvq">TVQ</span>
+        <span className="total">TOTAL</span>
+        <span className="province">PROVINCE</span>
+        <span className="tauxFed">% FED</span>
+        <span className="tauxQc">% QC</span>
+        <span className="deleteBtn"/>
       </div>
+
       <div className="results-grid--rows">
-        <span>{montant}</span>
-        <span>{tps}</span>
-        <span>{tvq}</span>
-        <span>{total}</span>
-        <span>{province}</span>
-        <span>{tauxFed}</span>
-        <span>{tauxQc}</span>
+        {/*javascript will populate rows*/}
       </div>
     </div>
   );

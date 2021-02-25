@@ -7,7 +7,6 @@ export default function Home() {
       <Head>
         <title>{process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION} | Finance D</title>
       </Head>
-
       <TaxCalculator/>
     </div>
   );
