@@ -95,11 +95,16 @@ a {
   user-select: none;
 }
 
-.results-grid {
+.results-grid.hidden {
+  display: none;
+}
+
+.results-grid:not(.hidden) {
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 4px #dedede;
   font-size: 16px;
+  /*margin-bottom: 3em;*/
 }
 
 .results-grid--header,
@@ -171,6 +176,7 @@ a {
 .results-grid--row:hover {
   background-color: #fff;
 }
+
 .results-grid--row:hover svg {
   fill: var(--blue);
 }
@@ -218,5 +224,61 @@ a {
   }
   100% {
     opacity: 1;
+  }
+}
+
+
+@media screen and (max-width: 650px) {
+  .results-grid .tauxFed,
+  .results-grid .tauxQc {
+    display: none;
+  }
+
+  .results-grid .montant,
+  .results-grid .total {
+    width: 30%;
+  }
+
+  .results-grid .tps,
+  .results-grid .tvq {
+    width: 22%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .results-grid .province {
+    display: none;
+  }
+
+  .results-grid .montant,
+  .results-grid .total {
+    width: 29%;
+  }
+
+  .results-grid .tps,
+  .results-grid .tvq {
+    width: 21%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .results-grid {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 345px) {
+  .results-grid {
+    font-size: 12px;
+  }
+
+  .results-grid .montant,
+  .results-grid .total {
+    width: 28%;
+  }
+
+  .results-grid .tps,
+  .results-grid .tvq {
+    width: 22%;
   }
 }

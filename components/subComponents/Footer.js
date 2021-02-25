@@ -1,9 +1,9 @@
 export default function Footer({province}) {
   return (
-    <div className="calculator-footer"
+    <div className="calculator-footer no-select"
          style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
       <div className={"footer-row"}>
-        <a href="https://finance-d.com" className="no-select"
+        <a href="https://finance-d.com"
            style={{display: "flex", alignItems: "center", marginRight: "4em"}}>
           <img style={{width: "1.1em", height: "1.1em", marginRight: "2px"}}
                src="/icons/icon-48x48.png" alt="Logo"
@@ -24,7 +24,7 @@ export default function Footer({province}) {
           )
         }
       </div>
-
+      <br/>
       <div className={"footer-row"}>
         <p>
           Une calculatrice de taxes aux taux de {new Date().getFullYear()} sans publicité.
