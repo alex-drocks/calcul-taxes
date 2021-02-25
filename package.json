@@ -8,8 +8,8 @@
 		"preview-prod": "next build && next start",
 		"optimizeImages": "gulp optimizeImages",
 		"optimizeIcons": "gulp optimizeIcons",
-		"build": "gulp preBuildCleanDirs && next build && next export",
-		"deploy-test-firebase": "firebase deploy"
+	  	"clean": "npx rimraf .next out",
+		"build": "npm run clean && next build && next export"
 	},
 	"dependencies": {
 		"next": "10.0.7",

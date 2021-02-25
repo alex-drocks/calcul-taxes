@@ -4,23 +4,6 @@ const imagemin = require("gulp-imagemin");
 const webp = require("gulp-webp");
 
 
-// Pre build clean previous build files
-function cleanNextDir() {
-  return gulp.src(".next/*", {read: false})
-    .pipe(clean({force: true}));
-}
-
-function cleanOutDir() {
-  return gulp.src("out/*", {read: false})
-    .pipe(clean({force: true}));
-}
-
-exports.preBuildCleanDirs = gulp.series(
-  cleanNextDir,
-  cleanOutDir,
-);
-
-
 // Optimize images
 function optimizeImages() {
   return gulp.src("_imagesToOptimize/*")

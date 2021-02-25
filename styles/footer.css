@@ -1,4 +1,4 @@
-.calculator-footer {
+.footer {
   display: flex;
   flex-direction: column;
   margin-top: 1.5em;
@@ -10,4 +10,14 @@
   align-items: center;
   width: 100%;
   margin-top: 1em;
+}
+
+.logo-fd-and-link-to-gov {
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+
+.footer-text-container {
+  flex-direction: column;
+  color: #006ab3;
 }

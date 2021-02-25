@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react";
 
-import Decimalnumber from "./subComponents/DecimalNumber";
-import TaxeInCheckbox from "./subComponents/TaxeInCheckbox";
-import SelectProvince from "./subComponents/SelectProvince";
+import CornerRibbon from "./CornerRibbon";
+import Decimalnumber from "./DecimalNumber";
+import TaxeInCheckbox from "./TaxeInCheckbox";
+import SelectProvince from "./SelectProvince";
+import Instructions from "./Instructions";
 import ResultsGrid from "./ResultsGrid";
-import Instructions from "./subComponents/Instructions";
-import Footer from "./subComponents/Footer";
+import Footer from "./Footer";
 
 export default function TaxCalculator() {
   const [title, setTitle] = useState("");
@@ -100,7 +101,8 @@ export default function TaxCalculator() {
 
   return (
     <div id="calculator-component-container" className="calculator">
-      <div className="ribbon ribbon-top-right"><span>Taux {new Date().getFullYear()}</span></div>
+      <CornerRibbon/>
+
       <form className="card" onSubmit={e => handleFormSubmit(e,
         montant,
         TPS,
@@ -149,6 +151,9 @@ export default function TaxCalculator() {
           onFocusHandler={e => selectAllText(e.target)}
         />
 
+        <Instructions taxeIn={taxeIn}/>
+
+
         <TaxeInCheckbox onChangeHandler={e => setTaxeIn(e.target.checked)}/>
 
         <SelectProvince onChangeHandler={e => setProvince(e.target.value)}/>
@@ -156,7 +161,6 @@ export default function TaxCalculator() {
         <input style={{display: "none"}} type="submit" value="Recalculer"/>
       </form>
 
-      <Instructions taxeIn={taxeIn}/>
 
       <ResultsGrid/>
 
