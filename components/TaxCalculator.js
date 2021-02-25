@@ -158,7 +158,7 @@ export default function TaxCalculator() {
 
         <SelectProvince onChangeHandler={e => setProvince(e.target.value)}/>
 
-        <input style={{display: "none"}} type="submit" value="Recalculer"/>
+        <input id="submit-handler-input" style={{display: "none"}} type="submit" value="Recalculer"/>
       </form>
 
 

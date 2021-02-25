@@ -1,18 +1,4 @@
 export default function ResultsGrid() {
-
-  function handleDeleteBtnClicks(e) {
-    const clickedElm = e.target;
-
-    if (clickedElm?.className === "deleteBtn" && e.target.parentElement.className === "results-grid--row") {
-      const rowToDelete = e.target.parentElement;
-      rowToDelete.remove();
-
-      const gridRows = document.querySelector(".results-grid--rows");
-      const gridHeaderCounter = document.querySelector(".results-grid--header .rowCount");
-      gridHeaderCounter.textContent = (gridRows.childElementCount).toString();
-    }
-  }
-
   return (
     <div className="results-grid hidden"
          onClick={handleDeleteBtnClicks}
@@ -36,3 +22,33 @@ export default function ResultsGrid() {
     </div>
   );
 }
+
+function handleDeleteBtnClicks(e) {
+  const clickedElm = e.target;
+  if (clickedElm?.className === "deleteBtn" && e.target.parentElement.className === "results-grid--row") {
+    const rowToDelete = e.target.parentElement;
+    deleteGridRow(rowToDelete);
+  }
+}
+
+function deleteGridRow(rowToDelete) {
+  if (rowToDelete) {
+    rowToDelete.remove();
+    updateRowCount();
+  }
+}
+
+function updateRowCount() {
+  const gridHeaderCounter = document.querySelector(".results-grid--header .rowCount");
+  const gridRows = document.querySelector(".results-grid--rows");
+  gridHeaderCounter.textContent = (gridRows.childElementCount).toString();
+}
+
+//Export for DecimalNumber component to use in its onKeyDown handler
+export function handleRowDeleteFromHotkey() {
+  const gridRows = document.querySelector(".results-grid--rows");
+  const rowToDelete = gridRows.firstChild;
+
+  deleteGridRow(rowToDelete);
+}
+
