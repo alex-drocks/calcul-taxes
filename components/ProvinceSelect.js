@@ -1,4 +1,4 @@
-export default function SelectProvince({onChangeHandler}) {
+export default function ProvinceSelect({onChangeHandler}) {
   return (
     <div className="field">
       <label htmlFor="province"><h2>Province/territoire du Canada:</h2></label>
