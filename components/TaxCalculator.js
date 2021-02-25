@@ -4,11 +4,9 @@ import TopCornerRibbon from "./TopCornerRibbon";
 import Decimalnumber from "./DecimalNumber";
 import TaxeInCheckbox from "./TaxeInCheckbox";
 import ProvinceSelect from "./ProvinceSelect";
-import ModeInputInstruction from "./ModeInputInstruction";
-import ResultsGrid from "./ResultsGrid";
 
 export default function TaxCalculator() {
-  const [title, setCalculatorH1Title] = useState("");
+  const [calculatorH1Title, setCalculatorH1Title] = useState("");
   const [federalTaxName, setFederalTaxName] = useState("TPS");
 
   const [montant, setMontant] = useState(0);
@@ -117,7 +115,7 @@ export default function TaxCalculator() {
         taux.tvq,
       )
       }>
-        <h1 className="no-select">{title}</h1>
+        <h1 className="no-select">{calculatorH1Title}</h1>
 
         <Decimalnumber
           id="montant"
@@ -126,6 +124,7 @@ export default function TaxCalculator() {
           stateValue={montant}
           onChangeHandler={values => setMontant(Number(values.value))}
           onFocusHandler={e => selectAllText(e.target)}
+          focusedInstructions="Entrez le MONTANT (avant taxes)."
         />
 
         <Decimalnumber
@@ -153,19 +152,27 @@ export default function TaxCalculator() {
           stateValue={total}
           onChangeHandler={values => setTotal(Number(values.value))}
           onFocusHandler={e => selectAllText(e.target)}
+          focusedInstructions="Entrez le TOTAL (taxes incluses)."
         />
 
-        <ModeInputInstruction taxeIn={taxeIn}/>
+        <TaxeInCheckbox onChangeHandler={e => {
+          setTaxeIn(e.target.checked);
 
-
-        <TaxeInCheckbox onChangeHandler={e => setTaxeIn(e.target.checked)}/>
+          const montantInstructionEl = document.querySelector(".field.montant");
+          const totalInstructionEl = document.querySelector(".field.total");
+          if (taxeIn) {
+            montantInstructionEl.classList.add("isActiveCalculationMode");
+            totalInstructionEl.classList.remove("isActiveCalculationMode");
+          } else {
+            montantInstructionEl.classList.remove("isActiveCalculationMode");
+            totalInstructionEl.classList.add("isActiveCalculationMode");
+          }
+        }}/>
 
         <ProvinceSelect onChangeHandler={e => setProvince(e.target.value)}/>
 
         <input id="submit-handler-input" style={{display: "none"}} type="submit" value="Recalculer"/>
       </form>
-
-
 
     </div>
   );
