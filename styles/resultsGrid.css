@@ -1,6 +1,7 @@
 .results-grid {
   font-size: 16px;
-  box-shadow: 0 0 4px #dedede;
+  margin-top: 1em;
+  box-shadow: var(--main-box-shadow);
 }
 
 .results-grid.hidden {
@@ -122,6 +123,7 @@
 @media screen and (max-width: 500px) {
   .results-grid {
     font-size: 14px;
+    margin-bottom: 5em;
   }
 }
 

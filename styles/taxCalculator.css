@@ -11,7 +11,7 @@
 
 .card {
   padding: 30px 50px;
-  box-shadow: 1px 2px 8px rgba(0, 8, 27, 0.45);
+  box-shadow: var(--main-box-shadow);
 }
 
 .field {
