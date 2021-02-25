@@ -23,7 +23,7 @@ export default function Footer() {
         <div className={"footer-row app-description"}>
           {/*More details on what this app is meant to be*/}
           <p>
-            Il s'agit d'un calculateur de taxes versatile pour la TPS/TVH et TVQ,
+            Il s'agit d'un calculateur de taxes polyvalent pour la TPS/TVH et TVQ,
             avec les taux de {new Date().getFullYear()}.
             Plusieurs fonctions de calcul sont réunies&nbsp;:
             le calcul des taxes du Québec,
