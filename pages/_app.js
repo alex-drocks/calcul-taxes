@@ -13,7 +13,7 @@ export default function MyApp({Component, pageProps}) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="canonical" href={process.env.NEXT_PUBLIC_WEBSITE_URL}/>
         {/*Description*/}
-        <meta name="description" content={process.env.NEXT_PUBLIC_WEBSITE_LONG_DESCRIPTION}/>
+        <meta name="description" content={process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION}/>
 
         {/*OpenGraph Meta*/}
         <meta property="og:site_name" content={process.env.NEXT_PUBLIC_WEBSITE_TITLE}/>
@@ -22,7 +22,7 @@ export default function MyApp({Component, pageProps}) {
               content={process.env.NEXT_PUBLIC_WEBSITE_TITLE + " | " + process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION}/>
         <meta property="og:url" content={process.env.NEXT_PUBLIC_WEBSITE_URL}/>
         <meta property="og:type" content="website"/>
-        <meta property="og:description" content={process.env.NEXT_PUBLIC_WEBSITE_LONG_DESCRIPTION}/>
+        <meta property="og:description" content={process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION}/>
         <meta property="og:image"
               content={process.env.NEXT_PUBLIC_WEBSITE_URL + process.env.NEXT_PUBLIC_WEBSITE_META_IMAGE}/>
         <meta property="og:image:width" content={process.env.NEXT_PUBLIC_WEBSITE_META_IMAGE_WIDTH}/>
@@ -35,7 +35,7 @@ export default function MyApp({Component, pageProps}) {
         <meta name="twitter:image"
               content={process.env.NEXT_PUBLIC_WEBSITE_URL + process.env.NEXT_PUBLIC_WEBSITE_META_IMAGE}/>
         <meta name="twitter:url" content={process.env.NEXT_PUBLIC_WEBSITE_URL}/>
-        <meta name="twitter:description" content={process.env.NEXT_PUBLIC_WEBSITE_LONG_DESCRIPTION}/>
+        <meta name="twitter:description" content={process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION}/>
         <meta name="twitter:card" content="summary"/>
 
         <link rel="apple-touch-icon" sizes="180x180"
