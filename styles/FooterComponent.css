@@ -31,6 +31,7 @@
   margin-right: 4em;
   display: flex;
   align-items: center;
+  font-weight: bold;
 }
 
 .link-to-finance-d:hover {
@@ -40,7 +41,7 @@
 .link-to-finance-d img {
   width: 1.2em;
   height: 1.2em;
-  margin-right: 4px;
+  margin-right: 3px;
   margin-bottom: 2px;
 }
 

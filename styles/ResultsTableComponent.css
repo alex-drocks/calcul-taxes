@@ -1,75 +1,61 @@
-.results-grid {
+.results-table {
   font-size: 16px;
   margin-top: 2em;
   margin-bottom: 4em;
-  /*box-shadow: var(--main-box-shadow);*/
   width: 100%;
   max-width: var(--max-content-width);
 }
 
-.results-grid.hidden {
+.results-table.hidden {
   display: none;
 }
 
-.results-grid:not(.hidden) {
+.results-table:not(.hidden) {
   display: flex;
   flex-direction: column;
 }
 
-.results-grid--header,
-.results-grid--row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.results-table--header {
+  text-align: left;
 }
 
-.results-grid--header {
-  max-height: 3em;
-  min-width: min-content;
-}
-
-.results-grid--header span,
-.results-grid--row span {
+.results-table--header th,
+.results-table--row td {
   padding: 4px 8px;
-  height: 100%;
 }
 
-.results-grid--header span {
-  display: flex;
-  align-items: center;
-}
-
-.results-grid--header span {
+.results-table--header {
   color: #fff;
   background-color: var(--blue);
   font-weight: bold;
 }
 
-.results-grid--row {
-  border-bottom: 1px dashed #e0e0e0;
+.results-table--row td {
+  border-bottom: 1px dashed #e5e5e5;
   background-color: #fdfdfd;
+  height: 4.2em;
 }
 
-.results-grid .montant,
-.results-grid .total {
+.results-table .montant,
+.results-table .total {
   width: 15%;
 }
 
-.results-grid .tps,
-.results-grid .tvq {
+.results-table .tps,
+.results-table .tvq {
   width: 12.5%;
 }
 
-.results-grid .province {
+.results-table .province {
   width: 28%;
 }
 
-.results-grid .tauxFed,
-.results-grid .tauxQc {
+.results-table .tauxFed,
+.results-table .tauxQc {
   width: 8%;
 }
 
-.results-grid .deleteBtn {
+.results-table .deleteBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,26 +65,26 @@
   padding-right: 2px;
 }
 
-.results-grid .results-grid--row .deleteBtn:hover {
+.results-table .results-table--row .deleteBtn:hover {
   cursor: pointer;
 }
 
-.results-grid .deleteBtn svg {
+.results-table .results-table--row .deleteBtn svg {
   width: auto;
   height: 1em;
   pointer-events: none;
   fill: #959595;
 }
 
-.results-grid .deleteBtn:hover svg {
+.results-table .results-table--row .deleteBtn:hover svg {
   fill: #000;
 }
 
-.results-grid--row:hover {
+.results-table--row:hover td {
   background-color: #fff;
 }
 
-.results-grid--row:hover svg {
+.results-table--row:hover .deleteBtn svg {
   fill: var(--blue);
 }
 
@@ -124,72 +110,72 @@
 }
 
 @media screen and (max-width: 840px) {
-  .results-grid {
+  .results-table {
     font-size: 14px;
   }
 
-  .results-grid .province {
+  .results-table .province {
     width: 24%;
   }
 
-  .results-grid .tauxFed,
-  .results-grid .tauxQc {
+  .results-table .tauxFed,
+  .results-table .tauxQc {
     width: 10%;
   }
 }
 
 @media screen and (max-width: 650px) {
-  .results-grid .tauxFed,
-  .results-grid .tauxQc {
+  .results-table .tauxFed,
+  .results-table .tauxQc {
     display: none;
   }
 
-  .results-grid .montant,
-  .results-grid .total {
+  .results-table .montant,
+  .results-table .total {
     width: 30%;
   }
 
-  .results-grid .tps,
-  .results-grid .tvq {
+  .results-table .tps,
+  .results-table .tvq {
     width: 22%;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .results-grid .province {
+  .results-table .province {
     display: none;
   }
 
-  .results-grid .montant,
-  .results-grid .total {
+  .results-table .montant,
+  .results-table .total {
     width: 29%;
   }
 
-  .results-grid .tps,
-  .results-grid .tvq {
+  .results-table .tps,
+  .results-table .tvq {
     width: 21%;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .results-grid {
+  .results-table {
     font-size: 13px;
     margin-bottom: 4em;
   }
 }
 
 @media screen and (max-width: 370px) {
-  .results-grid {
+  .results-table {
     font-size: 11px;
   }
 
-  .results-grid .montant,
-  .results-grid .total {
+  .results-table .montant,
+  .results-table .total {
     width: 28%;
   }
 
-  .results-grid .tps,
-  .results-grid .tvq {
+  .results-table .tps,
+  .results-table .tvq {
     width: 22%;
   }
 }

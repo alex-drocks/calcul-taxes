@@ -153,43 +153,46 @@ a {
     padding: 0 !important;
   }
 
-  .calculator, .export-btns, .footer, .deleteBtn svg {
+  .calculator, .export-btns, .footer, .deleteBtn {
     display: none !important;
   }
 
-  .results-grid {
+  .results-table {
     font-size: 14px !important;
     margin: 0 !important;
     padding: 0 !important;
     margin-top: 2em !important;
   }
 
-  .results-grid:before {
-    content: "Généré avec la calculatrice de taxes Finance D | taxes.finance-d.com";
+  .results-table:before {
+    content: "Généré avec la calculatrice de taxes Finance D en-ligne | https://taxes.finance-d.com";
   }
 
-  .results-grid--header span {
+  .results-table--header th {
     background-color: black !important;
     color: white !important;
-    color-adjust: exact;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  .results-grid--row {
+  .results-table--row td {
     border-bottom-color: #222 !important;
+    background-color: white !important;
+    height: unset !important;
   }
 
-  .results-grid--row span {
+  .results-table--row th,
+  .results-table--row td {
     text-rendering: optimizeLegibility !important;
   }
 
-  .results-grid .province {
-    width: 24% !important;
+  .results-table .province {
+    width: 26% !important;
   }
 
-  .results-grid .tauxFed,
-  .results-grid .tauxQc {
+  .results-table .tauxFed,
+  .results-table .tauxQc {
     width: 10% !important;
   }
 }

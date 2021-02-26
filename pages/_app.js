@@ -3,7 +3,7 @@ import Head from 'next/head';
 import '../styles/global.css';
 import '../styles/CornerRibbonComponent.css';
 import '../styles/TaxCalculatorComponent.css';
-import '../styles/ResultsGridComponent.css';
+import '../styles/ResultsTableComponent.css';
 import "../styles/FooterComponent.css";
 
 export default function MyApp({Component, pageProps}) {

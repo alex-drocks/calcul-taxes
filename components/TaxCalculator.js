@@ -5,7 +5,7 @@ import Decimalnumber from "./DecimalNumber";
 import TaxeInCheckbox from "./TaxeInCheckbox";
 import ProvinceSelect from "./ProvinceSelect";
 
-import {addNewResultRowToGrid} from "./ResultsGrid";
+import {addNewResultRowToTable} from "./ResultsTable";
 
 export default function TaxCalculator() {
   const [calculatorMainTitle, setCalculatorMainTitle] = useState("");
@@ -232,8 +232,8 @@ function handleFormSubmit(e, montant, tps, tvq, total, province, tauxFed, tauxQc
 
   window.scrollTo(0, 0);
 
-  //Populate results grid row
-  addNewResultRowToGrid(montant, tps, tvq, total, province, tauxFed, tauxQc);
+  //Populate results table row
+  addNewResultRowToTable(montant, tps, tvq, total, province, tauxFed, tauxQc);
 }
 
 function setGovernmentLink(province) {

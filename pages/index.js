@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import {useEffect} from "react";
-import {handleRowDeleteWithHotkey} from "../components/ResultsGrid";
+import {handleRowDeleteWithHotkey} from "../components/ResultsTable";
 
 import TaxCalculator from "../components/TaxCalculator";
 import Footer from "../components/Footer";
-import ResultsGrid from "../components/ResultsGrid";
+import ResultsTable from "../components/ResultsTable";
 
 export default function Index() {
 
@@ -27,7 +27,7 @@ export default function Index() {
     <div className="page-container">
       <Head><title>{process.env.NEXT_PUBLIC_WEBSITE_TITLE}</title></Head>
       <TaxCalculator/>
-      <ResultsGrid/>
+      <ResultsTable/>
       <Footer/>
     </div>
   );
