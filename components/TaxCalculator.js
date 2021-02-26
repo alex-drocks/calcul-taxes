@@ -197,6 +197,10 @@ function handleFormSubmit(e, montant, tps, tvq, total, province, tauxFed, tauxQc
 }
 
 function addNewResultRowToGrid(montant, tps, tvq, total, province, tauxFed, tauxQc) {
+  if (!montant || !total) {
+    return;
+  }
+
   //The Excel-like grid at the bottom of page
   const resultsGrid = document.querySelector(".results-grid");
   resultsGrid.classList.contains("hidden") && resultsGrid.classList.remove("hidden");
