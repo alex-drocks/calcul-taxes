@@ -142,3 +142,54 @@ a {
     opacity: 1;
   }
 }
+
+@media print {
+  * {
+    color: black !important;
+  }
+
+  .page-container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .calculator, .export-btns, .footer, .deleteBtn svg {
+    display: none !important;
+  }
+
+  .results-grid {
+    font-size: 14px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 2em !important;
+  }
+
+  .results-grid:before {
+    content: "Généré avec la calculatrice de taxes Finance D | taxes.finance-d.com";
+  }
+
+  .results-grid--header span {
+    background-color: black !important;
+    color: white !important;
+    color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .results-grid--row {
+    border-bottom-color: #222 !important;
+  }
+
+  .results-grid--row span {
+    text-rendering: optimizeLegibility !important;
+  }
+
+  .results-grid .province {
+    width: 24% !important;
+  }
+
+  .results-grid .tauxFed,
+  .results-grid .tauxQc {
+    width: 10% !important;
+  }
+}

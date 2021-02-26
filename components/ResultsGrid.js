@@ -1,10 +1,10 @@
 import {roundNumber} from "./TaxCalculator";
 
 export default function ResultsGrid() {
-  return (
+  return (<>
     <div className="results-grid hidden"
          onClick={handleDeleteBtnClicks}
-         title="Pour supprimer une ligne cliquer sur son icône de poubelle, ou utilisez le raccourci clavier [Ctrl + Enter]."
+         title="Pour supprimer une ligne cliquez sur la poubelle, ou utilisez le raccourci clavier [Shift  Ctrl + Moins]."
     >
       <div className="results-grid--header">
         <span className="montant" title="Prix avant taxe / sans taxe">MONTANT</span>
@@ -12,16 +12,39 @@ export default function ResultsGrid() {
         <span className="tvq" title="Montant de la taxe provinciale">TVQ</span>
         <span className="total" title="Somme du MONTANT + taxe fédérale + taxe provinciale = TOTAL">TOTAL</span>
         <span className="province" title="Province sélectionnée pour le calcul">PROVINCE</span>
-        <span className="tauxFed" title="Pourcentage de taxe Fédérale">% FED</span>
-        <span className="tauxQc" title="Pourcentage de taxe Provinciale">% PROV</span>
+        <span className="tauxFed" title="Pourcentage de taxe Fédérale">%&nbsp;FED</span>
+        <span className="tauxQc" title="Pourcentage de taxe Provinciale">%&nbsp;PRO</span>
         <span className="deleteBtn rowCount" title="Nombre de lignes calculées dans ce tableau"/>
       </div>
-
       <div className="results-grid--rows">
         {/*javascript will populate rows*/}
       </div>
+      <div className="export-btns">
+        <button id="printBtn"
+                title="Imprimez la liste de vos calculs sur papier ou en fichier PDF"
+                onClick={print}
+        >
+          Imprimer
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M24 5h-4V0H4v5H0v13h4v6h9.519c2.947 0 6.029-3.577 6.434-6H24V5zM6 2h12v3H6V2zm8.691 16.648S16.16 22 12.691 22H6v-8h12v2.648c0 3.594-3.309 2-3.309 2zM21.5 8c-.276 0-.5-.224-.5-.5s.224-.5.5-.5.5.224.5.5-.224.5-.5.5zM16 17H8v-1h8v1zm-3 1H8v1h5v-1z"/>
+          </svg>
+        </button>
+        <button id="excelBtn"
+                title="Exportez la liste de vos calculs dans un fichier compatible avec Excel"
+                onClick={exportToExcel}
+        >
+          Excel
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+            <path
+              d="M28.8125.03125l-28 5.3125c-.472656.089844-.8125.519531-.8125 1v37.3125c0 .480469.339844.910156.8125 1l28 5.3125c.0625.011719.125.03125.1875.03125.230469 0 .445313-.070312.625-.21875.230469-.191406.375-.484375.375-.78125V1c0-.296875-.144531-.589844-.375-.78125-.230469-.191406-.519531-.242188-.8125-.1875zM32 6v7h2v2h-2v5h2v2h-2v5h2v2h-2v6h2v2h-2v7h15c1.101563 0 2-.898437 2-2V8c0-1.101562-.898437-2-2-2zm4 7h8v2h-8zM6.6875 15.6875h5.125L14.5 21.28125c.210938.441406.398438.984375.5625 1.59375h.03125c.105469-.363281.308594-.933594.59375-1.65625l2.96875-5.53125h4.6875l-5.59375 9.25 5.75 9.4375h-4.96875l-3.25-6.09375c-.121094-.226562-.246094-.644531-.375-1.25H14.875c-.0625.285156-.210937.730469-.4375 1.3125l-3.25 6.03125h-5l5.96875-9.34375zM36 20h8v2h-8zm0 7h8v2h-8zm0 8h8v2h-8z"/>
+          </svg>
+        </button>
+      </div>
+
     </div>
-  );
+
+  </>);
 }
 
 function handleDeleteBtnClicks(e) {
@@ -91,6 +114,14 @@ function handleRowDeleteWithHotkey() {
   const rowToDelete = gridRows.firstChild;
 
   deleteGridRow(rowToDelete);
+}
+
+function exportToExcel() {
+  alert("La fonction exporter vers Excel est en construction :)");
+}
+
+function print() {
+  window.print();
 }
 
 //Export for TaxCalculator component to use in its onKeyDown handler

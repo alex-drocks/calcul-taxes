@@ -1,7 +1,8 @@
 .results-grid {
   font-size: 16px;
-  margin-top: 1em;
-  box-shadow: var(--main-box-shadow);
+  margin-top: 2em;
+  margin-bottom: 4em;
+  /*box-shadow: var(--main-box-shadow);*/
   width: 100%;
   max-width: var(--max-content-width);
 }
@@ -18,12 +19,24 @@
 .results-grid--header,
 .results-grid--row {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+
+.results-grid--header {
+  max-height: 3em;
+  min-width: min-content;
 }
 
 .results-grid--header span,
 .results-grid--row span {
   padding: 4px 8px;
+  height: 100%;
+}
+
+.results-grid--header span {
+  display: flex;
+  align-items: center;
 }
 
 .results-grid--header span {
@@ -89,6 +102,42 @@
   fill: var(--blue);
 }
 
+.export-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin-top: 0.5em;
+}
+
+.export-btns button {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  margin-right: 20px;
+}
+
+.export-btns svg {
+  height: 20px;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 840px) {
+  .results-grid {
+    font-size: 14px;
+  }
+
+  .results-grid .province {
+    width: 24%;
+  }
+
+  .results-grid .tauxFed,
+  .results-grid .tauxQc {
+    width: 10%;
+  }
+}
+
 @media screen and (max-width: 650px) {
   .results-grid .tauxFed,
   .results-grid .tauxQc {
@@ -124,14 +173,14 @@
 
 @media screen and (max-width: 500px) {
   .results-grid {
-    font-size: 14px;
-    margin-bottom: 5em;
+    font-size: 13px;
+    margin-bottom: 4em;
   }
 }
 
 @media screen and (max-width: 370px) {
   .results-grid {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .results-grid .montant,
