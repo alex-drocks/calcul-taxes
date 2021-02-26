@@ -30,7 +30,7 @@ export default function Footer() {
           {/*More details on what this app is meant to be*/}
           <p>
             Il s'agit d'un calculateur de taxes polyvalent pour la TPS/TVH et TVQ,
-            avec les taux de {new Date().getFullYear()}.
+            avec les taux de {`${new Date().getFullYear()}`}.
             Plusieurs fonctions de calcul sont réunies&nbsp;:
             le calcul des taxes du Québec,
             le calcul des taxes pour l'ensemble des provinces et territoires du Canada,
@@ -57,7 +57,7 @@ export default function Footer() {
       <div className="footer-row copyright-and-social-links">
 
         <span className="footer-copyright">
-          ©&nbsp;{new Date().getFullYear()}{" "}
+          {`© ${new Date().getFullYear()} `}
           <a
             href="https://finance-d.com/a-propos/"
             title="En savoir plus à propos de Finance D"
