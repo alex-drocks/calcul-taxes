@@ -34,8 +34,8 @@ export default function Footer() {
             Plusieurs fonctions de calcul sont réunies&nbsp;:
             le calcul des taxes du Québec,
             le calcul des taxes pour l'ensemble des provinces et territoires du Canada,
-            et le mode de calcul de taxes renversé (taxes incluses).
-            Sélectionnez la province désirée et un des deux modes de calcul de taxes.
+            et le mode de calcul de taxes inverse (taxes incluses).
+            Sélectionnez une province du Canada et un des deux modes de calcul de taxes.
             Soit le mode de calcul avant taxes régulier ou,
             le mode de calcul après taxes (calcul inverse sur le total).
           </p>

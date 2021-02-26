@@ -4,18 +4,17 @@ export default function ResultsGrid() {
   return (
     <div className="results-grid hidden"
          onClick={handleDeleteBtnClicks}
-         title="Pour supprimer une ligne cliquer sur son icône de poubelle,
-          ou utilisez le raccourci clavier [Ctrl + Enter]."
+         title="Pour supprimer une ligne cliquer sur son icône de poubelle, ou utilisez le raccourci clavier [Ctrl + Enter]."
     >
       <div className="results-grid--header">
-        <span className="montant">MONTANT</span>
-        <span className="tps">TPS/TVH</span>
-        <span className="tvq">TVQ</span>
-        <span className="total">TOTAL</span>
-        <span className="province">PROVINCE</span>
-        <span className="tauxFed">% FED</span>
-        <span className="tauxQc">% QC</span>
-        <span className="deleteBtn rowCount"/>
+        <span className="montant" title="Prix avant taxe / sans taxe">MONTANT</span>
+        <span className="tps" title="Montant de la taxe Fédérale">TPS/TVH</span>
+        <span className="tvq" title="Montant de la taxe provinciale">TVQ</span>
+        <span className="total" title="Somme du MONTANT + taxe fédérale + taxe provinciale = TOTAL">TOTAL</span>
+        <span className="province" title="Province sélectionnée pour le calcul">PROVINCE</span>
+        <span className="tauxFed" title="Pourcentage de taxe Fédérale">% FED</span>
+        <span className="tauxQc" title="Pourcentage de taxe Provinciale">% PROV</span>
+        <span className="deleteBtn rowCount" title="Nombre de lignes calculées dans ce tableau"/>
       </div>
 
       <div className="results-grid--rows">
