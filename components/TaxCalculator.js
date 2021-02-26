@@ -5,8 +5,10 @@ import Decimalnumber from "./DecimalNumber";
 import TaxeInCheckbox from "./TaxeInCheckbox";
 import ProvinceSelect from "./ProvinceSelect";
 
+import {addNewResultRowToGrid} from "./ResultsGrid";
+
 export default function TaxCalculator() {
-  const [calculatorH1Title, setCalculatorH1Title] = useState("");
+  const [calculatorMainTitle, setCalculatorMainTitle] = useState("");
   const [federalTaxName, setFederalTaxName] = useState("TPS");
 
   const [montant, setMontant] = useState(0);
@@ -19,7 +21,9 @@ export default function TaxCalculator() {
 
   const [taxeIn, setTaxeIn] = useState(false);
 
-  useEffect(function setTauxDeTaxes() {
+  //use effets are called in this exact order by React
+  useEffect(function onChangeProvince() {
+    //Update the tax rates
     if (province === "Québec") {
       setTaux({tps: 0.05, tvq: 0.09975});
     } else if (province === "Ontario") {
@@ -47,24 +51,44 @@ export default function TaxCalculator() {
     } else if (province === "Yukon") {
       setTaux({tps: 0.05, tvq: 0});
     }
+
+    //The link that points to the Government website with more information about taxes
+    setGovernmentLink(province);
+
+    setDynamicNames(taxeIn, province);
+
   }, [province]);
 
-  useEffect(function changeTaxeInMode() {
+  useEffect(function onChangeTaxeInMode() {
     //prevent NaN values from breaking the calculation
     setMontant(isNaN(total) ? 0 : total);
     setTotal(isNaN(montant) ? 0 : montant);
 
     //auto focus the only editable input
-    const input = document.getElementById(`${taxeIn ? "total" : "montant"}`);
-    if (input) {
-      input.focus();
+    const editableUserInput = document.getElementById(`${taxeIn ? "total" : "montant"}`);
+    if (editableUserInput) {
+      editableUserInput.focus();
       setTimeout(() => {
-        selectAllText(input);
+        selectAllText(editableUserInput);
       }, 30);
     }
+
+    //Show the hand icon with the instruction text under the editable user input
+    const montantInstructionEl = document.querySelector(".field.montant");
+    const totalInstructionEl = document.querySelector(".field.total");
+    if (taxeIn) {
+      montantInstructionEl.classList.remove("isActiveCalculationMode");
+      totalInstructionEl.classList.add("isActiveCalculationMode");
+    } else {
+      montantInstructionEl.classList.add("isActiveCalculationMode");
+      totalInstructionEl.classList.remove("isActiveCalculationMode");
+    }
+
+    setDynamicNames(taxeIn, province);
+
   }, [taxeIn]);
 
-  useEffect(function calcul() {
+  useEffect(function calculate() {
     let sansTaxe, tps, tvq;
     if (taxeIn) {
       sansTaxe = isNaN(total) ? 0 : (total / (taux.tps + taux.tvq + 1));
@@ -72,18 +96,36 @@ export default function TaxCalculator() {
       tvq = sansTaxe * taux.tvq;
       setTPS(tps);
       setTVQ(tvq);
-      setMontant(round(total - (tps + tvq)));
+      setMontant(roundNumber(total - (tps + tvq)));
     } else {
       sansTaxe = isNaN(montant) ? 0 : montant;
       tps = sansTaxe * taux.tps;
       tvq = sansTaxe * taux.tvq;
       setTPS(tps);
       setTVQ(tvq);
-      setTotal(round(montant + tps + tvq));
+      setTotal(roundNumber(montant + tps + tvq));
     }
-  }, [montant, total, province, taxeIn, taux]);
+  }, [montant, total, taux, taxeIn]);
 
-  useEffect(function setDynamicNames() {
+  // useEffect(function setDynamicNames(taxeIn, province) {
+  //
+  //   const mode = taxeIn ? " inversé" : "";
+  //   const isTVH = [
+  //     "Île-du-Prince-Édouard",
+  //     "Nouveau-Brunswick",
+  //     "Nouvelle-Écosse",
+  //     "Ontario",
+  //     "Terre-Neuve-et-Labrador"
+  //   ].includes(province);
+  //
+  //   //Update the Calculator main Heading Title and the Tax Names
+  //   setCalculatorMainTitle(`Calcul de taxes ${mode} pour la ${isTVH ? "TVH" : "TPS"}${province === "Québec" ? " et la TVQ" : ""}`);
+  //   setFederalTaxName(isTVH ? "TVH" : "TPS");
+  //
+  // }, [taxeIn, province]);
+
+  function setDynamicNames(taxeIn, province) {
+
     const mode = taxeIn ? " inversé" : "";
     const isTVH = [
       "Île-du-Prince-Édouard",
@@ -93,18 +135,18 @@ export default function TaxCalculator() {
       "Terre-Neuve-et-Labrador"
     ].includes(province);
 
-    setCalculatorH1Title(`Calcul de taxes ${mode} pour la ${isTVH ? "TVH" : "TPS"}${province === "Québec" ? " et la TVQ" : ""}`);
-
+    //Update the Calculator main Heading Title and the Tax Names
+    setCalculatorMainTitle(`Calcul de taxes ${mode} pour la ${isTVH ? "TVH" : "TPS"}${province === "Québec" ? " et la TVQ" : ""}`);
     setFederalTaxName(isTVH ? "TVH" : "TPS");
+  }
 
-    setFooterGovernmentLink(province);
-
-  }, [taxeIn, province]);
-
+  //React will then render the component:
   return (
     <div id="calculator-component-container" className="calculator">
+      {/*Absolute Positionned Top Right Corner Ribbon*/}
       <TopCornerRibbon/>
 
+      {/*User inputs are in a form to use the default Submit feature*/}
       <form className="card" onSubmit={e => handleFormSubmit(e,
         montant,
         TPS,
@@ -115,8 +157,11 @@ export default function TaxCalculator() {
         taux.tvq,
       )
       }>
-        <h1 className="no-select">{calculatorH1Title}</h1>
 
+        {/*The Blue Title Heading*/}
+        <h1 className="no-select">{calculatorMainTitle}</h1>
+
+        {/*Amount before taxes*/}
         <Decimalnumber
           id="montant"
           label="Montant sans taxes:"
@@ -127,6 +172,7 @@ export default function TaxCalculator() {
           focusedInstructions="Entrez le MONTANT (avant taxes)."
         />
 
+        {/*Federal Tax*/}
         <Decimalnumber
           id="tps"
           label={`${federalTaxName} (${(taux.tps * 100).toFixed(3)}%):`}
@@ -136,6 +182,7 @@ export default function TaxCalculator() {
           onFocusHandler={e => selectAllText(e.target)}
         />
 
+        {/*Provincial Tax*/}
         <Decimalnumber
           id="tvq"
           label={`TVQ (${(taux.tvq * 100).toFixed(3)}%):`}
@@ -145,6 +192,7 @@ export default function TaxCalculator() {
           onFocusHandler={e => selectAllText(e.target)}
         />
 
+        {/*Total including taxes*/}
         <Decimalnumber
           id="total"
           label="Total avec taxes:"
@@ -155,23 +203,15 @@ export default function TaxCalculator() {
           focusedInstructions="Entrez le TOTAL (taxes incluses)."
         />
 
-        <TaxeInCheckbox onChangeHandler={e => {
-          setTaxeIn(e.target.checked);
+        {/*Taxe Mode*/}
+        <TaxeInCheckbox onChangeHandler={e => setTaxeIn(e.target.checked)}/>
 
-          const montantInstructionEl = document.querySelector(".field.montant");
-          const totalInstructionEl = document.querySelector(".field.total");
-          if (taxeIn) {
-            montantInstructionEl.classList.add("isActiveCalculationMode");
-            totalInstructionEl.classList.remove("isActiveCalculationMode");
-          } else {
-            montantInstructionEl.classList.remove("isActiveCalculationMode");
-            totalInstructionEl.classList.add("isActiveCalculationMode");
-          }
-        }}/>
-
+        {/*Province Selector*/}
         <ProvinceSelect onChangeHandler={e => setProvince(e.target.value)}/>
 
+        {/*Invisible Submit Button to handle Enter keys and mobile phone confirm signal*/}
         <input id="submit-handler-input" style={{display: "none"}} type="submit" value="Recalculer"/>
+
       </form>
 
     </div>
@@ -196,59 +236,7 @@ function handleFormSubmit(e, montant, tps, tvq, total, province, tauxFed, tauxQc
   addNewResultRowToGrid(montant, tps, tvq, total, province, tauxFed, tauxQc);
 }
 
-function addNewResultRowToGrid(montant, tps, tvq, total, province, tauxFed, tauxQc) {
-  if (!montant || !total) {
-    return;
-  }
-
-  //The Excel-like grid at the bottom of page
-  const resultsGrid = document.querySelector(".results-grid");
-  resultsGrid.classList.contains("hidden") && resultsGrid.classList.remove("hidden");
-
-  const gridRows = resultsGrid.querySelector(".results-grid--rows");
-
-  const newRowElm = document.createElement("div");
-  newRowElm.className = "results-grid--row";
-  newRowElm.id = gridRows.childElementCount.toString();
-  newRowElm.innerHTML = `
-    <span class="montant">${round(Number(montant))}</span>
-    <span class="tps">${round(Number(tps))}</span>
-    <span class="tvq">${round(Number(tvq))}</span>
-    <span class="total">${round(Number(total))}</span>
-    <span class="province">${province}</span>
-    <span class="tauxFed">${formatAsPercentage(tauxFed)}</span>
-    <span class="tauxQc">${formatAsPercentage(tauxQc)}</span>
-    <span class="deleteBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6v18h18V6H3zm5 14c0 .552-.448 1-1 1s-1-.448-1-1V10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1V10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1V10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2H2V2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2H22z"/></svg>
-    </span>
-  `;
-
-  const gridHeaderCounter = resultsGrid.querySelector(".results-grid--header .rowCount");
-  gridHeaderCounter.textContent = (gridRows.childElementCount + 1).toString();
-
-  //place it at the top
-  gridRows.prepend(newRowElm);
-}
-
-function formatAsPercentage(decimal) {
-  return (decimal * 100)
-    .toFixed(3)
-    .replace(/(\.0+|0\.)$/, '');
-}
-
-function round(num, digits = 2) {
-  return (Math.round((num + Number.EPSILON) * 100) / 100).toFixed(digits);
-}
-
-function selectAllText(input) {
-  try {
-    input && input.value && input.setSelectionRange(0, input.value.length);
-  } catch (e) {
-
-  }
-}
-
-function setFooterGovernmentLink(province) {
+function setGovernmentLink(province) {
   const govLink = document.getElementById("gouvernment-link");
   const govNameElm = govLink.querySelector("span");
   if (province === "Québec") {
@@ -259,3 +247,18 @@ function setFooterGovernmentLink(province) {
     govNameElm.textContent = "Canada.ca";
   }
 }
+
+function selectAllText(input) {
+  try {
+    input && input.value && input.setSelectionRange(0, input.value.length);
+  } catch (e) {
+
+  }
+}
+
+
+function roundNumber(num, digits = 2) {
+  return (Math.round((Number(num) + Number.EPSILON) * 100) / 100).toFixed(digits);
+}
+
+export {roundNumber};

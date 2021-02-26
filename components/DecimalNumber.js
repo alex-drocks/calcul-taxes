@@ -1,5 +1,5 @@
 import NumberFormat from "react-number-format";
-import {handleRowDeleteFromHotkey} from "./ResultsGrid";
+import {handleRowDeleteWithHotkey} from "./ResultsGrid";
 
 export default function Decimalnumber({
                                         id,
@@ -40,7 +40,7 @@ export default function Decimalnumber({
           } else if ((e.shiftKey || e.ctrlKey) && (e.code === "Minus" || e.code === "NumpadSubtract")) {
             // [ Ctrl + Minus ], [ Shift + Minus ]
             e.preventDefault();
-            handleRowDeleteFromHotkey();
+            handleRowDeleteWithHotkey();
           }
         }}
       />

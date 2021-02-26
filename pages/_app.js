@@ -16,10 +16,10 @@ export default function MyApp({Component, pageProps}) {
         <meta name="description" content={process.env.NEXT_PUBLIC_WEBSITE_LONG_DESCRIPTION}/>
 
         {/*OpenGraph Meta*/}
-        <meta property="og:site_name" content={process.env.NEXT_PUBLIC_WEBSITE_NAME}/>
+        <meta property="og:site_name" content={process.env.NEXT_PUBLIC_WEBSITE_TITLE}/>
         <meta property="og:locale" content={process.env.NEXT_PUBLIC_LOCALE_LANG}/>
         <meta property="og:title"
-              content={process.env.NEXT_PUBLIC_WEBSITE_NAME + " | " + process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION}/>
+              content={process.env.NEXT_PUBLIC_WEBSITE_TITLE + " | " + process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION}/>
         <meta property="og:url" content={process.env.NEXT_PUBLIC_WEBSITE_URL}/>
         <meta property="og:type" content="website"/>
         <meta property="og:description" content={process.env.NEXT_PUBLIC_WEBSITE_LONG_DESCRIPTION}/>
@@ -30,7 +30,7 @@ export default function MyApp({Component, pageProps}) {
 
         {/*  Twitter Meta*/}
         <meta name="twitter:title"
-              content={process.env.NEXT_PUBLIC_WEBSITE_NAME + " | " + process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION}/>
+              content={process.env.NEXT_PUBLIC_WEBSITE_TITLE + " | " + process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION}/>
         />
         <meta name="twitter:image"
               content={process.env.NEXT_PUBLIC_WEBSITE_URL + process.env.NEXT_PUBLIC_WEBSITE_META_IMAGE}/>

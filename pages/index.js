@@ -6,7 +6,9 @@ import ResultsGrid from "../components/ResultsGrid";
 export default function Index() {
   return (
     <div className="page-container">
-      <Head><title>{process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION} | Finance D</title></Head>
+      <Head>
+        <title>{process.env.NEXT_PUBLIC_WEBSITE_TITLE}</title>
+      </Head>
 
       <TaxCalculator/>
 
