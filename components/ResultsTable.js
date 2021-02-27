@@ -6,7 +6,6 @@ export default function ResultsTable() {
   return (<>
     <div className="results-table hidden"
          onClick={handleDeleteBtnClicks}
-         title="Pour supprimer une ligne cliquez sur la poubelle, ou utilisez le raccourci clavier [Shift  Ctrl + Moins]."
     >
 
       <table>
@@ -22,7 +21,9 @@ export default function ResultsTable() {
           <th className="rowCount deleteBtn" title="Nombre de lignes calculées dans ce tableau"/>
         </tr>
         </thead>
-        <tbody className="results-table--rows">
+        <tbody className="results-table--rows"
+               title="Pour supprimer une ligne cliquez sur la poubelle, ou utilisez le raccourci clavier [Shift] ou [Ctrl] + [Moins (-)]."
+        >
         {/*javascript will populate rows*/}
         </tbody>
       </table>
@@ -30,6 +31,8 @@ export default function ResultsTable() {
       <div className="export-btns">
         <button
           id="printBtn"
+          type="button"
+          aria-label="Imprimer"
           title="Imprimez la liste de vos calculs sur papier ou en fichier PDF"
           onClick={print}
         >
@@ -41,18 +44,22 @@ export default function ResultsTable() {
         </button>
         <button
           id="excelBtn"
+          type="button"
+          aria-label="Exporter vers un fichier Excel"
           title="Exportez la liste de vos calculs dans un fichier compatible avec Excel"
-          onClick={async function dynamicImportExcellentExport() {
+          onClick={async function dynamicImportExcellentExport(event) {
+            // Dynamic import of ExcellentExport module:
+            ExcellentExport = await import('excellentexport');
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports
             // https://dmitripavlutin.com/javascript-module-import-twice/
             // If a module is imported multiple times, but with the same specifier (i.e. path),
             // the JavaScript specification guarantees that you’ll receive the same module instance.
-            console.time("DynamicImport-ExcellentExport");
-            ExcellentExport = await import('excellentexport');
-            console.timeEnd("DynamicImport-ExcellentExport");
 
+            //reference the hidden <a> element that will download the excel file blob:
             const excelBtnAnchor = document.getElementById("excelBtnAnchor");
             excelBtnAnchor.click(); // <-- Trigger the download
+            event.preventDefault();
+            event.stopPropagation();
           }}
         >
           Excel
@@ -63,10 +70,12 @@ export default function ResultsTable() {
           {/*the <a> tag is wierd but this is what will download the XLSX file blob*/}
           <a href="#"
              id="excelBtnAnchor"
+             aria-hidden={true}
              style={{display: "none"}}
              download="taxes_finance-d_com.xlsx"
-             onClick={(e) => {
-               e.stopPropagation(); // <-- VERY IMPORTANT (without this infinite download loop)
+             onClick={(event) => {
+               event.stopPropagation(); // <-- VERY IMPORTANT (without this infinite download loop)
+               event.bubbles = false;
                return exportToExcel(ExcellentExport);
              }}
           />
@@ -125,7 +134,7 @@ function addNewResultRowToTable(montant, tps, tvq, total, province, tauxFed, tau
     <td class="province">${province}</td>
     <td class="tauxFed">${formatAsPercentage(tauxFed)}</td>
     <td class="tauxQc">${formatAsPercentage(tauxQc)}</td>
-    <td class="deleteBtn">
+    <td class="deleteBtn" tabindex="-1">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6v18h18V6H3zm5 14c0 .552-.448 1-1 1s-1-.448-1-1V10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1V10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1V10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2H2V2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2H22z"/></svg>
     </td>
   `;
