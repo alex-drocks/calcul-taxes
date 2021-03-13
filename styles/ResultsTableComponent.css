@@ -4,6 +4,7 @@
   margin-bottom: 4em;
   width: 100%;
   max-width: var(--max-content-width);
+  overflow-x: auto;
 }
 
 .results-table.hidden {
@@ -38,21 +39,16 @@
 
 .results-table .montant,
 .results-table .total {
-  width: 15%;
+  width: 18%;
 }
 
 .results-table .tps,
 .results-table .tvq {
-  width: 12.5%;
+  width: 15%;
 }
 
 .results-table .province {
-  width: 28%;
-}
-
-.results-table .tauxFed,
-.results-table .tauxQc {
-  width: 8%;
+  width: 35%;
 }
 
 .results-table .deleteBtn {
@@ -110,39 +106,34 @@
   pointer-events: none;
 }
 
-.export-btns a {
-
-}
-
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 1000px) {
   .results-table {
     font-size: 14px;
   }
-
-  .results-table .province {
-    width: 24%;
-  }
-
-  .results-table .tauxFed,
-  .results-table .tauxQc {
-    width: 10%;
+}
+@media screen and (max-width: 850px) {
+  .results-table {
+    font-size: 13px;
   }
 }
 
-@media screen and (max-width: 650px) {
-  .results-table .tauxFed,
-  .results-table .tauxQc {
-    display: none;
-  }
-
+@media screen and (max-width: 695px) {
   .results-table .montant,
   .results-table .total {
-    width: 30%;
+    width: 18%;
   }
 
   .results-table .tps,
   .results-table .tvq {
-    width: 22%;
+    width: 12.5%;
+  }
+
+  .results-table .province {
+    width: 50%;
+  }
+
+  .results-table {
+    font-size: 12px;
   }
 }
 
@@ -164,7 +155,6 @@
 
 @media screen and (max-width: 500px) {
   .results-table {
-    font-size: 13px;
     margin-bottom: 4em;
   }
 }

@@ -187,12 +187,15 @@ a {
     text-rendering: optimizeLegibility !important;
   }
 
-  .results-table .province {
-    width: 26% !important;
+  .results-table .montant,
+  .results-table .total {
+    width: 18.5% !important;
   }
-
-  .results-table .tauxFed,
-  .results-table .tauxQc {
-    width: 10% !important;
+  .results-table .tps,
+  .results-table .tvq {
+    width: 12.5% !important;
+  }
+  .results-table .province {
+    width: 38% !important;
   }
 }

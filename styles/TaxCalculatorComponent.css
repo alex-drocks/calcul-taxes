@@ -60,8 +60,10 @@
   cursor: pointer;
 }
 
-.field select {
+.field .province-select {
   cursor: pointer;
+  font-size: 0.95em;
+  height: 3.2em;
 }
 
 .field input[readonly] {

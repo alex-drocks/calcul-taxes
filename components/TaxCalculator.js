@@ -8,137 +8,39 @@ import ProvinceSelect from "./ProvinceSelect";
 import {addNewResultRowToTable} from "./ResultsTable";
 
 export default function TaxCalculator() {
-  const [calculatorMainTitle, setCalculatorMainTitle] = useState("");
+  const [calculatorMainTitle, setCalculatorMainTitle] = useState("Calcul de taxes  pour la TPS et la TVQ");
   const [federalTaxName, setFederalTaxName] = useState("TPS");
+  const [provincialTaxName, setProvincialTaxName] = useState("TVQ");
 
   const [montant, setMontant] = useState(0);
   const [TPS, setTPS] = useState(0);
-  const [TVQ, setTVQ] = useState(0);
+  const [TVP, setTVP] = useState(0);
   const [total, setTotal] = useState(0);
 
-  const [province, setProvince] = useState("Québec");
-  const [taux, setTaux] = useState({tps: 0, tvq: 0});
+  const [province, setProvince] = useState("Québec (TPS 5% + TVQ 9.975%)");
+  const [taux, setTaux] = useState({tps: 0.05, tvp: 0.0975});
 
   const [taxeIn, setTaxeIn] = useState(false);
 
   //use effets are called in this exact order by React
-  useEffect(function onChangeProvince() {
-    //Update the tax rates
-    if (province === "Québec") {
-      setTaux({tps: 0.05, tvq: 0.09975});
-    } else if (province === "Ontario") {
-      setTaux({tps: 0.13, tvq: 0});
-    } else if (province === "Alberta") {
-      setTaux({tps: 0.05, tvq: 0});
-    } else if (province === "Colombie-Britannique") {
-      setTaux({tps: 0.05, tvq: 0});
-    } else if (province === "Île-du-Prince-Édouard") {
-      setTaux({tps: 0.15, tvq: 0});
-    } else if (province === "Manitoba") {
-      setTaux({tps: 0.05, tvq: 0});
-    } else if (province === "Nouveau-Brunswick") {
-      setTaux({tps: 0.15, tvq: 0});
-    } else if (province === "Nouvelle-Écosse") {
-      setTaux({tps: 0.15, tvq: 0});
-    } else if (province === "Nunavut") {
-      setTaux({tps: 0.05, tvq: 0});
-    } else if (province === "Saskatchewan") {
-      setTaux({tps: 0.05, tvq: 0});
-    } else if (province === "Terre-Neuve-et-Labrador") {
-      setTaux({tps: 0.15, tvq: 0});
-    } else if (province === "Territoires du Nord-Ouest") {
-      setTaux({tps: 0.05, tvq: 0});
-    } else if (province === "Yukon") {
-      setTaux({tps: 0.05, tvq: 0});
-    }
-
-    //The link that points to the Government website with more information about taxes
-    setGovernmentLink(province);
-
-    setDynamicNames(taxeIn, province);
-
-  }, [province]);
-
-  useEffect(function onChangeTaxeInMode() {
-    //prevent NaN values from breaking the calculation
-    setMontant(isNaN(total) ? 0 : total);
-    setTotal(isNaN(montant) ? 0 : montant);
-
-    //auto focus the only editable input
-    const editableUserInput = document.getElementById(`${taxeIn ? "total" : "montant"}`);
-    if (editableUserInput) {
-      editableUserInput.focus();
-      setTimeout(() => {
-        selectAllText(editableUserInput);
-      }, 30);
-    }
-
-    //Show the hand icon with the instruction text under the editable user input
-    const montantInstructionEl = document.querySelector(".field.montant");
-    const totalInstructionEl = document.querySelector(".field.total");
-    if (taxeIn) {
-      montantInstructionEl.classList.remove("isActiveCalculationMode");
-      totalInstructionEl.classList.add("isActiveCalculationMode");
-    } else {
-      montantInstructionEl.classList.add("isActiveCalculationMode");
-      totalInstructionEl.classList.remove("isActiveCalculationMode");
-    }
-
-    setDynamicNames(taxeIn, province);
-
-  }, [taxeIn]);
-
   useEffect(function calculate() {
-    let sansTaxe, tps, tvq;
+    let sansTaxe, tps, tvp;
     if (taxeIn) {
-      sansTaxe = isNaN(total) ? 0 : (total / (taux.tps + taux.tvq + 1));
+      sansTaxe = isNaN(total) ? 0 : (total / (taux.tps + taux.tvp + 1));
       tps = sansTaxe * taux.tps;
-      tvq = sansTaxe * taux.tvq;
+      tvp = sansTaxe * taux.tvp;
       setTPS(tps);
-      setTVQ(tvq);
-      setMontant(roundNumber(total - (tps + tvq)));
+      setTVP(tvp);
+      setMontant(roundNumber(total - (tps + tvp)));
     } else {
       sansTaxe = isNaN(montant) ? 0 : montant;
       tps = sansTaxe * taux.tps;
-      tvq = sansTaxe * taux.tvq;
+      tvp = sansTaxe * taux.tvp;
       setTPS(tps);
-      setTVQ(tvq);
-      setTotal(roundNumber(montant + tps + tvq));
+      setTVP(tvp);
+      setTotal(roundNumber(montant + tps + tvp));
     }
   }, [montant, total, taux, taxeIn]);
-
-  // useEffect(function setDynamicNames(taxeIn, province) {
-  //
-  //   const mode = taxeIn ? " inversé" : "";
-  //   const isTVH = [
-  //     "Île-du-Prince-Édouard",
-  //     "Nouveau-Brunswick",
-  //     "Nouvelle-Écosse",
-  //     "Ontario",
-  //     "Terre-Neuve-et-Labrador"
-  //   ].includes(province);
-  //
-  //   //Update the Calculator main Heading Title and the Tax Names
-  //   setCalculatorMainTitle(`Calcul de taxes ${mode} pour la ${isTVH ? "TVH" : "TPS"}${province === "Québec" ? " et la TVQ" : ""}`);
-  //   setFederalTaxName(isTVH ? "TVH" : "TPS");
-  //
-  // }, [taxeIn, province]);
-
-  function setDynamicNames(taxeIn, province) {
-
-    const mode = taxeIn ? " inversé" : "";
-    const isTVH = [
-      "Île-du-Prince-Édouard",
-      "Nouveau-Brunswick",
-      "Nouvelle-Écosse",
-      "Ontario",
-      "Terre-Neuve-et-Labrador"
-    ].includes(province);
-
-    //Update the Calculator main Heading Title and the Tax Names
-    setCalculatorMainTitle(`Calcul de taxes ${mode} pour la ${isTVH ? "TVH" : "TPS"}${province === "Québec" ? " et la TVQ" : ""}`);
-    setFederalTaxName(isTVH ? "TVH" : "TPS");
-  }
 
   //React will then render the component:
   return (
@@ -150,11 +52,11 @@ export default function TaxCalculator() {
       <form className="card" onSubmit={e => handleFormSubmit(e,
         montant,
         TPS,
-        TVQ,
+        TVP,
         total,
         province,
         taux.tps,
-        taux.tvq,
+        taux.tvp,
       )
       }>
 
@@ -184,11 +86,11 @@ export default function TaxCalculator() {
 
         {/*Provincial Tax*/}
         <Decimalnumber
-          id="tvq"
-          label={`TVQ (${(taux.tvq * 100).toFixed(3)}%):`}
+          id="tvp"
+          label={`${provincialTaxName} (${(taux.tvp * 100).toFixed(3)}%):`}
           readOnly={true}
-          stateValue={TVQ}
-          onChangeHandler={values => setTVQ(Number(values.value))}
+          stateValue={TVP}
+          onChangeHandler={values => setTVP(Number(values.value))}
           onFocusHandler={e => selectAllText(e.target)}
         />
 
@@ -204,10 +106,55 @@ export default function TaxCalculator() {
         />
 
         {/*Taxe Mode*/}
-        <TaxeInCheckbox onChangeHandler={e => setTaxeIn(e.target.checked)}/>
+        <TaxeInCheckbox onChangeHandler={e => {
+          const isTaxeIn = e.target.checked;
+          setTaxeIn(isTaxeIn);
+
+          //prevent NaN values from breaking the calculation
+          setMontant(isNaN(total) ? 0 : total);
+          setTotal(isNaN(montant) ? 0 : montant);
+
+          //auto focus the only editable input
+          const editableUserInput = document.getElementById(`${isTaxeIn ? "total" : "montant"}`);
+          if (editableUserInput) {
+            editableUserInput.focus();
+            setTimeout(() => {
+              selectAllText(editableUserInput);
+            }, 30);
+          }
+
+          //Show the hand icon with the instruction text under the editable user input
+          const montantInstructionEl = document.querySelector(".field.montant");
+          const totalInstructionEl = document.querySelector(".field.total");
+          if (isTaxeIn) {
+            montantInstructionEl.classList.remove("isActiveCalculationMode");
+            totalInstructionEl.classList.add("isActiveCalculationMode");
+          } else {
+            montantInstructionEl.classList.add("isActiveCalculationMode");
+            totalInstructionEl.classList.remove("isActiveCalculationMode");
+          }
+
+          setDynamicNames(isTaxeIn, taux, province, setCalculatorMainTitle, setFederalTaxName, setProvincialTaxName);
+        }}/>
 
         {/*Province Selector*/}
-        <ProvinceSelect onChangeHandler={e => setProvince(e.target.value)}/>
+        <ProvinceSelect
+          defaultValue={province}
+          onChangeHandler={e => {
+            const selectElm = e.target;
+            const selectedProvince = selectElm.value;
+            setProvince(selectedProvince);
+
+            const selectedElmDataset = selectElm.querySelector(`option[value="${selectedProvince}"]`).dataset;
+            const tps = selectedElmDataset.tps;
+            const tvp = selectedElmDataset.tvp;
+            const nouveauTaux = {tps, tvp};
+            setTaux(nouveauTaux);
+
+            setDynamicNames(taxeIn, nouveauTaux, selectedProvince, setCalculatorMainTitle, setFederalTaxName, setProvincialTaxName);
+
+            setGovernmentLink(selectedProvince);
+          }}/>
 
         {/*Invisible Submit Button to handle Enter keys and mobile phone confirm signal*/}
         <input id="submit-handler-input" style={{display: "none"}} type="submit" value="Recalculer"/>
@@ -218,7 +165,8 @@ export default function TaxCalculator() {
   );
 }
 
-function handleFormSubmit(e, montant, tps, tvq, total, province, tauxFed, tauxQc) {
+
+function handleFormSubmit(e, montant, tps, tvp, total, province, tauxFed, tauxQc) {
   e.preventDefault();
 
   const focused = document.activeElement;
@@ -233,8 +181,22 @@ function handleFormSubmit(e, montant, tps, tvq, total, province, tauxFed, tauxQc
   window.scrollTo(0, 0);
 
   //Populate results table row
-  addNewResultRowToTable(montant, tps, tvq, total, province, tauxFed, tauxQc);
+  addNewResultRowToTable(montant, tps, tvp, total, province, tauxFed, tauxQc);
 }
+
+
+function setDynamicNames(isTaxeIn, tauxTaxes, provinceValue, setCalculatorMainTitle, setFederalTaxName, setProvincialTaxName) {
+
+  const mode = isTaxeIn ? " inversé" : "";
+  const isTVH = tauxTaxes.tps >= 0.13;
+  const isQuebec = provinceValue === "Québec (TPS 5% + TVQ 9.975%)";
+
+  //Update the Calculator main Heading Title and the Tax Names
+  setCalculatorMainTitle(`Calcul de taxes ${mode} pour la ${isTVH ? "TVH" : "TPS"}${isQuebec ? " et la TVQ" : tauxTaxes.tvp > 0 ? " et la TVP" : ""}`);
+  setFederalTaxName(isTVH ? "TVH" : "TPS");
+  setProvincialTaxName(isQuebec ? "TVQ" : "TVP");
+}
+
 
 function setGovernmentLink(province) {
   const govLink = document.getElementById("gouvernment-link");
@@ -247,6 +209,7 @@ function setGovernmentLink(province) {
     govNameElm.textContent = "Canada.ca";
   }
 }
+
 
 function selectAllText(input) {
   try {
