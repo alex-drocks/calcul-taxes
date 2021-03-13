@@ -18,27 +18,27 @@ export default function TaxCalculator() {
   const [total, setTotal] = useState(0);
 
   const [province, setProvince] = useState("Québec (TPS 5% + TVQ 9.975%)");
-  const [taux, setTaux] = useState({tps: 0.05, tvp: 0.0975});
+  const [taux, setTaux] = useState({tps: Number(0.05), tvp: Number(0.0975)});
 
   const [taxeIn, setTaxeIn] = useState(false);
 
   //use effets are called in this exact order by React
   useEffect(function calculate() {
-    let sansTaxe, tps, tvp;
+    let sansTaxe, tpsValue, tvpValue;
     if (taxeIn) {
       sansTaxe = isNaN(total) ? 0 : (total / (taux.tps + taux.tvp + 1));
-      tps = sansTaxe * taux.tps;
-      tvp = sansTaxe * taux.tvp;
-      setTPS(tps);
-      setTVP(tvp);
-      setMontant(roundNumber(total - (tps + tvp)));
+      tpsValue = sansTaxe * taux.tps;
+      tvpValue = sansTaxe * taux.tvp;
+      setTPS(tpsValue);
+      setTVP(tvpValue);
+      setMontant(roundNumber(total - (tpsValue + tvpValue)));
     } else {
       sansTaxe = isNaN(montant) ? 0 : montant;
-      tps = sansTaxe * taux.tps;
-      tvp = sansTaxe * taux.tvp;
-      setTPS(tps);
-      setTVP(tvp);
-      setTotal(roundNumber(montant + tps + tvp));
+      tpsValue = sansTaxe * taux.tps;
+      tvpValue = sansTaxe * taux.tvp;
+      setTPS(tpsValue);
+      setTVP(tvpValue);
+      setTotal(roundNumber(montant + tpsValue + tvpValue));
     }
   }, [montant, total, taux, taxeIn]);
 
@@ -49,7 +49,8 @@ export default function TaxCalculator() {
       <TopCornerRibbon/>
 
       {/*User inputs are in a form to use the default Submit feature*/}
-      <form className="card" onSubmit={e => handleFormSubmit(e,
+      <form className="card" onSubmit={e => handleFormSubmit(
+        e,
         montant,
         TPS,
         TVP,
@@ -148,7 +149,7 @@ export default function TaxCalculator() {
             const selectedElmDataset = selectElm.querySelector(`option[value="${selectedProvince}"]`).dataset;
             const tps = selectedElmDataset.tps;
             const tvp = selectedElmDataset.tvp;
-            const nouveauTaux = {tps, tvp};
+            const nouveauTaux = {tps: Number(tps), tvp: Number(tvp)};
             setTaux(nouveauTaux);
 
             setDynamicNames(taxeIn, nouveauTaux, selectedProvince, setCalculatorMainTitle, setFederalTaxName, setProvincialTaxName);
@@ -157,8 +158,11 @@ export default function TaxCalculator() {
           }}/>
 
         {/*Invisible Submit Button to handle Enter keys and mobile phone confirm signal*/}
-        <input id="submit-handler-input" style={{display: "none"}} type="submit" value="Recalculer"/>
-
+        <input
+          id="submit-handler-input"
+          style={{visibility: "hidden", position: "absolute", left: "-3000px"}}
+          type="submit" value="Recalculer"
+        />
       </form>
 
     </div>
