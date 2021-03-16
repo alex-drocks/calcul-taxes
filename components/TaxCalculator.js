@@ -22,8 +22,12 @@ export default function TaxCalculator() {
 
   const [taxeIn, setTaxeIn] = useState(false);
 
-  //use effets are called in this exact order by React
+  useEffect(function init() {
+    setGovernmentLink(province);
+  }, []);
+
   useEffect(function calculate() {
+    //Recalculates when "montant", "total", "taux" or "taxeIn" states change.
     let sansTaxe, tpsValue, tvpValue;
     if (taxeIn) {
       sansTaxe = isNaN(total) ? 0 : (total / (taux.tps + taux.tvp + 1));
@@ -202,10 +206,10 @@ function setDynamicNames(isTaxeIn, tauxTaxes, provinceValue, setCalculatorMainTi
 }
 
 
-function setGovernmentLink(province) {
+function setGovernmentLink(provinceValue) {
   const govLink = document.getElementById("gouvernment-link");
   const govNameElm = govLink.querySelector("span");
-  if (province === "Québec") {
+  if (provinceValue === "Québec (TPS 5% + TVQ 9.975%)") {
     govLink.href = "https://www.revenuquebec.ca/fr/entreprises/taxes/tpstvh-et-tvq/perception-de-la-tps-et-de-la-tvq/calcul-des-taxes/";
     govNameElm.textContent = "Revenu Québec";
   } else {
