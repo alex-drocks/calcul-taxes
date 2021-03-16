@@ -2,6 +2,7 @@ export default function Footer() {
   return (
     <div className="footer no-select">
       <div className="footer-row logo-fd-and-link-to-gov">
+
         {/*Logo Finance D links to main web site*/}
         <a href="https://finance-d.com"
            className="link-to-finance-d"
@@ -13,6 +14,7 @@ export default function Footer() {
           />
           <span className="no-wrap">Finance D</span>
         </a>
+
         {/*Dynamic link to gouvernement authorities page on the topic of taxes calculation*/}
         <a id="gouvernment-link"
            className="text-link"
@@ -21,13 +23,14 @@ export default function Footer() {
         >
           Calcul des taxes selon <span>Revenu Québec</span>
         </a>
+
       </div>
 
-      {/*Details about the calculator and note about other privinces*/}
+      {/*Details about the calculator and note about other provinces*/}
       <div className="footer-row footer-text-container">
         <h2>À propos de cette calculatrice de taxes&nbsp;:</h2>
         <div className={"footer-row app-description"}>
-          {/*More details on what this app is meant to be*/}
+          {/*Describe what this app is meant to be*/}
           <p>
             Il s'agit d'un calculateur de taxes polyvalent pour la TPS/TVH et TVQ,
             avec les taux de {`${new Date().getFullYear()}`}.
@@ -39,23 +42,12 @@ export default function Footer() {
             Soit le mode de calcul avant taxes régulier ou,
             le mode de calcul après taxes (calcul inverse sur le total).
           </p>
-
-        </div>
-        <div className="footer-row contextual-note">
-          {/*Disclaimer about how the tax rates are for other than Quebec provinces*/}
-          <p>
-            Note&nbsp;: Les taux de taxes pour les provinces canadiennes autres que le Québec prennent pour
-            acquis que vous êtes un résident du Québec et que vous facturez vos clients dans une de
-            ces autres provinces du Canada.
-            C'est pourquoi, les provinces qui ne font pas parti du système canadien de la TVH on seulement
-            la taxe fédérale dans notre calcul de taxe.
-          </p>
         </div>
       </div>
 
-      {/*Copyright and social links*/}
       <div className="footer-row copyright-and-social-links">
 
+        {/*Copyright*/}
         <span className="footer-copyright">
           {`© ${new Date().getFullYear()} `}
           <a
@@ -81,6 +73,7 @@ export default function Footer() {
                 fill="currentColor" fillRule="nonzero"/>
             </svg>
           </a>
+
           {/*Facebook*/}
           <a className="facebook-page-link"
              href="https://www.facebook.com/Finance.D.Logiciels"
@@ -94,6 +87,7 @@ export default function Footer() {
                 d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm3 8h-1.35c-.538 0-.65.221-.65.778V10h2l-.209 2H13v7h-3v-7H8v-2h2V7.692C10 5.923 10.931 5 13.029 5H15v3z"/>
             </svg>
           </a>
+
         </div>
 
       </div>

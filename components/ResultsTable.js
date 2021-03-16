@@ -3,7 +3,7 @@ import {roundNumber} from "./TaxCalculator";
 
 export default function ResultsTable() {
   const [isExportedOnce, setIsExportedOnce] = useState(false);
-  let ExcellentExport; // dynamic imported only when clicking Export to Excel <button>
+  let ExcellentExport; // dynamically imported only when clicking Export to Excel <button>
 
   return (<>
     <div className="results-table hidden"
@@ -18,8 +18,6 @@ export default function ResultsTable() {
           <th className="tvq" title="Montant de la taxe provinciale">TVQ/TVP</th>
           <th className="total" title="Somme du MONTANT + taxe fédérale + taxe provinciale = TOTAL">TOTAL</th>
           <th className="province" title="Province sélectionnée pour le calcul">PROVINCE ET TAUX</th>
-          {/*<th className="tauxFed" title="Pourcentage de taxe Fédérale">%&nbsp;FED</th>*/}
-          {/*<th className="tauxQc" title="Pourcentage de taxe Provinciale">%&nbsp;PRO</th>*/}
           <th className="rowCount deleteBtn" title="Nombre de lignes calculées dans ce tableau"/>
         </tr>
         </thead>

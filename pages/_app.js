@@ -12,6 +12,8 @@ export default function MyApp({Component, pageProps}) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="canonical" href={process.env.NEXT_PUBLIC_WEBSITE_URL}/>
+        {/*Page Title*/}
+        <title>{process.env.NEXT_PUBLIC_WEBSITE_TITLE}</title>
         {/*Description*/}
         <meta name="description" content={process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION}/>
 
@@ -44,12 +46,11 @@ export default function MyApp({Component, pageProps}) {
         <link rel="mask-icon" href={process.env.NEXT_PUBLIC_WEBSITE_URL + "/icons/safari-pinned-tab.svg"}
               color="#21beeb"/>
 
+        {/*google analytics*/}
         <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
         />
-
-        {/*google analytics*/}
         <script
           dangerouslySetInnerHTML={{__html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');`,}}
         />
