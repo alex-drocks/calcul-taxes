@@ -72,7 +72,7 @@ export default function ProvinceSelect({defaultValue, onChangeHandler}) {
         <option
           value="Québec (TPS 5% + TVQ 9.975%)"
           data-tps={0.05}
-          data-tvp={0.0975}>
+          data-tvp={0.09975}>
           Québec (TPS 5% + TVQ 9.975%)
         </option>
         <option

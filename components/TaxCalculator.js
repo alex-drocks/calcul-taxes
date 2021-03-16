@@ -18,7 +18,7 @@ export default function TaxCalculator() {
   const [total, setTotal] = useState(0);
 
   const [province, setProvince] = useState("Québec (TPS 5% + TVQ 9.975%)");
-  const [taux, setTaux] = useState({tps: Number(0.05), tvp: Number(0.0975)});
+  const [taux, setTaux] = useState({tps: Number(0.05), tvp: Number(0.09975)});
 
   const [taxeIn, setTaxeIn] = useState(false);
 
