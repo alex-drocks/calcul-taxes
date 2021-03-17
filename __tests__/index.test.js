@@ -1,6 +1,9 @@
+import React from 'react';
 import {render, screen, fireEvent} from "@testing-library/react";
-import TaxCalculator from "../pages";
+import TaxCalculator from "../pages/index";
 
+// https://github.com/testing-library/jest-dom#readme
+// https://testing-library.com/docs/queries/about/#priority
 // https://testing-library.com/docs/react-testing-library/example-intro
 // https://www.robinwieruch.de/react-testing-library
 // https://medium.com/frontend-digest/setting-up-testing-library-with-nextjs-a9702cbde32d
@@ -9,7 +12,7 @@ describe("TaxCalculator", () => {
   beforeEach(() => render(<TaxCalculator/>));
 
   it("should render all default Quebec values", () => {
-    expect(screen.getByText("Calcul de taxes pour la TPS et la TVQ")).toBeVisible();
+    expect(screen.getByRole("heading", {name: "Calcul de taxes pour la TPS et la TVQ"})).toBeVisible();
     expect(screen.getByText(`TAUX ${new Date().getFullYear()}`)).toBeVisible();
 
     expect(screen.getByText("Montant sans taxes:")).toBeVisible();
@@ -26,7 +29,9 @@ describe("TaxCalculator", () => {
     expect(screen.getByPlaceholderText("Total $")).toHaveDisplayValue("0.00");
 
     expect(screen.getByText("Calcul de taxes inversé:")).toBeVisible();
-    expect(screen.getByTitle("Cliquez pour activer ou désactiver le mode de calcul taxes inverse.")).toBeVisible();
+    const taxeInCheckbox = screen.getByTitle("Cliquez pour activer ou désactiver le mode de calcul taxes inverse.");
+    expect(taxeInCheckbox).toBeVisible();
+    expect(taxeInCheckbox).not.toBeChecked();
 
     expect(screen.getByText("Province/territoire du Canada:")).toBeVisible();
     expect(screen.getByText("Québec (TPS 5% + TVQ 9.975%)")).toBeVisible();
@@ -63,7 +68,7 @@ describe("TaxCalculator", () => {
     fireEvent.click(taxeInCheckBox);
     expect(taxeInCheckBox).toBeChecked();
 
-    expect(screen.getByText("Calcul de taxes inversé pour la TPS et la TVQ")).toBeVisible();
+    expect(screen.getByRole("heading", {name: "Calcul de taxes inversé pour la TPS et la TVQ"})).toBeVisible();
 
     expect(screen.getByText("Montant sans taxes:")).toBeVisible();
     expect(screen.getByPlaceholderText("Montant $")).toHaveDisplayValue("0.00");
@@ -100,6 +105,5 @@ describe("TaxCalculator", () => {
     const montant = screen.getByPlaceholderText("Montant $");
     expect(montant.value).toBe("86.98");
   });
-
 
 });

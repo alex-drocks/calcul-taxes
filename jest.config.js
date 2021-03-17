@@ -1,11 +1,17 @@
+//https://github.com/vercel/next.js/blob/master/examples/with-jest/jest.config.js
+
 module.exports = {
-  testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
-  setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
+  setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
+  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
   transform: {
-    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
   },
+  transformIgnorePatterns: [
+    '/node_modules/',
+    '^.+\\.module\\.(css|sass|scss)$',
+  ],
   moduleNameMapper: {
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
-    '\\.(jpg|jpeg|png|gif|webp|svg)$': 'identity-obj-proxy',
-  }
-};
+    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+  },
+}
