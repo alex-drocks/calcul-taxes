@@ -8,7 +8,7 @@ import ProvinceSelect from "./ProvinceSelect";
 import {addNewResultRowToTable} from "./ResultsTable";
 
 export default function TaxCalculator() {
-  const [calculatorMainTitle, setCalculatorMainTitle] = useState("Calcul de taxes  pour la TPS et la TVQ");
+  const [calculatorMainTitle, setCalculatorMainTitle] = useState("Calcul de taxes pour la TPS et la TVQ");
   const [federalTaxName, setFederalTaxName] = useState("TPS");
   const [provincialTaxName, setProvincialTaxName] = useState("TVQ");
 
@@ -73,6 +73,7 @@ export default function TaxCalculator() {
           id="montant"
           label="Montant sans taxes:"
           readOnly={taxeIn}
+          placeholder="Montant $"
           stateValue={montant}
           onChangeHandler={values => setMontant(Number(values.value))}
           onFocusHandler={e => selectAllText(e.target)}
@@ -84,6 +85,7 @@ export default function TaxCalculator() {
           id="tps"
           label={`${federalTaxName} (${(taux.tps * 100).toFixed(3)}%):`}
           readOnly={true}
+          placeholder="Taxe Fédérale $"
           stateValue={TPS}
           onChangeHandler={values => setTPS(Number(values.value))}
           onFocusHandler={e => selectAllText(e.target)}
@@ -94,6 +96,7 @@ export default function TaxCalculator() {
           id="tvp"
           label={`${provincialTaxName} (${(taux.tvp * 100).toFixed(3)}%):`}
           readOnly={true}
+          placeholder="Taxe Provinciale $"
           stateValue={TVP}
           onChangeHandler={values => setTVP(Number(values.value))}
           onFocusHandler={e => selectAllText(e.target)}
@@ -104,6 +107,7 @@ export default function TaxCalculator() {
           id="total"
           label="Total avec taxes:"
           readOnly={!taxeIn}
+          placeholder="Total $"
           stateValue={total}
           onChangeHandler={values => setTotal(Number(values.value))}
           onFocusHandler={e => selectAllText(e.target)}

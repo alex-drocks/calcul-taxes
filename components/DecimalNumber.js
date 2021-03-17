@@ -5,6 +5,7 @@ export default function Decimalnumber(
     id,
     label,
     readOnly,
+    placeholder,
     stateValue,
     onChangeHandler,
     onFocusHandler,
@@ -17,6 +18,7 @@ export default function Decimalnumber(
       <NumberFormat
         id={id}
         autoComplete={"off"}
+        placeholder={placeholder}
         defaultValue={0}
         thousandSeparator=" "
         decimalSeparator="."
