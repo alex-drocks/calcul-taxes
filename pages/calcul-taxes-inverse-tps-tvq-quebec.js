@@ -1,3 +1,4 @@
+import Head from "next/head";
 import {useEffect} from "react";
 import {handleRowDeleteWithHotkey} from "../components/ResultsTable";
 
@@ -23,6 +24,13 @@ export default function CalculTaxesInverseTpsTvqQuebec() {
 
   return (
     <div className="page-container">
+      <Head>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/calcul-taxes-inverse-tps-tvq-quebec.html`}
+        />
+        <title>Calcul taxes inverse 2021 Québec et Canada sans publicité | Finance D</title>
+      </Head>
       <TaxCalculator
         defaultMainTitle="Calcul de taxes inversé pour la TPS et la TVQ"
         defaultFederalTaxName="TPS"
