@@ -5,7 +5,7 @@ import TaxCalculator from "../components/TaxCalculator";
 import ResultsTable from "../components/ResultsTable";
 import Footer from "../components/Footer";
 
-export default function Index() {
+export default function CalculTaxesInverseTpsTvqQuebec() {
   //Register Window Keydown Hotkeys Once
   useEffect(() => {
     window.onkeydown = e => {
@@ -23,7 +23,13 @@ export default function Index() {
 
   return (
     <div className="page-container">
-      <TaxCalculator />
+      <TaxCalculator
+        defaultMainTitle="Calcul de taxes inversé pour la TPS et la TVQ"
+        defaultFederalTaxName="TPS"
+        defaultProvincialTaxName="TVQ"
+        defaultProvince="Québec (TPS 5% + TVQ 9.975%)"
+        defaultTaxeIn={true}
+      />
       <ResultsTable />
       <Footer />
     </div>

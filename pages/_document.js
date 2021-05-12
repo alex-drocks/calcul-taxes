@@ -1,17 +1,17 @@
-import Document, {Html, Head, Main, NextScript} from 'next/document'
+import Document, {Html, Head, Main, NextScript} from "next/document";
 
 class MyDocument extends Document {
   render() {
     return (
       <Html lang={process.env.NEXT_PUBLIC_LOCALE_LANG}>
-        <Head/>
+        <Head />
         <body>
-        <Main/>
-        <NextScript/>
+          <Main />
+          <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;
