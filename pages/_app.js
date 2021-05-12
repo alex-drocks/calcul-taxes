@@ -11,9 +11,6 @@ export default function MyApp({Component, pageProps}) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="canonical" href={process.env.NEXT_PUBLIC_WEBSITE_URL} />
-        {/*Page Title*/}
-        <title>{process.env.NEXT_PUBLIC_WEBSITE_TITLE}</title>
         {/*Description*/}
         <meta name="description" content={process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION} />
         {/*OpenGraph Meta*/}

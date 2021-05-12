@@ -1,3 +1,4 @@
+import Head from "next/head";
 import {useEffect} from "react";
 import {handleRowDeleteWithHotkey} from "../components/ResultsTable";
 
@@ -23,6 +24,10 @@ export default function Index() {
 
   return (
     <div className="page-container">
+      <Head>
+        <link rel="canonical" href={process.env.NEXT_PUBLIC_WEBSITE_URL} />
+        <title>{process.env.NEXT_PUBLIC_WEBSITE_TITLE}</title>
+      </Head>
       <TaxCalculator />
       <ResultsTable />
       <Footer />
