@@ -49,10 +49,10 @@ export default function Footer() {
             Sélectionnez une province du Canada et un des deux modes de calcul de taxes. Soit le
             mode de calcul avant taxes régulier ou, le mode de calcul après taxes (calcul inverse
             sur le total). Ensuite, inscrivez le montant ou le total pour calculer les taxes. Si
-            vous voulez générer une grilles Excel de vos calculs de taxes, il suffit d'appuyer sur{" "}
+            vous voulez générer une grille Excel de vos calculs de taxes, il suffit d'appuyer sur{" "}
             <kbd>Enter</kbd> au clavier, ou d'appuyer sur le bouton de confirmation sur votre
-            mobile. Vous pourrez imprimer cette grille de calculs de taxes en PDF ou exporter vers
-            un fichier Excel.
+            mobile. Vous pourrez imprimer votre grille de calculs en PDF ou l'exporter vers un
+            fichier Excel.
           </p>
         </div>
       </div>
