@@ -43,7 +43,7 @@ export default function Footer() {
             l'ensemble des provinces et territoires du Canada, ainsi que le calcul de taxes inverse
             (taxes incluses). Cette calculatrice de taxes à la consommation canadienne vous est
             offerte par Finance&nbsp;D, une entreprise du Québec qui offre des logiciels simples aux
-            défis quotidien de la comptabilité.
+            défis quotidiens de la comptabilité.
             <br />
             <br />
             Sélectionnez une province du Canada et un des deux modes de calcul de taxes. Soit le
