@@ -29,29 +29,36 @@ export default function TaxCalculator({
 
   const [taxeIn, setTaxeIn] = useState(defaultTaxeIn);
 
+  // Called only one time.
   useEffect(function init() {
     autoFocusOnlyEditableInput(defaultTaxeIn);
     setFooterGovernmentLink(defaultProvince);
   }, []);
 
+  // Called each time any of [montant, total, taux, taxeIn] is changed
   useEffect(
     function calculate() {
-      //Recalculates when "montant", "total", "taux" or "taxeIn" states change.
-      let sansTaxe, tpsValue, tvpValue;
+      let sansTaxe, tpsValue, tvpValue, totalAvecTaxes;
       if (taxeIn) {
-        sansTaxe = isNaN(total) ? 0 : total / (taux.tps + taux.tvp + 1);
-        tpsValue = sansTaxe * taux.tps;
-        tvpValue = sansTaxe * taux.tvp;
+        // Calcul taxes incluses dans le TOTAL
+        totalAvecTaxes = isNaN(total) ? 0 : total;
+        sansTaxe = totalAvecTaxes / (taux.tps + taux.tvp + 1);
+        tpsValue = roundNumber(sansTaxe * taux.tps);
+        tvpValue = roundNumber(sansTaxe * taux.tvp);
+        // Update displayed values
+        setMontant(sansTaxe);
         setTPS(tpsValue);
         setTVP(tvpValue);
-        setMontant(roundNumber(total - (tpsValue + tvpValue)));
       } else {
+        // Calcul régulier MONTANT + taxes
         sansTaxe = isNaN(montant) ? 0 : montant;
-        tpsValue = sansTaxe * taux.tps;
-        tvpValue = sansTaxe * taux.tvp;
+        tpsValue = roundNumber(sansTaxe * taux.tps);
+        tvpValue = roundNumber(sansTaxe * taux.tvp);
+        totalAvecTaxes = sansTaxe + tpsValue + tvpValue;
+        // Update displayed values
         setTPS(tpsValue);
         setTVP(tvpValue);
-        setTotal(roundNumber(montant + tpsValue + tvpValue));
+        setTotal(totalAvecTaxes);
       }
     },
     [montant, total, taux, taxeIn]
@@ -259,8 +266,8 @@ function autoFocusOnlyEditableInput(isTaxeIn) {
   showTheHandIconUnderEditableInput(isTaxeIn);
 }
 
-function roundNumber(num, digits = 2) {
-  return (Math.round((Number(num) + Number.EPSILON) * 100) / 100).toFixed(digits);
+function roundNumber(num) {
+  return Math.round((Number(num) + Number.EPSILON) * 100) / 100;
 }
 
 export {roundNumber};

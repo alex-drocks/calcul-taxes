@@ -14,8 +14,8 @@ describe("TaxCalculator", () => {
   it("should render all default Quebec values", () => {
     expect(
       screen.getByRole("heading", {
-        name: "Calcul de taxes pour la TPS et la TVQ",
-      }),
+        name: "Calcul de taxes pour la TPS et la TVQ"
+      })
     ).toBeVisible();
     expect(screen.getByText(`TAUX ${new Date().getFullYear()}`)).toBeVisible();
 
@@ -24,21 +24,17 @@ describe("TaxCalculator", () => {
     expect(screen.getByText("Entrez le MONTANT (avant taxes).")).toBeVisible();
 
     expect(screen.getByText("TPS (5.000%):")).toBeVisible();
-    expect(screen.getByPlaceholderText("Taxe Fédérale $")).toHaveDisplayValue(
-      "0.00",
-    );
+    expect(screen.getByPlaceholderText("Taxe Fédérale $")).toHaveDisplayValue("0.00");
 
     expect(screen.getByText("TVQ (9.975%):")).toBeVisible();
-    expect(
-      screen.getByPlaceholderText("Taxe Provinciale $"),
-    ).toHaveDisplayValue("0.00");
+    expect(screen.getByPlaceholderText("Taxe Provinciale $")).toHaveDisplayValue("0.00");
 
     expect(screen.getByText("Total avec taxes:")).toBeVisible();
     expect(screen.getByPlaceholderText("Total $")).toHaveDisplayValue("0.00");
 
     expect(screen.getByText("Calcul de taxes inversé:")).toBeVisible();
     const taxeInCheckbox = screen.getByTitle(
-      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse.",
+      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse."
     );
     expect(taxeInCheckbox).toBeVisible();
     expect(taxeInCheckbox).not.toBeChecked();
@@ -46,16 +42,15 @@ describe("TaxCalculator", () => {
     expect(screen.getByText("Province/territoire du Canada:")).toBeVisible();
     expect(screen.getByText("Québec (TPS 5% + TVQ 9.975%)")).toBeVisible();
 
+    expect(screen.getByTitle("Visitez le site internet de Finance D")).toHaveAttribute(
+      "href",
+      "https://finance-d.com"
+    );
     expect(
-      screen.getByTitle("Visitez le site internet de Finance D"),
-    ).toHaveAttribute("href", "https://finance-d.com");
-    expect(
-      screen.getByTitle(
-        "Visitez le site du gouvernement pour plus d'informations",
-      ),
+      screen.getByTitle("Visitez le site du gouvernement pour plus d'informations")
     ).toHaveAttribute(
       "href",
-      "https://www.revenuquebec.ca/fr/entreprises/taxes/tpstvh-et-tvq/perception-de-la-tps-et-de-la-tvq/calcul-des-taxes/",
+      "https://www.revenuquebec.ca/fr/entreprises/taxes/tpstvh-et-tvq/perception-de-la-tps-et-de-la-tvq/calcul-des-taxes/"
     );
   });
 
@@ -72,6 +67,20 @@ describe("TaxCalculator", () => {
     expect(tvq.value).toBe("9.98");
     const total = screen.getByPlaceholderText("Total $");
     expect(total.value).toBe("114.98");
+  });
+  it("should calculate 79.95$ plus taxes correctly", () => {
+    const montant = screen.getByPlaceholderText("Montant $");
+    expect(montant.value).toBe("0.00");
+
+    fireEvent.change(montant, {target: {value: "79.95"}});
+    expect(montant.value).toBe("79.95");
+
+    const tps = screen.getByPlaceholderText("Taxe Fédérale $");
+    expect(tps.value).toBe("4.00");
+    const tvq = screen.getByPlaceholderText("Taxe Provinciale $");
+    expect(tvq.value).toBe("7.98");
+    const total = screen.getByPlaceholderText("Total $");
+    expect(total.value).toBe("91.93");
   });
   it("should calculate 1.33$ plus taxes correctly", () => {
     const montant = screen.getByPlaceholderText("Montant $");
@@ -119,7 +128,7 @@ describe("TaxCalculator", () => {
   it("should change calculation mode when clicking the TaxeInCheckbox", () => {
     expect(screen.getByText("Calcul de taxes inversé:")).toBeVisible();
     const taxeInCheckBox = screen.getByTitle(
-      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse.",
+      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse."
     );
     expect(taxeInCheckBox).toBeVisible();
     fireEvent.click(taxeInCheckBox);
@@ -127,22 +136,18 @@ describe("TaxCalculator", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: "Calcul de taxes inversé pour la TPS et la TVQ",
-      }),
+        name: "Calcul de taxes inversé pour la TPS et la TVQ"
+      })
     ).toBeVisible();
 
     expect(screen.getByText("Montant sans taxes:")).toBeVisible();
     expect(screen.getByPlaceholderText("Montant $")).toHaveDisplayValue("0.00");
 
     expect(screen.getByText("TPS (5.000%):")).toBeVisible();
-    expect(screen.getByPlaceholderText("Taxe Fédérale $")).toHaveDisplayValue(
-      "0.00",
-    );
+    expect(screen.getByPlaceholderText("Taxe Fédérale $")).toHaveDisplayValue("0.00");
 
     expect(screen.getByText("TVQ (9.975%):")).toBeVisible();
-    expect(
-      screen.getByPlaceholderText("Taxe Provinciale $"),
-    ).toHaveDisplayValue("0.00");
+    expect(screen.getByPlaceholderText("Taxe Provinciale $")).toHaveDisplayValue("0.00");
 
     expect(screen.getByText("Total avec taxes:")).toBeVisible();
     expect(screen.getByPlaceholderText("Total $")).toHaveDisplayValue("0.00");
@@ -155,7 +160,7 @@ describe("TaxCalculator", () => {
   it("should calculate 100$ taxes included correctly", () => {
     expect(screen.getByText("Calcul de taxes inversé:")).toBeVisible();
     const taxeInCheckBox = screen.getByTitle(
-      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse.",
+      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse."
     );
     expect(taxeInCheckBox).toBeVisible();
     fireEvent.click(taxeInCheckBox);
@@ -175,7 +180,7 @@ describe("TaxCalculator", () => {
   it("should calculate 1.33$ taxes included correctly", () => {
     expect(screen.getByText("Calcul de taxes inversé:")).toBeVisible();
     const taxeInCheckBox = screen.getByTitle(
-      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse.",
+      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse."
     );
     expect(taxeInCheckBox).toBeVisible();
     fireEvent.click(taxeInCheckBox);
@@ -195,7 +200,7 @@ describe("TaxCalculator", () => {
   it("should calculate -7 000.01$ taxes included correctly", () => {
     expect(screen.getByText("Calcul de taxes inversé:")).toBeVisible();
     const taxeInCheckBox = screen.getByTitle(
-      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse.",
+      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse."
     );
     expect(taxeInCheckBox).toBeVisible();
     fireEvent.click(taxeInCheckBox);
@@ -215,7 +220,7 @@ describe("TaxCalculator", () => {
   it("should calculate 77 777.77$ taxes included correctly", () => {
     expect(screen.getByText("Calcul de taxes inversé:")).toBeVisible();
     const taxeInCheckBox = screen.getByTitle(
-      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse.",
+      "Cliquez pour activer ou désactiver le mode de calcul taxes inverse."
     );
     expect(taxeInCheckBox).toBeVisible();
     fireEvent.click(taxeInCheckBox);
