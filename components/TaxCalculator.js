@@ -87,7 +87,7 @@ export default function TaxCalculator({
           stateValue={montant}
           onChangeHandler={values => setMontant(Number(values.value))}
           onFocusHandler={e => e.target.select()}
-          focusedInstructions="Entrez le MONTANT (avant taxes)."
+          focusedInstructions="Entrez le montant $ avant taxes."
         />
 
         {/*Federal Tax*/}
@@ -121,7 +121,7 @@ export default function TaxCalculator({
           stateValue={total}
           onChangeHandler={values => setTotal(Number(values.value))}
           onFocusHandler={e => e.target.select()}
-          focusedInstructions="Entrez le TOTAL (taxes incluses)."
+          focusedInstructions="Entrez le total $ taxes incluses."
         />
 
         {/*Taxe Mode*/}

@@ -6,7 +6,7 @@ export default function Footer() {
         <a
           href="https://finance-d.com"
           className="link-to-finance-d"
-          title="Visitez le site internet de Finance D"
+          title="Visitez le site internet du concepteur de cette calculatrice de taxes (finance-d.com)"
         >
           <img
             src="/icons/icon-48x48.png"
