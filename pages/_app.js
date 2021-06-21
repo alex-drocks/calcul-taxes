@@ -48,7 +48,6 @@ export default function MyApp({Component, pageProps}) {
             process.env.NEXT_PUBLIC_WEBSITE_DESCRIPTION
           }
         />
-        />
         <meta
           name="twitter:image"
           content={process.env.NEXT_PUBLIC_WEBSITE_URL + process.env.NEXT_PUBLIC_WEBSITE_META_IMAGE}

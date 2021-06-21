@@ -1,11 +1,11 @@
 :root {
   --background: #fff;
   --main-text-color: #000;
-  --blue: #0064ac;
+  --blue: #005fa4;
   --vertical-spacing: 2.5vh;
   --horizontal-spacing: 2vw;
-  --main-box-shadow: 1px 2px 8px rgba(0, 8, 27, 0.45);
-  --max-content-width: 1100px;
+  --main-box-shadow: 1px 2px 8px rgba(0, 8, 27, 0.8);
+  --max-content-width: 1080px;
 }
 
 html,
@@ -13,12 +13,11 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Arial", sans-serif;
-  font-size: calc(100% + .25vw);
+  font-size: calc(100% + 0.23vw);
   color: var(--main-text-color);;
 }
 
 body {
-  height: 100vh;
   background: var(--background);
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -36,8 +35,8 @@ body {
 
 .page-container {
   overflow-x: hidden;
-  animation: fadeIn ease 1s;
-  -webkit-animation: fadeIn ease 1s;
+  animation: fadeIn ease 0.3s;
+  -webkit-animation: fadeIn ease 0.3s;
   padding: var(--vertical-spacing) var(--horizontal-spacing);
   display: flex;
   flex-direction: column;

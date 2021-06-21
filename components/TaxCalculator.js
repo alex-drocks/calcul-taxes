@@ -33,7 +33,7 @@ export default function TaxCalculator({
   useEffect(function init() {
     autoFocusOnlyEditableInput(defaultTaxeIn);
     setFooterGovernmentLink(defaultProvince);
-  }, []);
+  }, [defaultTaxeIn, defaultProvince]);
 
   // Called each time any of [montant, total, taux, taxeIn] is changed
   useEffect(

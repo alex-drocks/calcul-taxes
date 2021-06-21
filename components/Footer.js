@@ -36,11 +36,11 @@ export default function Footer() {
         <div className={"footer-row app-description"}>
           {/*Describe what this app is meant to be*/}
           <p>
-            Il s'agit d'un calculateur de taxes pour la TPS / TVH et la TVQ / TVP, avec les taux de{" "}
+            Il s&rsquo;agit d&rsquo;un calculateur de taxes pour la TPS / TVH et la TVQ / TVP, avec les taux de{" "}
             {`${new Date().getFullYear()}`} en vigueur au Canada. Plusieurs fonctions de calcul sont
             réunies, faisant de cet outil un tout-inclut pour vos calcul de taxes sur les biens et
             services. Elle peut faire le calcul des taxes du Québec, le calcul des taxes pour
-            l'ensemble des provinces et territoires du Canada, ainsi que le calcul de taxes inverse
+            l&rsquo;ensemble des provinces et territoires du Canada, ainsi que le calcul de taxes inverse
             (taxes incluses). Cette calculatrice de taxes à la consommation canadienne vous est
             offerte par Finance&nbsp;D, une entreprise du Québec qui offre des logiciels simples aux
             défis quotidiens de la comptabilité.
@@ -49,9 +49,9 @@ export default function Footer() {
             Sélectionnez une province du Canada et un des deux modes de calcul de taxes. Soit le
             mode de calcul avant taxes régulier ou, le mode de calcul après taxes (calcul inverse
             sur le total). Ensuite, inscrivez le montant ou le total pour calculer les taxes. Si
-            vous voulez générer une grille Excel de vos calculs de taxes, il suffit d'appuyer sur{" "}
-            <kbd>Enter</kbd> au clavier, ou d'appuyer sur le bouton de confirmation sur votre
-            mobile. Vous pourrez imprimer votre grille de calculs en PDF ou l'exporter vers un
+            vous voulez générer une grille Excel de vos calculs de taxes, il suffit d&rsquo;appuyer sur{" "}
+            <kbd>Enter</kbd> au clavier, ou d&rsquo;appuyer sur le bouton de confirmation sur votre
+            mobile. Vous pourrez imprimer votre grille de calculs en PDF ou l&rsquo;exporter vers un
             fichier Excel.
           </p>
         </div>
@@ -81,7 +81,7 @@ export default function Footer() {
             className="facebook-page-link"
             href="https://www.facebook.com/Finance.D.Logiciels"
             title="Voir la page Facebook de Finance D."
-            rel="noopener"
+            rel="noopener noreferrer"
             target="_blank"
             aria-label="Facebook"
           >
@@ -95,7 +95,7 @@ export default function Footer() {
             className="github-repository-link"
             href="https://github.com/alex-drocks/calcul-taxes"
             title="Voir le code source de cette application créée avec Next JS."
-            rel="noopener"
+            rel="noopener noreferrer"
             target="_blank"
             aria-label="GitHub"
           >

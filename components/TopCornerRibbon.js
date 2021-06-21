@@ -6,7 +6,7 @@ export default function TopCornerRibbon() {
         <a
           title={`Les taux utilisés pour le calcul de taxes de chaque province ou territoire du Canada sont à jour en date de ${currentYear} selon la calculatrice de taxes du site officiel du Gouvernement Fédéral du Canada.`}
           href="https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/tps-tvh-entreprises/facturer-percevoir-quel-taux/calculatrice.html"
-          rel="noopener"
+          rel="noopener noreferrer"
           target="_blank"
           style={{color: "#fdfdfd"}}
         >

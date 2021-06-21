@@ -1,5 +1,8 @@
+// next.config.js
 module.exports = {
-  future: {
-    webpack5: true,
+  webpack5: true,
+  images: {
+    loader: 'cloudinary',
+    domains: ['taxes.finance-d.com'],
   },
 }
