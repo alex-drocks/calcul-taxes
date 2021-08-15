@@ -53,7 +53,7 @@ h1, h2 {
 }
 
 h1 {
-  font-size: 1.68em;
+  font-size: 1.7em;
   letter-spacing: -.05em;
 }
 
@@ -190,10 +190,12 @@ a {
   .results-table .total {
     width: 18.5% !important;
   }
+
   .results-table .tps,
   .results-table .tvq {
     width: 12.5% !important;
   }
+
   .results-table .province {
     width: 38% !important;
   }

@@ -21,7 +21,7 @@ describe("TaxCalculator", () => {
 
     expect(screen.getByText("Montant sans taxes:")).toBeVisible();
     expect(screen.getByPlaceholderText("Montant $")).toHaveDisplayValue("0.00");
-    expect(screen.getByText("Entrez le montant $ avant taxes.")).toBeVisible();
+    expect(screen.getByText("Entrez le montant avant taxes.")).toBeVisible();
 
     expect(screen.getByText("TPS (5.000%):")).toBeVisible();
     expect(screen.getByPlaceholderText("Taxe Fédérale $")).toHaveDisplayValue("0.00");
@@ -152,7 +152,7 @@ describe("TaxCalculator", () => {
 
     expect(screen.getByText("Total avec taxes:")).toBeVisible();
     expect(screen.getByPlaceholderText("Total $")).toHaveDisplayValue("0.00");
-    expect(screen.getByText("Entrez le total $ taxes incluses.")).toBeVisible();
+    expect(screen.getByText("Entrez le total taxes incluses.")).toBeVisible();
 
     expect(screen.getByText("Province/territoire du Canada:")).toBeVisible();
     expect(screen.getByText("Québec (TPS 5% + TVQ 9.975%)")).toBeVisible();
