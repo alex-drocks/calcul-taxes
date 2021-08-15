@@ -5,7 +5,7 @@ export default function TaxeInCheckbox({defaultChecked, onChangeHandler}) {
         htmlFor="taxeIn"
         title="Cliquez sur le carré à droite pour basculer entre le mode de calcul de taxes inverse (taxes incluses) ou le calcul régulier avant taxes."
       >
-        <h2>Calcul de taxes inversé:</h2>
+        <h2>Calcul de taxes inversé&nbsp;:</h2>
       </label>
       <input
         type="checkbox"
