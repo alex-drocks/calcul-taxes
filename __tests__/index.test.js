@@ -1,7 +1,12 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from "react";
 import {render, screen, fireEvent} from "@testing-library/react";
 import TaxCalculator from "../pages/index";
 
+// https://github.com/vercel/next.js/blob/canary/examples/with-jest/__tests__/index.test.jsx
 // https://github.com/testing-library/jest-dom#readme
 // https://testing-library.com/docs/queries/about/#priority
 // https://testing-library.com/docs/react-testing-library/example-intro
