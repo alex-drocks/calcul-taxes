@@ -164,15 +164,24 @@ a {
   }
 
   .results-table:before {
-    content: "Généré avec la calculatrice de taxes Finance D en-ligne | https://taxes.finance-d.com";
+    content: "Généré en-ligne avec la calculatrice de taxes Finance D | https://taxes.finance-d.com";
+    margin-bottom: 2em;
   }
 
   .results-table--header th {
-    background-color: black !important;
-    color: white !important;
     color-adjust: exact !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+  }
+
+  .results-table--header tr:first-of-type th {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  .results-table--header tr:last-of-type th {
+    background-color: black !important;
+    color: white !important;
   }
 
   .results-table--row td {

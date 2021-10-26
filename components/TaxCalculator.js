@@ -199,8 +199,9 @@ function handleFormSubmit(e, montant, tps, tvp, total, province, tauxFed, tauxQc
   if (window && window.innerHeight < 600) {
     //Small screen: closes keyboard
     focused?.blur();
+  } else {
+    autoFocusOnlyEditableInput(taxeIn)
   }
-  autoFocusOnlyEditableInput(taxeIn)
   window.scrollTo(0, 0);
 
   //Populate results table row
