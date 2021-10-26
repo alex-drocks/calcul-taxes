@@ -1,20 +1,23 @@
 import {useEffect, useState} from "react";
 
 import TopCornerRibbon from "./TopCornerRibbon";
-import Decimalnumber from "./DecimalNumber";
+import DecimalNumber from "./DecimalNumber";
 import TaxeInCheckbox from "./TaxeInCheckbox";
 import ProvinceSelect from "./ProvinceSelect";
 
+import {autoFocusOnlyEditableInput, roundNumber} from "../utils/sharedFunctions";
 import {addNewResultRowToTable} from "./ResultsTable";
 
-export default function TaxCalculator({
-  defaultMainTitle = "Calcul de taxes pour la TPS et la TVQ",
-  defaultFederalTaxName = "TPS",
-  defaultProvincialTaxName = "TVQ",
-  defaultProvince = "Québec (TPS 5% + TVQ 9.975%)",
-  defaultTaxeIn = false,
-  defaultTaux = {tps: Number(0.05), tvp: Number(0.09975)}
-}) {
+export default function TaxCalculator(
+  {
+    defaultMainTitle = "Calcul de taxes pour la TPS et la TVQ",
+    defaultFederalTaxName = "TPS",
+    defaultProvincialTaxName = "TVQ",
+    defaultProvince = "Québec (TPS 5% + TVQ 9.975%)",
+    defaultTaxeIn = false,
+    defaultTaux = {tps: Number(0.05), tvp: Number(0.09975)}
+  }
+) {
   const [calculatorMainTitle, setCalculatorMainTitle] = useState(defaultMainTitle);
   const [federalTaxName, setFederalTaxName] = useState(defaultFederalTaxName);
   const [provincialTaxName, setProvincialTaxName] = useState(defaultProvincialTaxName);
@@ -68,32 +71,32 @@ export default function TaxCalculator({
   return (
     <div id="calculator-component-container" className="calculator">
       {/*Absolute Positionned Top Right Corner Ribbon*/}
-      <TopCornerRibbon />
+      <TopCornerRibbon/>
 
       {/*User inputs are in a form to use the default Submit feature*/}
       <form
         className="card"
-        onSubmit={e => handleFormSubmit(e, montant, TPS, TVP, total, province, taux.tps, taux.tvp)}
+        onSubmit={e => handleFormSubmit(e, montant, TPS, TVP, total, province, taux.tps, taux.tvp, taxeIn)}
       >
         {/*The Blue Title Heading*/}
         <h1 className="no-select">{calculatorMainTitle}</h1>
 
         {/*Amount before taxes*/}
-        <Decimalnumber
+        <DecimalNumber
           id="montant"
-          label="Montant sans taxes:"
+          label="Montant sans taxes"
           readOnly={taxeIn}
           placeholder="Montant $"
           stateValue={montant}
           onChangeHandler={values => setMontant(Number(values.value))}
           onFocusHandler={e => e.target.select()}
-          focusedInstructions="Entrez le montant avant taxes."
+          focusedInstructions="Entrez le montant hors-taxes pour calculer."
         />
 
         {/*Federal Tax*/}
-        <Decimalnumber
+        <DecimalNumber
           id="tps"
-          label={`${federalTaxName} (${(taux.tps * 100).toFixed(3)}%):`}
+          label={`${federalTaxName} (${(taux.tps * 100).toFixed(3)}%)`}
           readOnly={true}
           placeholder="Taxe Fédérale $"
           stateValue={TPS}
@@ -102,9 +105,9 @@ export default function TaxCalculator({
         />
 
         {/*Provincial Tax*/}
-        <Decimalnumber
+        <DecimalNumber
           id="tvp"
-          label={`${provincialTaxName} (${(taux.tvp * 100).toFixed(3)}%):`}
+          label={`${provincialTaxName} (${(taux.tvp * 100).toFixed(3)}%)`}
           readOnly={true}
           placeholder="Taxe Provinciale $"
           stateValue={TVP}
@@ -113,15 +116,15 @@ export default function TaxCalculator({
         />
 
         {/*Total including taxes*/}
-        <Decimalnumber
+        <DecimalNumber
           id="total"
-          label="Total avec taxes:"
+          label="Total avec taxes"
           readOnly={!taxeIn}
           placeholder="Total $"
           stateValue={total}
           onChangeHandler={values => setTotal(Number(values.value))}
           onFocusHandler={e => e.target.select()}
-          focusedInstructions="Entrez le total taxes incluses."
+          focusedInstructions="Entrez le total taxes incluses pour calculer."
         />
 
         {/*Taxe Mode*/}
@@ -189,18 +192,15 @@ export default function TaxCalculator({
   );
 }
 
-function handleFormSubmit(e, montant, tps, tvp, total, province, tauxFed, tauxQc) {
+function handleFormSubmit(e, montant, tps, tvp, total, province, tauxFed, tauxQc, taxeIn) {
   e.preventDefault();
 
   const focused = document.activeElement;
   if (window && window.innerHeight < 600) {
     //Small screen: closes keyboard
-    focused && focused.blur();
-  } else {
-    //Large screen: select input value on form submit
-    focused && focused.select();
+    focused?.blur();
   }
-
+  autoFocusOnlyEditableInput(taxeIn)
   window.scrollTo(0, 0);
 
   //Populate results table row
@@ -242,32 +242,3 @@ function setFooterGovernmentLink(provinceValue) {
     govNameElm.textContent = "Canada.ca";
   }
 }
-
-function showTheHandIconUnderEditableInput(isTaxeIn) {
-  const montantInstructionEl = document.querySelector(".field.montant");
-  const totalInstructionEl = document.querySelector(".field.total");
-  if (isTaxeIn) {
-    montantInstructionEl.classList.remove("isActiveCalculationMode");
-    totalInstructionEl.classList.add("isActiveCalculationMode");
-  } else {
-    montantInstructionEl.classList.add("isActiveCalculationMode");
-    totalInstructionEl.classList.remove("isActiveCalculationMode");
-  }
-}
-
-function autoFocusOnlyEditableInput(isTaxeIn) {
-  const editableUserInput = document.getElementById(`${isTaxeIn ? "total" : "montant"}`);
-  if (editableUserInput) {
-    editableUserInput.focus();
-    setTimeout(() => {
-      editableUserInput.select();
-    }, 30);
-  }
-  showTheHandIconUnderEditableInput(isTaxeIn);
-}
-
-function roundNumber(num) {
-  return Math.round((Number(num) + Number.EPSILON) * 100) / 100;
-}
-
-export {roundNumber};

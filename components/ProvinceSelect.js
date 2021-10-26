@@ -5,7 +5,7 @@ export default function ProvinceSelect({defaultValue, onChangeHandler}) {
         htmlFor="province"
         title="Sélectionnez le taux de taxes actif pour votre calcul en choisissant la province ou le territoire approprié."
       >
-        <h2>Province/territoire du Canada:</h2>
+        <h2>Province/territoire du Canada&nbsp;:</h2>
       </label>
       <select
         id="province"
