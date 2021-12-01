@@ -63,23 +63,24 @@ export default function Footer() {
       </div>
       <div className="footer-row copyright-and-social-links">
         {/*Copyright*/}
-        <span className="footer-copyright">
+        <div className="footer-copyright">
           {`© ${new Date().getFullYear()} `}
           <a href="https://finance-d.com/a-propos/" title="En savoir plus à propos de Finance D">
             Finance&nbsp;D
           </a>
-        </span>
+        </div>
 
-        <LazyLoad className="facebook-like-button" height={28} once>
+        <LazyLoad className="facebook-like-button" height={30} once>
           <iframe
-            src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ftaxes.finance-d.com%2F&width=165&layout=button&action=like&size=large&share=true&height=30&appId"
-            width="165"
-            height="28"
+            src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ftaxes.finance-d.com%2F&width=164&layout=button&action=like&size=large&share=true&height=30&appId"
+            width="164"
+            height="30"
             style={{border: "none", overflow: "hidden"}}
             scrolling="no"
             frameBorder="0"
             allowFullScreen={false}
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            title="Boutons pour Partager et Aimer cette calculatrice de taxes sur Facebook."
           />
         </LazyLoad>
 
