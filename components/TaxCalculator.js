@@ -32,11 +32,13 @@ export default function TaxCalculator(
 
   const [taxeIn, setTaxeIn] = useState(defaultTaxeIn);
 
+
   // Called only one time.
   useEffect(function init() {
     autoFocusOnlyEditableInput(defaultTaxeIn);
-    setFooterGovernmentLink(defaultProvince);
+    setContextualFooterGovernmentLink(defaultProvince);
   }, [defaultTaxeIn, defaultProvince]);
+
 
   // Called each time any of [montant, total, taux, taxeIn] is changed
   useEffect(
@@ -48,8 +50,11 @@ export default function TaxCalculator(
         sansTaxe = totalAvecTaxes / (taux.tps + taux.tvp + 1);
         tpsValue = roundNumber(sansTaxe * taux.tps);
         tvpValue = roundNumber(sansTaxe * taux.tvp);
+
+        const roundingDifference = roundNumber(totalAvecTaxes - (sansTaxe + tpsValue + tvpValue))
+
         // Update displayed values
-        setMontant(sansTaxe);
+        setMontant(sansTaxe + roundingDifference);
         setTPS(tpsValue);
         setTVP(tvpValue);
       } else {
@@ -66,6 +71,7 @@ export default function TaxCalculator(
     },
     [montant, total, taux, taxeIn]
   );
+
 
   //React will then render the component:
   return (
@@ -140,7 +146,7 @@ export default function TaxCalculator(
 
             autoFocusOnlyEditableInput(isTaxeIn);
 
-            setDynamicNames(
+            setContextualDynamicNames(
               isTaxeIn,
               taux,
               province,
@@ -167,7 +173,7 @@ export default function TaxCalculator(
             const nouveauTaux = {tps: Number(tps), tvp: Number(tvp)};
             setTaux(nouveauTaux);
 
-            setDynamicNames(
+            setContextualDynamicNames(
               taxeIn,
               nouveauTaux,
               selectedProvince,
@@ -176,7 +182,7 @@ export default function TaxCalculator(
               setProvincialTaxName
             );
 
-            setFooterGovernmentLink(selectedProvince);
+            setContextualFooterGovernmentLink(selectedProvince);
           }}
         />
 
@@ -191,6 +197,7 @@ export default function TaxCalculator(
     </div>
   );
 }
+
 
 function handleFormSubmit(e, montant, tps, tvp, total, province, tauxFed, tauxQc, taxeIn) {
   e.preventDefault();
@@ -208,7 +215,8 @@ function handleFormSubmit(e, montant, tps, tvp, total, province, tauxFed, tauxQc
   addNewResultRowToTable(montant, tps, tvp, total, province, tauxFed, tauxQc);
 }
 
-function setDynamicNames(
+
+function setContextualDynamicNames(
   isTaxeIn,
   tauxTaxes,
   provinceValue,
@@ -230,7 +238,8 @@ function setDynamicNames(
   setProvincialTaxName(isQuebec ? "TVQ" : "TVP");
 }
 
-function setFooterGovernmentLink(provinceValue) {
+
+function setContextualFooterGovernmentLink(provinceValue) {
   const govLink = document.getElementById("gouvernment-link");
   const govNameElm = govLink.querySelector("span");
   if (provinceValue === "Québec (TPS 5% + TVQ 9.975%)") {
