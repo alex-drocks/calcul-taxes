@@ -36,20 +36,22 @@ export default function Footer() {
         <div className={"footer-row app-description"}>
           {/*Describe what this app is meant to be*/}
           <p>
-            Il s&rsquo;agit d&rsquo;un calculateur de taxes pour la TPS / TVH et la TVQ / TVP, avec les taux de{" "}
+            <strong>Il s&rsquo;agit d&rsquo;un calculateur de taxes pour la TPS / TVH et la TVQ / TVP</strong>, avec les
+            taux de{" "}
             {`${new Date().getFullYear()}`} en vigueur au Canada. Plusieurs fonctions de calcul sont
-            réunies, faisant de cet outil un tout-inclut pour vos calcul de taxes sur les biens et
-            services. Elle peut faire le calcul des taxes du Québec, le calcul des taxes pour
-            l&rsquo;ensemble des provinces et territoires du Canada, ainsi que le calcul de taxes inverse
+            réunies, faisant de cet outil un tout-inclut pour vos <strong>calcul de taxes sur les biens et
+            services</strong>. Elle peut faire le calcul des taxes du Québec, le <strong>calcul des taxes pour
+            l&rsquo;ensemble des provinces et territoires du Canada</strong>, ainsi que le calcul de taxes inverse
             (taxes incluses). Cette calculatrice de taxes à la consommation canadienne vous est
             offerte par Finance&nbsp;D, une entreprise du Québec qui offre des logiciels simples aux
             défis quotidiens de la comptabilité.
-            <br />
-            <br />
-            Sélectionnez une province du Canada et un des deux modes de calcul de taxes. Soit le
+            <br/>
+            <br/>
+            Sélectionnez une province du Canada et un des <strong>deux modes de calcul de taxes</strong>. Soit le
             mode de calcul avant taxes régulier ou, le mode de calcul après taxes (calcul inverse
             sur le total). Ensuite, inscrivez le montant ou le total pour calculer les taxes. Si
-            vous voulez générer une grille Excel de vos calculs de taxes, il suffit d&rsquo;appuyer sur{" "}
+            vous voulez <strong>générer une grille Excel de vos calculs de taxes</strong>, il suffit d&rsquo;appuyer
+            sur{" "}
             <kbd>Enter</kbd> au clavier, ou d&rsquo;appuyer sur le bouton de confirmation sur votre
             mobile. Vous pourrez imprimer votre grille de calculs en PDF ou l&rsquo;exporter vers un
             fichier Excel.
@@ -86,7 +88,8 @@ export default function Footer() {
             aria-label="Facebook"
           >
             <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm3 8h-1.35c-.538 0-.65.221-.65.778V10h2l-.209 2H13v7h-3v-7H8v-2h2V7.692C10 5.923 10.931 5 13.029 5H15v3z" />
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm3 8h-1.35c-.538 0-.65.221-.65.778V10h2l-.209 2H13v7h-3v-7H8v-2h2V7.692C10 5.923 10.931 5 13.029 5H15v3z"/>
             </svg>
           </a>
 

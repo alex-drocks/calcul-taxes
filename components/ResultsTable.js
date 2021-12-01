@@ -45,19 +45,19 @@ export default function ResultsTable() {
           </tr>
           <tr>
             <th className="montant" title="Prix avant taxe / sans taxe">
-              MONTANT&nbsp;$
+              MONTANT $
             </th>
             <th className="tps" title="Montant de la taxe Fédérale">
-              TPS/TVH&nbsp;$
+              TPS/TVH $
             </th>
             <th className="tvq" title="Montant de la taxe provinciale">
-              TVQ/TVP&nbsp;$
+              TVQ/TVP $
             </th>
             <th
               className="total"
               title="Somme du MONTANT + taxe fédérale + taxe provinciale = TOTAL"
             >
-              TOTAL&nbsp;$
+              TOTAL $
             </th>
             <th
               className="province"

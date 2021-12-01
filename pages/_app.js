@@ -67,10 +67,11 @@ export default function MyApp({Component, pageProps}) {
         />
         {/*google analytics*/}
         <script
-          async
+          defer
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
         />
         <script
+          defer
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');`
           }}
