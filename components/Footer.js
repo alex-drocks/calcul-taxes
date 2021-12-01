@@ -72,7 +72,7 @@ export default function Footer() {
 
         <LazyLoad height={30} once>
           <iframe
-            src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ftaxes.finance-d.com%2F&width=165&layout=button&action=like&size=small&share=true&height=30&appId"
+            src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ftaxes.finance-d.com%2F&width=165&layout=button&action=like&size=large&share=true&height=30&appId"
             width="165"
             height="30"
             style={{border: "none", overflow: "hidden"}}
