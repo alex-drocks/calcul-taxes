@@ -22,13 +22,11 @@
 
 .logo-fd-and-link-to-gov {
   align-items: flex-start;
-  margin-bottom: 1em;
-  padding-bottom: 1em;
   max-width: var(--max-content-width);
 }
 
 .link-to-finance-d {
-  margin-right: 4em;
+  margin: 0 4em 1em 0;
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -60,7 +58,7 @@
 
 .copyright-and-social-links {
   border-top: 1px solid #f1f1f1;
-  padding-top: 1em;
+  flex-wrap: wrap;
 }
 
 .footer-copyright {
@@ -71,6 +69,20 @@
   text-decoration: underline;
 }
 
+.footer .facebook-like-button {
+  margin: 1em
+}
+
 .footer .social-links a {
   margin: 0 12px;
+}
+
+@media screen and (max-width: 475px) {
+  .footer-row {
+    flex-direction: column;
+  }
+
+  .footer-copyright {
+    margin-top: 2em;
+  }
 }

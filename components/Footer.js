@@ -70,11 +70,11 @@ export default function Footer() {
           </a>
         </span>
 
-        <LazyLoad height={30} once>
+        <LazyLoad className="facebook-like-button" height={28} once>
           <iframe
             src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ftaxes.finance-d.com%2F&width=165&layout=button&action=like&size=large&share=true&height=30&appId"
             width="165"
-            height="30"
+            height="28"
             style={{border: "none", overflow: "hidden"}}
             scrolling="no"
             frameBorder="0"
