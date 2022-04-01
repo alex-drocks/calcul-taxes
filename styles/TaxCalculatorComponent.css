@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   max-width: var(--max-content-width);
+  font-size: 90%;
 }
 
 .calculator h1 {
@@ -185,7 +186,7 @@
   flex-direction: row;
   align-items: center;
   cursor: pointer;
-  padding: .25rem ;
+  padding: .25rem;
 }
 
 @media screen and (max-width: 1024px) {

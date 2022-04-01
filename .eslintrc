@@ -3,5 +3,15 @@
   "rules": {
 	"@next/next/no-document-import-in-page": "warn",
 	"@next/next/no-img-element": "off"
-  }
+  },
+  "overrides": [
+    // Only uses Testing Library lint rules in test files
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ]
 }

@@ -8,16 +8,14 @@ import ProvinceSelect from "./ProvinceSelect";
 import {autoFocusOnlyEditableInput, roundNumber} from "../utils/sharedFunctions";
 import {addNewResultRowToTable} from "./ResultsTable";
 
-export default function TaxCalculator(
-  {
-    defaultMainTitle = "Calcul de taxes pour la TPS et la TVQ",
-    defaultFederalTaxName = "TPS",
-    defaultProvincialTaxName = "TVQ",
-    defaultProvince = "Québec (TPS 5% + TVQ 9.975%)",
-    defaultTaxeIn = false,
-    defaultTaux = {tps: Number(0.05), tvp: Number(0.09975)}
-  }
-) {
+export default function TaxCalculator({
+  defaultMainTitle = "Calcul de taxes pour la TPS et la TVQ",
+  defaultFederalTaxName = "TPS",
+  defaultProvincialTaxName = "TVQ",
+  defaultProvince = "Québec (TPS 5% + TVQ 9.975%)",
+  defaultTaxeIn = false,
+  defaultTaux = {tps: Number(0.05), tvp: Number(0.09975)}
+}) {
   const [calculatorMainTitle, setCalculatorMainTitle] = useState(defaultMainTitle);
   const [federalTaxName, setFederalTaxName] = useState(defaultFederalTaxName);
   const [provincialTaxName, setProvincialTaxName] = useState(defaultProvincialTaxName);
@@ -32,13 +30,14 @@ export default function TaxCalculator(
 
   const [taxeIn, setTaxeIn] = useState(defaultTaxeIn);
 
-
   // Called only one time.
-  useEffect(function init() {
-    autoFocusOnlyEditableInput(defaultTaxeIn);
-    setContextualFooterGovernmentLink(defaultProvince);
-  }, [defaultTaxeIn, defaultProvince]);
-
+  useEffect(
+    function init() {
+      autoFocusOnlyEditableInput(defaultTaxeIn);
+      setContextualFooterGovernmentLink(defaultProvince);
+    },
+    [defaultTaxeIn, defaultProvince]
+  );
 
   // Called each time any of [montant, total, taux, taxeIn] is changed
   useEffect(
@@ -51,7 +50,7 @@ export default function TaxCalculator(
         tpsValue = roundNumber(sansTaxe * taux.tps);
         tvpValue = roundNumber(sansTaxe * taux.tvp);
 
-        const roundingDifference = roundNumber(totalAvecTaxes - (sansTaxe + tpsValue + tvpValue))
+        const roundingDifference = roundNumber(totalAvecTaxes - (sansTaxe + tpsValue + tvpValue));
 
         // Update displayed values
         setMontant(sansTaxe + roundingDifference);
@@ -72,17 +71,18 @@ export default function TaxCalculator(
     [montant, total, taux, taxeIn]
   );
 
-
   //React will then render the component:
   return (
     <div id="calculator-component-container" className="calculator">
       {/*Absolute Positionned Top Right Corner Ribbon*/}
-      <TopCornerRibbon/>
+      <TopCornerRibbon />
 
       {/*User inputs are in a form to use the default Submit feature*/}
       <form
         className="card"
-        onSubmit={e => handleFormSubmit(e, montant, TPS, TVP, total, province, taux.tps, taux.tvp, taxeIn)}
+        onSubmit={e =>
+          handleFormSubmit(e, montant, TPS, TVP, total, province, taux.tps, taux.tvp, taxeIn)
+        }
       >
         {/*The Blue Title Heading*/}
         <h1 className="no-select">{calculatorMainTitle}</h1>
@@ -96,7 +96,7 @@ export default function TaxCalculator(
           stateValue={montant}
           onChangeHandler={values => setMontant(Number(values.value))}
           onFocusHandler={e => e.target.select()}
-          focusedInstructions="Entrez le montant hors-taxes pour calculer."
+          showInstructionsWhenFocused="Entrez le montant hors-taxes pour calculer les taxes."
         />
 
         {/*Federal Tax*/}
@@ -130,7 +130,7 @@ export default function TaxCalculator(
           stateValue={total}
           onChangeHandler={values => setTotal(Number(values.value))}
           onFocusHandler={e => e.target.select()}
-          focusedInstructions="Entrez le total taxes incluses pour calculer."
+          showInstructionsWhenFocused="Entrez le total taxes incluses pour calculer les taxes."
         />
 
         {/*Taxe Mode*/}
@@ -198,7 +198,6 @@ export default function TaxCalculator(
   );
 }
 
-
 function handleFormSubmit(e, montant, tps, tvp, total, province, tauxFed, tauxQc, taxeIn) {
   e.preventDefault();
 
@@ -207,14 +206,13 @@ function handleFormSubmit(e, montant, tps, tvp, total, province, tauxFed, tauxQc
     //Small screen: closes keyboard
     focused?.blur();
   } else {
-    autoFocusOnlyEditableInput(taxeIn)
+    autoFocusOnlyEditableInput(taxeIn);
   }
   window.scrollTo(0, 0);
 
   //Populate results table row
   addNewResultRowToTable(montant, tps, tvp, total, province, tauxFed, tauxQc);
 }
-
 
 function setContextualDynamicNames(
   isTaxeIn,
@@ -237,7 +235,6 @@ function setContextualDynamicNames(
   setFederalTaxName(isTVH ? "TVH" : "TPS");
   setProvincialTaxName(isQuebec ? "TVQ" : "TVP");
 }
-
 
 function setContextualFooterGovernmentLink(provinceValue) {
   const govLink = document.getElementById("gouvernment-link");

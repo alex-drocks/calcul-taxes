@@ -1,0 +1,614 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <div
+    class="page-container"
+  >
+    <div
+      class="calculator"
+      id="calculator-component-container"
+    >
+      <div
+        class="ribbon no-select"
+      >
+        <span>
+          <a
+            href="https://www.canada.ca/fr/agence-revenu/services/impot/entreprises/sujets/tps-tvh-entreprises/facturer-percevoir-quel-taux/calculatrice.html"
+            rel="noopener noreferrer"
+            style="color: rgb(253, 253, 253);"
+            target="_blank"
+            title="Les taux utilisés pour le calcul de taxes de chaque province ou territoire du Canada sont à jour en date de 2022 selon la calculatrice de taxes du site officiel du Gouvernement Fédéral du Canada."
+          >
+            TAUX 2022
+          </a>
+        </span>
+      </div>
+      <form
+        class="card"
+      >
+        <h1
+          class="no-select"
+        >
+          Calcul de taxes pour la TPS et la TVQ
+        </h1>
+        <div
+          class="field montant isActiveCalculationMode"
+        >
+          <label
+            for="montant"
+          >
+            <h2>
+              Montant sans taxes
+               :
+            </h2>
+          </label>
+          <input
+            autocomplete="off"
+            id="montant"
+            inputmode="numeric"
+            placeholder="Montant $"
+            type="text"
+            value="0.00"
+          />
+          <div
+            class="calculator-instructions no-select"
+          >
+            <button
+              class="calculator-button"
+              title="Pour ajouter le calcul à votre tableau des résultats, cliquez sur ce bouton, ou avec votre clavier, appuyez sur Entrer, ou appuyez sur +."
+            >
+              CALCULER
+            </button>
+            <svg
+              height="1em"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.021 10.688C5.229 10.86 6.531 12 7 12.469V1.955C7 .875 7.92 0 9 0s2 .875 2 1.955v6.058c0 .784.814.885.919.103.216-1.604 2.519-1.817 2.693.399.043.546.726.655.866.027.326-1.444 2.501-1.458 2.758.758.066.579.796.696.848.034.051-.67.281-.934.607-.934C20.789 8.4 22 10.419 22 12.81c0 4.295-3 4.306-3 11.19H9c-.332-3.942-3.462-7.431-6.271-10.241C2.241 13.271 2 12.707 2 12.195c0-.93.759-1.688 2.021-1.507z"
+              />
+            </svg>
+            <p>
+              Entrez le montant hors-taxes pour calculer les taxes.
+            </p>
+          </div>
+        </div>
+        <div
+          class="field tps "
+        >
+          <label
+            for="tps"
+          >
+            <h2>
+              TPS (5.000%)
+               :
+            </h2>
+          </label>
+          <input
+            autocomplete="off"
+            id="tps"
+            inputmode="numeric"
+            placeholder="Taxe Fédérale $"
+            readonly=""
+            type="text"
+            value="0.00"
+          />
+        </div>
+        <div
+          class="field tvp "
+        >
+          <label
+            for="tvp"
+          >
+            <h2>
+              TVQ (9.975%)
+               :
+            </h2>
+          </label>
+          <input
+            autocomplete="off"
+            id="tvp"
+            inputmode="numeric"
+            placeholder="Taxe Provinciale $"
+            readonly=""
+            type="text"
+            value="0.00"
+          />
+        </div>
+        <div
+          class="field total"
+        >
+          <label
+            for="total"
+          >
+            <h2>
+              Total avec taxes
+               :
+            </h2>
+          </label>
+          <input
+            autocomplete="off"
+            id="total"
+            inputmode="numeric"
+            placeholder="Total $"
+            readonly=""
+            type="text"
+            value="0.00"
+          />
+          <div
+            class="calculator-instructions no-select"
+          >
+            <button
+              class="calculator-button"
+              title="Pour ajouter le calcul à votre tableau des résultats, cliquez sur ce bouton, ou avec votre clavier, appuyez sur Entrer, ou appuyez sur +."
+            >
+              CALCULER
+            </button>
+            <svg
+              height="1em"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.021 10.688C5.229 10.86 6.531 12 7 12.469V1.955C7 .875 7.92 0 9 0s2 .875 2 1.955v6.058c0 .784.814.885.919.103.216-1.604 2.519-1.817 2.693.399.043.546.726.655.866.027.326-1.444 2.501-1.458 2.758.758.066.579.796.696.848.034.051-.67.281-.934.607-.934C20.789 8.4 22 10.419 22 12.81c0 4.295-3 4.306-3 11.19H9c-.332-3.942-3.462-7.431-6.271-10.241C2.241 13.271 2 12.707 2 12.195c0-.93.759-1.688 2.021-1.507z"
+              />
+            </svg>
+            <p>
+              Entrez le total taxes incluses pour calculer les taxes.
+            </p>
+          </div>
+        </div>
+        <div
+          class="field taxeIn"
+        >
+          <label
+            for="taxeIn"
+            title="Cliquez sur le carré à droite pour basculer entre le mode de calcul de taxes inverse (taxes incluses) ou le calcul régulier avant taxes."
+          >
+            <h2>
+              Calcul de taxes inversé :
+            </h2>
+          </label>
+          <input
+            id="taxeIn"
+            title="Cliquez pour basculer entre le mode de calcul de taxes inverse (taxes incluses) ou le calcul régulier avant taxes."
+            type="checkbox"
+          />
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            for="province"
+            title="Sélectionnez le taux de taxes actif pour votre calcul en choisissant la province ou le territoire approprié."
+          >
+            <h2>
+              Province/territoire du Canada :
+            </h2>
+          </label>
+          <select
+            class="province-select"
+            id="province"
+            name="province"
+            title="Sélectionnez le taux de taxes actif pour votre calcul en choisissant la province ou le territoire approprié."
+          >
+            <option
+              data-tps="0.05"
+              data-tvp="0"
+              value="Alberta (TPS 5%)"
+            >
+              Alberta (TPS 5%)
+            </option>
+            <option
+              data-tps="0.05"
+              data-tvp="0"
+              value="Colombie-Britanique (TPS 5%)"
+            >
+              Colombie-Britanique (TPS 5%)
+            </option>
+            <option
+              data-tps="0.05"
+              data-tvp="0.07"
+              value="Colombie-Britanique (TPS 5% + TVP 7%)"
+            >
+              Colombie-Britanique (TPS 5% + TVP 7%)
+            </option>
+            <option
+              data-tps="0.15"
+              data-tvp="0"
+              value="Île-du-Prince-Édouard (TVH 15%)"
+            >
+              Île-du-Prince-Édouard (TVH 15%)
+            </option>
+            <option
+              data-tps="0.05"
+              data-tvp="0"
+              value="Manitoba (TPS 5%)"
+            >
+              Manitoba (TPS 5%)
+            </option>
+            <option
+              data-tps="0.05"
+              data-tvp="0.08"
+              value="Manitoba (TPS 5% + TVP 8%)"
+            >
+              Manitoba (TPS 5% + TVP 8%)
+            </option>
+            <option
+              data-tps="0.15"
+              data-tvp="0"
+              value="Nouveau-Brunswick (TVH 15%)"
+            >
+              Nouveau-Brunswick (TVH 15%)
+            </option>
+            <option
+              data-tps="0.15"
+              data-tvp="0"
+              value="Nouvelle-Écosse (TVH 15%)"
+            >
+              Nouvelle-Écosse (TVH 15%)
+            </option>
+            <option
+              data-tps="0.05"
+              data-tvp="0"
+              value="Nunavut (TPS 5%)"
+            >
+              Nunavut (TPS 5%)
+            </option>
+            <option
+              data-tps="0.13"
+              data-tvp="0"
+              value="Ontario (TVH 13%)"
+            >
+              Ontario (TVH 13%)
+            </option>
+            <option
+              data-tps="0.05"
+              data-tvp="0.09975"
+              selected=""
+              value="Québec (TPS 5% + TVQ 9.975%)"
+            >
+              Québec (TPS 5% + TVQ 9.975%)
+            </option>
+            <option
+              data-tps="0.05"
+              data-tvp="0"
+              value="Saskatchewan (TPS 5%)"
+            >
+              Saskatchewan (TPS 5%)
+            </option>
+            <option
+              data-tps="0.05"
+              data-tvp="0.06"
+              value="Saskatchewan (TPS 5% + TVP 6%)"
+            >
+              Saskatchewan (TPS 5% + TVP 6%)
+            </option>
+            <option
+              data-tps="0.15"
+              data-tvp="0"
+              value="Terre-Neuve-et-Labrador (TVH 15%)"
+            >
+              Terre-Neuve-et-Labrador (TVH 15%)
+            </option>
+            <option
+              data-tps="0.05"
+              data-tvp="0"
+              value="Territoires du Nord-Ouest (TPS 5%)"
+            >
+              Territoires du Nord-Ouest (TPS 5%)
+            </option>
+            <option
+              data-tps="0.05"
+              data-tvp="0"
+              value="Yukon (TPS 5%)"
+            >
+              Yukon (TPS 5%)
+            </option>
+          </select>
+        </div>
+        <input
+          id="submit-handler-input"
+          style="visibility: hidden; position: absolute; left: -3000px;"
+          type="submit"
+          value="Recalculer"
+        />
+      </form>
+    </div>
+    <div
+      class="results-table hidden"
+    >
+      <table>
+        <thead
+          class="results-table--header"
+        >
+          <tr>
+            <th
+              class="montant col-sum"
+              id="sumMontant"
+              title="Prix avant taxe / sans taxe"
+            />
+            <th
+              class="tps col-sum"
+              id="sumTps"
+              title="Montant de la taxe Fédérale"
+            />
+            <th
+              class="tvq col-sum"
+              id="sumTvq"
+              title="Montant de la taxe provinciale"
+            />
+            <th
+              class="total col-sum"
+              id="sumTotal"
+              title="Somme du MONTANT + taxe fédérale + taxe provinciale = TOTAL"
+            />
+            <th
+              class="province col-sum"
+              title="Province sélectionnée pour le calcul"
+            >
+              Résultats de vos calculs de taxes
+            </th>
+            <th
+              class="rowCount col-sum deleteBtn"
+              title="Nombre de lignes calculées dans ce tableau"
+            />
+          </tr>
+          <tr>
+            <th
+              class="montant"
+              title="Prix avant taxe / sans taxe"
+            >
+              MONTANT $
+            </th>
+            <th
+              class="tps"
+              title="Montant de la taxe Fédérale"
+            >
+              TPS/TVH $
+            </th>
+            <th
+              class="tvq"
+              title="Montant de la taxe provinciale"
+            >
+              TVQ/TVP $
+            </th>
+            <th
+              class="total"
+              title="Somme du MONTANT + taxe fédérale + taxe provinciale = TOTAL"
+            >
+              TOTAL $
+            </th>
+            <th
+              class="province"
+              title="Province sélectionnée pour le calcul"
+            >
+              PROVINCE ET TAUX
+            </th>
+            <th
+              class="rowCount deleteBtn"
+              title="Nombre de lignes calculées dans ce tableau"
+            />
+          </tr>
+        </thead>
+        <tbody
+          class="results-table--rows"
+          title="Pour supprimer une ligne cliquez sur la poubelle, ou utilisez le raccourci clavier [Shift] ou [Ctrl] + [Moins (-)]."
+        />
+      </table>
+      <div
+        class="export-btns"
+      >
+        <button
+          aria-label="Imprimer"
+          id="printBtn"
+          title="Imprimez la liste de vos calculs sur papier ou en fichier PDF"
+          type="button"
+        >
+          Imprimer
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M24 5h-4V0H4v5H0v13h4v6h9.519c2.947 0 6.029-3.577 6.434-6H24V5zM6 2h12v3H6V2zm8.691 16.648S16.16 22 12.691 22H6v-8h12v2.648c0 3.594-3.309 2-3.309 2zM21.5 8c-.276 0-.5-.224-.5-.5s.224-.5.5-.5.5.224.5.5-.224.5-.5.5zM16 17H8v-1h8v1zm-3 1H8v1h5v-1z"
+            />
+          </svg>
+        </button>
+        <button
+          aria-label="Exporter vers un fichier Excel"
+          id="excelBtn"
+          title="Exportez la liste de vos calculs dans un fichier compatible avec Excel"
+          type="button"
+        >
+          Excel
+          <svg
+            viewBox="0 0 50 50"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M28.8125.03125l-28 5.3125c-.472656.089844-.8125.519531-.8125 1v37.3125c0 .480469.339844.910156.8125 1l28 5.3125c.0625.011719.125.03125.1875.03125.230469 0 .445313-.070312.625-.21875.230469-.191406.375-.484375.375-.78125V1c0-.296875-.144531-.589844-.375-.78125-.230469-.191406-.519531-.242188-.8125-.1875zM32 6v7h2v2h-2v5h2v2h-2v5h2v2h-2v6h2v2h-2v7h15c1.101563 0 2-.898437 2-2V8c0-1.101562-.898437-2-2-2zm4 7h8v2h-8zM6.6875 15.6875h5.125L14.5 21.28125c.210938.441406.398438.984375.5625 1.59375h.03125c.105469-.363281.308594-.933594.59375-1.65625l2.96875-5.53125h4.6875l-5.59375 9.25 5.75 9.4375h-4.96875l-3.25-6.09375c-.121094-.226562-.246094-.644531-.375-1.25H14.875c-.0625.285156-.210937.730469-.4375 1.3125l-3.25 6.03125h-5l5.96875-9.34375zM36 20h8v2h-8zm0 7h8v2h-8zm0 8h8v2h-8z"
+            />
+          </svg>
+          <a
+            aria-hidden="true"
+            download="taxes_finance-d_com.xlsx"
+            href="#"
+            id="excelBtnAnchor"
+            style="display: none;"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="footer no-select"
+    >
+      <div
+        class="footer-row logo-fd-and-link-to-gov"
+      >
+        <a
+          class="link-to-finance-d"
+          href="https://finance-d.com"
+          title="Visitez le site internet du concepteur de cette calculatrice de taxes (finance-d.com)"
+        >
+          <img
+            alt="Logo de l'entreprise Finance D."
+            height="48"
+            src="/icons/icon-48x48.png"
+            width="48"
+          />
+          <span
+            class="no-wrap"
+          >
+            Finance D
+          </span>
+        </a>
+        <a
+          class="text-link"
+          href="https://www.revenuquebec.ca/fr/entreprises/taxes/tpstvh-et-tvq/perception-de-la-tps-et-de-la-tvq/calcul-des-taxes/"
+          id="gouvernment-link"
+          rel="noopener"
+          target="_blank"
+          title="Visitez le site du gouvernement pour plus d'informations"
+        >
+          Calcul des taxes selon 
+          <span>
+            Revenu Québec
+          </span>
+        </a>
+      </div>
+      <div
+        class="footer-row footer-text-container"
+      >
+        <h2>
+          À propos de cette calculatrice de taxes :
+        </h2>
+        <div
+          class="footer-row app-description"
+        >
+          <p>
+            <strong>
+              Il s’agit d’un calculateur de taxes pour la TPS / TVH et la TVQ / TVP
+            </strong>
+            , avec les taux de 
+            2022
+             en vigueur au Canada. Plusieurs fonctions de calcul sont réunies, faisant de cet outil un tout-inclut pour vos
+             
+            <strong>
+              calcul de taxes sur les biens et services
+            </strong>
+            . Elle peut faire le calcul des taxes du Québec, le
+             
+            <strong>
+              calcul des taxes pour l’ensemble des provinces et territoires du Canada
+            </strong>
+            , ainsi que le calcul de taxes inverse (taxes incluses). Cette calculatrice de taxes à la consommation canadienne vous est offerte par Finance D, une entreprise du Québec qui offre des logiciels simples aux défis quotidiens de la comptabilité.
+            <br />
+            <br />
+            Sélectionnez une province du Canada et un des
+             
+            <strong>
+              deux modes de calcul de taxes
+            </strong>
+            . Soit le mode de calcul avant taxes régulier ou, le mode de calcul après taxes (calcul inverse sur le total). Ensuite, inscrivez le montant ou le total pour calculer les taxes. Si vous voulez
+             
+            <strong>
+              générer une grille Excel de vos calculs de taxes
+            </strong>
+            , il suffit d’appuyer sur 
+            <kbd>
+              Entrer
+            </kbd>
+             ou sur 
+            <kbd>
+              +
+            </kbd>
+             au clavier, ou d’appuyer sur le bouton de confirmation sur votre mobile. Vous pourrez imprimer votre grille de calculs en PDF ou l’exporter vers un fichier Excel.
+            <br />
+            <br />
+            Note:
+             
+            <a
+              href="https://finance-d.com"
+              style="text-decoration: underline;"
+            >
+              Finance D, offre gratuitement un logiciel de tenue de livres simplifié
+            </a>
+            , qui peut vous aider à facturer vos clients, comptabiliser vos dépenses et payer vos taxes. Ce logiciel inclut un calcul de taxes aussi simple que cette calculatrice de taxes, tout en vous offrant plus de fonctionnalités pratiques. C’est 100% gratuit et sans publicité.
+          </p>
+        </div>
+      </div>
+      <div
+        class="footer-row copyright-and-social-links"
+      >
+        <div
+          class="footer-copyright"
+        >
+          © 2022 
+          <a
+            href="https://finance-d.com/a-propos/"
+            title="En savoir plus à propos de Finance D"
+          >
+            Finance D
+          </a>
+        </div>
+        <div
+          class="lazyload-wrapper facebook-like-button"
+        >
+          <div
+            class="lazyload-placeholder"
+            style="height: 30px;"
+          />
+        </div>
+        <div
+          class="social-links"
+        >
+          <a
+            aria-label="Facebook"
+            class="facebook-page-link"
+            href="https://www.facebook.com/Finance.D.Logiciels"
+            rel="noopener noreferrer"
+            target="_blank"
+            title="Voir la page Facebook de Finance D."
+          >
+            <svg
+              height="30"
+              viewBox="0 0 24 24"
+              width="30"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm3 8h-1.35c-.538 0-.65.221-.65.778V10h2l-.209 2H13v7h-3v-7H8v-2h2V7.692C10 5.923 10.931 5 13.029 5H15v3z"
+              />
+            </svg>
+          </a>
+          <a
+            aria-label="GitHub"
+            class="github-repository-link"
+            href="https://github.com/alex-drocks/calcul-taxes"
+            rel="noopener noreferrer"
+            target="_blank"
+            title="Voir le code source de cette application créée avec Next JS."
+          >
+            <svg
+              aria-label="github logo"
+              height="30"
+              viewBox="0 0 14 14"
+              width="30"
+            >
+              <path
+                d="M7 .175c-3.872 0-7 3.128-7 7 0 3.084 2.013 5.71 4.79 6.65.35.066.482-.153.482-.328v-1.181c-1.947.415-2.363-.941-2.363-.941-.328-.81-.787-1.028-.787-1.028-.634-.438.044-.416.044-.416.7.044 1.071.722 1.071.722.635 1.072 1.641.766 2.035.59.066-.459.24-.765.437-.94-1.553-.175-3.193-.787-3.193-3.456 0-.766.262-1.378.721-1.881-.065-.175-.306-.897.066-1.86 0 0 .59-.197 1.925.722a6.754 6.754 0 0 1 1.75-.24c.59 0 1.203.087 1.75.24 1.335-.897 1.925-.722 1.925-.722.372.963.131 1.685.066 1.86.46.48.722 1.115.722 1.88 0 2.691-1.641 3.282-3.194 3.457.24.219.481.634.481 1.29v1.926c0 .197.131.415.481.328C11.988 12.884 14 10.259 14 7.175c0-3.872-3.128-7-7-7z"
+                fill="currentColor"
+                fill-rule="nonzero"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
