@@ -82,6 +82,9 @@ export default function MyApp({Component, pageProps}) {
           href={process.env.NEXT_PUBLIC_WEBSITE_URL + "/icons/safari-pinned-tab.svg"}
           color="#21beeb"
         />
+      </Head>
+
+      <>
         {/* Global Site Tag (gtag.js) - Google Analytics */}
         <Script
           strategy="afterInteractive"
@@ -101,8 +104,8 @@ export default function MyApp({Component, pageProps}) {
           `
           }}
         />
-      </Head>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
+      </>
     </>
   );
 }
