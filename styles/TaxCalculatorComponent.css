@@ -3,6 +3,7 @@
   width: 100%;
   max-width: var(--max-content-width);
   font-size: 90%;
+  background-color: white;
 }
 
 .calculator h1 {
@@ -14,6 +15,7 @@
 .card {
   padding: 32px 50px 48px 50px;
   box-shadow: var(--main-box-shadow);
+  border-radius: 4px;
 }
 
 .field {
