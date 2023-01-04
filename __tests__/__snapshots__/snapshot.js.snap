@@ -18,9 +18,9 @@ exports[`renders homepage unchanged 1`] = `
             rel="noopener noreferrer"
             style="color: rgb(253, 253, 253);"
             target="_blank"
-            title="Les taux utilisés pour le calcul de taxes de chaque province ou territoire du Canada sont à jour en date de 2022 selon la calculatrice de taxes du site officiel du Gouvernement Fédéral du Canada."
+            title="Les taux utilisés pour le calcul de taxes de chaque province ou territoire du Canada sont à jour en date de 2023 selon la calculatrice de taxes du site officiel du Gouvernement Fédéral du Canada."
           >
-            TAUX 2022
+            TAUX 2023
           </a>
         </span>
       </div>
@@ -494,7 +494,7 @@ exports[`renders homepage unchanged 1`] = `
               Il s’agit d’un calculateur de taxes pour la TPS / TVH et la TVQ / TVP
             </strong>
             , avec les taux de 
-            2022
+            2023
              en vigueur au Canada. Plusieurs fonctions de calcul sont réunies, faisant de cet outil un tout-inclut pour vos
              
             <strong>
@@ -547,7 +547,7 @@ exports[`renders homepage unchanged 1`] = `
         <div
           class="footer-copyright"
         >
-          © 2022 
+          © 2023 
           <a
             href="https://finance-d.com/a-propos/"
             title="En savoir plus à propos de Finance D"
