@@ -5,7 +5,7 @@ describe("Labels", () => {
   // eslint-disable-next-line testing-library/no-render-in-setup
   beforeEach(() => render(<Index />));
 
-  it("should render TITLE", function () {
+  it("should render page h1 TITLE", function () {
     const mainTitle = screen.getByRole("heading", {
       name: "Calcul de taxes pour la TPS et la TVQ"
     });
@@ -62,5 +62,17 @@ describe("Labels", () => {
       "href",
       "https://www.revenuquebec.ca/fr/entreprises/taxes/tpstvh-et-tvq/perception-de-la-tps-et-de-la-tvq/calcul-des-taxes/"
     );
+  });
+
+  it("should render current year in environment variable", () => {
+    const expectedTitle = `Calcul taxes ${new Date().getFullYear()} Québec et Canada avec calcul inversé | Finance D`;
+    const {NEXT_PUBLIC_WEBSITE_TITLE} = process.env;
+    expect(NEXT_PUBLIC_WEBSITE_TITLE).toBe(expectedTitle);
+  });
+
+  it("should render current year in DOM", () => {
+    const year = new Date().getFullYear();
+    const currentRates = `TAUX ${year}`;
+    expect(screen.getByText(currentRates)).toBeVisible();
   });
 });
